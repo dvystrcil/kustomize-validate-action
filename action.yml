@@ -1,0 +1,66 @@
+name: kustomize-validate
+description: >
+  Tier-1 validation for kustomize repos: render every kustomization
+  (structural YAML — catches malformed resource lists before they halt
+  ArgoCD reconciliation) and schema-check the rendered objects with
+  kubeconform (catches misspelled fields that CRDs with
+  x-kubernetes-preserve-unknown-fields silently drop). No cluster access
+  needed; server-side dry-run is deliberately NOT here (it authorizes
+  with write verbs — see the README).
+
+inputs:
+  paths:
+    description: >
+      Space-separated kustomization directories to validate. Default
+      auto-discovers every directory containing kustomization.yaml.
+    default: ""
+  kubeconform_flags:
+    description: Extra flags for kubeconform (e.g. -skip Something).
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Install kubeconform
+      shell: bash
+      run: |
+        set -euo pipefail
+        if ! command -v kubeconform >/dev/null; then
+          curl -fsSL -o /tmp/kc.tar.gz \
+            https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz
+          tar -xzf /tmp/kc.tar.gz -C /tmp kubeconform
+          mkdir -p "$HOME/.local/bin" && mv /tmp/kubeconform "$HOME/.local/bin/"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        fi
+
+    - name: Render and validate every kustomization
+      shell: bash
+      run: |
+        set -euo pipefail
+        PATHS="${{ inputs.paths }}"
+        if [ -z "$PATHS" ]; then
+          PATHS=$(find . -name kustomization.yaml -not -path './.git/*' \
+                  -exec dirname {} \; | sort)
+        fi
+        # Only validate ROOT kustomizations (bases are reached through
+        # their overlays; validating a base alone can miss patches).
+        FAILED=0
+        for dir in $PATHS; do
+          case "$dir" in */base|*/base/*) continue ;; esac
+          echo "::group::kustomize build $dir"
+          if ! kubectl kustomize "$dir" > /tmp/rendered.yaml; then
+            echo "::error::kustomize build failed for $dir"
+            FAILED=1; echo "::endgroup::"; continue
+          fi
+          echo "::endgroup::"
+          echo "::group::kubeconform $dir"
+          if ! kubeconform -strict -summary \
+              -schema-location default \
+              -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
+              ${{ inputs.kubeconform_flags }} /tmp/rendered.yaml; then
+            echo "::error::kubeconform failed for $dir"
+            FAILED=1
+          fi
+          echo "::endgroup::"
+        done
+        [ "$FAILED" -eq 0 ] && echo "KUSTOMIZE-VALIDATE-COMPLETE" || exit 1
