@@ -33,34 +33,46 @@ runs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         fi
 
-    - name: Render and validate every kustomization
+    - name: Render and validate manifests
       shell: bash
       run: |
         set -euo pipefail
-        PATHS="${{ inputs.paths }}"
-        if [ -z "$PATHS" ]; then
-          PATHS=$(find . -name kustomization.yaml -not -path './.git/*' \
-                  -exec dirname {} \; | sort)
-        fi
-        # Only validate ROOT kustomizations (bases are reached through
-        # their overlays; validating a base alone can miss patches).
         FAILED=0
-        for dir in $PATHS; do
+        CONFORM='kubeconform -strict -summary -ignore-missing-schemas
+          -schema-location default
+          -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
+          ${{ inputs.kubeconform_flags }}'
+
+        # --- kustomize repos: render each ROOT kustomization, then conform.
+        # (bases are reached through their overlays; a base alone can miss
+        # patches.) Track their dirs so the raw pass skips them.
+        KDIRS=$(find . -name kustomization.yaml -not -path './.git/*' \
+                -exec dirname {} \; | sort)
+        for dir in ${{ inputs.paths }} $KDIRS; do
           case "$dir" in */base|*/base/*) continue ;; esac
           echo "::group::kustomize build $dir"
           if ! kubectl kustomize "$dir" > /tmp/rendered.yaml; then
-            echo "::error::kustomize build failed for $dir"
-            FAILED=1; echo "::endgroup::"; continue
+            echo "::error::kustomize build failed for $dir"; FAILED=1
+            echo "::endgroup::"; continue
           fi
-          echo "::endgroup::"
-          echo "::group::kubeconform $dir"
-          if ! kubeconform -strict -summary \
-              -schema-location default \
-              -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
-              ${{ inputs.kubeconform_flags }} /tmp/rendered.yaml; then
-            echo "::error::kubeconform failed for $dir"
-            FAILED=1
-          fi
+          $CONFORM /tmp/rendered.yaml || { echo "::error::kubeconform $dir"; FAILED=1; }
           echo "::endgroup::"
         done
+
+        # --- raw-manifest / helm-with-raw-dirs repos: conform every yaml
+        # that IS a k8s manifest (has a top-level `kind:`) and is NOT part
+        # of a kustomization tree. Skips helm values.yaml (no `kind:`).
+        # This is what covers non-kustomize repos (obico, immich, …) that
+        # the old kustomize-only action passed trivially.
+        while IFS= read -r f; do
+          [ -z "$f" ] && continue
+          skip=0
+          for kd in $KDIRS; do case "$f" in "${kd#./}"/*|"$kd"/*) skip=1;; esac; done
+          [ "$skip" -eq 1 ] && continue
+          grep -qE '^kind:' "$f" || continue
+          echo "::group::kubeconform (raw) $f"
+          $CONFORM "$f" || { echo "::error::kubeconform $f"; FAILED=1; }
+          echo "::endgroup::"
+        done < <(find . \( -name '*.yaml' -o -name '*.yml' \) -not -path './.git/*' | sort)
+
         [ "$FAILED" -eq 0 ] && echo "KUSTOMIZE-VALIDATE-COMPLETE" || exit 1
