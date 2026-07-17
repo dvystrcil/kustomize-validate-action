@@ -38,7 +38,15 @@ runs:
       run: |
         set -euo pipefail
         FAILED=0
+        # -skip ImageUpdater: the datree catalog's schema for our
+        # argocd-image-updater CRD is WRONG (requires spec.namespace which
+        # the real CRD doesn't; rejects useAnnotations which it does allow)
+        # → false failures on valid CRs. IU CRs have their own structure
+        # audit (homelab bin/audit-iu-patterns.py) + the homelab-image-updater
+        # skill. Proper fix later: validate against cluster-extracted CRD
+        # schemas instead of the third-party catalog.
         CONFORM='kubeconform -strict -summary -ignore-missing-schemas
+          -skip ImageUpdater
           -schema-location default
           -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
           ${{ inputs.kubeconform_flags }}'
