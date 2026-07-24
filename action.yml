@@ -45,8 +45,17 @@ runs:
         # audit (homelab bin/audit-iu-patterns.py) + the homelab-image-updater
         # skill. Proper fix later: validate against cluster-extracted CRD
         # schemas instead of the third-party catalog.
+        #
+        # -skip SealedSecret: same class of problem. `kubectl kustomize`
+        # always serializes creationTimestamp: null on every embedded
+        # ObjectMeta (standard API-machinery behavior, unavoidable) —
+        # including spec.template.metadata here — but the datree catalog's
+        # bitnami.com/sealedsecret schema doesn't allow it there. False
+        # failure on every valid SealedSecret (homelab/homepage#1,
+        # 2026-07-23).
         CONFORM='kubeconform -strict -summary -ignore-missing-schemas
           -skip ImageUpdater
+          -skip SealedSecret
           -schema-location default
           -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
           ${{ inputs.kubeconform_flags }}'
