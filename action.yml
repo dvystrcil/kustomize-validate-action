@@ -61,8 +61,20 @@ runs:
         # bitnami.com/sealedsecret schema doesn't allow it there. False
         # failure on every valid SealedSecret (homelab/homepage#1,
         # 2026-07-23).
+        #
+        # -skip InfisicalSecret: third occurrence of the same class of
+        # problem — datree's secrets.infisical.com/infisicalsecret schema
+        # marks resyncInterval as required (it's optional, operator
+        # defaults it) and rejects managedSecretReference.template.metadata
+        # (a real, commonly-used field — e.g. setting
+        # reloader.stakater.com/auto on the generated Secret). False
+        # failure on a well-formed CR matching this cluster's own documented
+        # InfisicalSecret pattern (dvystrcil/prometheus
+        # secrets/alertmanager-discord.yaml, 2026-07-24) — used across
+        # nearly every repo in this cluster, so worth fixing here once
+        # rather than per-repo.
         CONFORM='kubeconform -strict -summary -ignore-missing-schemas
-          -skip ImageUpdater,SealedSecret
+          -skip ImageUpdater,SealedSecret,InfisicalSecret
           -schema-location default
           -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
           ${{ inputs.kubeconform_flags }}'
