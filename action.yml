@@ -38,6 +38,14 @@ runs:
       run: |
         set -euo pipefail
         FAILED=0
+        # kubeconform's -skip takes ONE comma-separated value, not a
+        # repeatable flag — `-skip A -skip B` silently drops A (Go's
+        # flag.String keeps only the last occurrence). Adding a new
+        # exception means appending to the existing -skip line, never
+        # a second -skip line (broke ImageUpdater for ~13 repos when
+        # SealedSecret was added as a separate line, 2026-07-24 —
+        # caught by a live batch of real PRs turning red).
+        #
         # -skip ImageUpdater: the datree catalog's schema for our
         # argocd-image-updater CRD is WRONG (requires spec.namespace which
         # the real CRD doesn't; rejects useAnnotations which it does allow)
@@ -54,8 +62,7 @@ runs:
         # failure on every valid SealedSecret (homelab/homepage#1,
         # 2026-07-23).
         CONFORM='kubeconform -strict -summary -ignore-missing-schemas
-          -skip ImageUpdater
-          -skip SealedSecret
+          -skip ImageUpdater,SealedSecret
           -schema-location default
           -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
           ${{ inputs.kubeconform_flags }}'
