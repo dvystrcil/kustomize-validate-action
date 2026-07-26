@@ -1,0 +1,93 @@
+name: Self-test
+
+# This action repo has no CI of its own until now. Covers the D-013
+# Reloader coverage step added in homelab#529 AC3 (reloader_coverage_check.py,
+# vendored from homelab -- see its own header): runs it against two tiny
+# fixture manifests built inline -- one with the gap, one without --
+# asserting the exit code each time. Does not exercise kustomize/
+# kubeconform (those already have a real-world proof: every consuming
+# repo's own PRs), just the new logic this PR adds.
+
+on:
+  pull_request:
+    paths:
+      - 'action.yml'
+      - 'reloader_coverage_check.py'
+      - '.github/workflows/self-test.yaml'
+
+permissions:
+  contents: read
+
+jobs:
+  reloader-coverage-fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install pyyaml
+        run: pip install --quiet pyyaml
+
+      - name: Fixture — gap present must fail (exit 1)
+        run: |
+          set -euo pipefail
+          cat > /tmp/gap.yaml <<'EOF'
+          apiVersion: secrets.infisical.com/v1alpha1
+          kind: InfisicalSecret
+          metadata:
+            namespace: fixture-ns
+          spec:
+            managedSecretReference:
+              secretName: app-secrets
+          ---
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: app
+            namespace: fixture-ns
+          spec:
+            template:
+              spec:
+                containers:
+                  - envFrom:
+                      - secretRef:
+                          name: app-secrets
+          EOF
+          echo "workloads: []" > /tmp/no-exemptions.yaml
+          if python3 reloader_coverage_check.py --from-manifest /tmp/gap.yaml \
+              --exemptions-file /tmp/no-exemptions.yaml --strict; then
+            echo "::error::expected exit 1 (gap present), got 0"; exit 1
+          fi
+          echo "OK: correctly failed on a real gap"
+
+      - name: Fixture — annotation present must pass (exit 0)
+        run: |
+          set -euo pipefail
+          cat > /tmp/covered.yaml <<'EOF'
+          apiVersion: secrets.infisical.com/v1alpha1
+          kind: InfisicalSecret
+          metadata:
+            namespace: fixture-ns
+          spec:
+            managedSecretReference:
+              secretName: app-secrets
+          ---
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: app
+            namespace: fixture-ns
+            annotations:
+              reloader.stakater.com/auto: "true"
+          spec:
+            template:
+              spec:
+                containers:
+                  - envFrom:
+                      - secretRef:
+                          name: app-secrets
+          EOF
+          python3 reloader_coverage_check.py --from-manifest /tmp/covered.yaml \
+            --exemptions-file /tmp/no-exemptions.yaml --strict
+          echo "OK: correctly passed with the annotation present"
+
+      - run: echo "SELF-TEST-COMPLETE"
