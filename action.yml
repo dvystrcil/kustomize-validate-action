@@ -2,11 +2,14 @@ name: kustomize-validate
 description: >
   Tier-1 validation for kustomize repos: render every kustomization
   (structural YAML — catches malformed resource lists before they halt
-  ArgoCD reconciliation) and schema-check the rendered objects with
+  ArgoCD reconciliation), schema-check the rendered objects with
   kubeconform (catches misspelled fields that CRDs with
-  x-kubernetes-preserve-unknown-fields silently drop). No cluster access
-  needed; server-side dry-run is deliberately NOT here (it authorizes
-  with write verbs — see the README).
+  x-kubernetes-preserve-unknown-fields silently drop), and check
+  homelab's own D-013 coverage rule (Reloader annotation on every
+  secret-consuming workload) — homelab#529. VPA coverage (D-012) is a
+  planned follow-up, not yet included. No cluster access needed;
+  server-side dry-run is deliberately NOT here (it authorizes with write
+  verbs — see the README).
 
 inputs:
   paths:
@@ -17,6 +20,14 @@ inputs:
   kubeconform_flags:
     description: Extra flags for kubeconform (e.g. -skip Something).
     default: ""
+  homelab_ref:
+    description: >
+      Pinned commit SHA of dvystrcil/homelab to fetch the D-013 Reloader
+      coverage checker from (homelab#529). Deliberately a fixed SHA, not
+      a branch — bump manually when the check's logic changes, so this
+      action's behavior never shifts silently underneath a consuming
+      repo's PR.
+    default: "9d888d980c09bf214b2b5f2ca371074611c0a152"
 
 runs:
   using: composite
@@ -32,6 +43,18 @@ runs:
           mkdir -p "$HOME/.local/bin" && mv /tmp/kubeconform "$HOME/.local/bin/"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         fi
+
+    - name: Fetch D-013 Reloader coverage checker (homelab, pinned)
+      shell: bash
+      run: |
+        set -euo pipefail
+        REF="${{ inputs.homelab_ref }}"
+        curl -fsSL -o /tmp/audit-reloader-coverage.py \
+          "https://raw.githubusercontent.com/dvystrcil/homelab/${REF}/bin/audit-reloader-coverage.py"
+        curl -fsSL -o /tmp/reloader-exemptions.yaml \
+          "https://raw.githubusercontent.com/dvystrcil/homelab/${REF}/policy/reloader-exemptions.yaml" \
+          || echo "workloads: []" > /tmp/reloader-exemptions.yaml
+        python3 -c "import yaml" 2>/dev/null || pip install --quiet pyyaml
 
     - name: Render and validate manifests
       shell: bash
@@ -92,6 +115,15 @@ runs:
             echo "::endgroup::"; continue
           fi
           $CONFORM /tmp/rendered.yaml || { echo "::error::kubeconform $dir"; FAILED=1; }
+          # D-013: every workload consuming an InfisicalSecret-managed
+          # Secret must carry reloader.stakater.com/auto itself. Checked
+          # from THIS repo's own rendered output (homelab#529) — the
+          # Deployment and the InfisicalSecret CR managing its Secret are
+          # expected to live in the same PR, no live cluster query needed.
+          python3 /tmp/audit-reloader-coverage.py \
+            --from-manifest /tmp/rendered.yaml \
+            --exemptions-file /tmp/reloader-exemptions.yaml --strict \
+            || { echo "::error::reloader-coverage $dir"; FAILED=1; }
           echo "::endgroup::"
         done
 
