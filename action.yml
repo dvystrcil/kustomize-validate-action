@@ -20,15 +20,6 @@ inputs:
   kubeconform_flags:
     description: Extra flags for kubeconform (e.g. -skip Something).
     default: ""
-  homelab_ref:
-    description: >
-      Pinned commit SHA of dvystrcil/homelab to fetch the D-013 Reloader
-      coverage checker from (homelab#529). Deliberately a fixed SHA, not
-      a branch — bump manually when the check's logic changes, so this
-      action's behavior never shifts silently underneath a consuming
-      repo's PR.
-    default: "9d888d980c09bf214b2b5f2ca371074611c0a152"
-
 runs:
   using: composite
   steps:
@@ -44,17 +35,19 @@ runs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         fi
 
-    - name: Fetch D-013 Reloader coverage checker (homelab, pinned)
+    - name: Prep D-013 Reloader coverage checker
       shell: bash
       run: |
         set -euo pipefail
-        REF="${{ inputs.homelab_ref }}"
-        curl -fsSL -o /tmp/audit-reloader-coverage.py \
-          "https://raw.githubusercontent.com/dvystrcil/homelab/${REF}/bin/audit-reloader-coverage.py"
-        curl -fsSL -o /tmp/reloader-exemptions.yaml \
-          "https://raw.githubusercontent.com/dvystrcil/homelab/${REF}/policy/reloader-exemptions.yaml" \
-          || echo "workloads: []" > /tmp/reloader-exemptions.yaml
+        # reloader_coverage_check.py is VENDORED in this action's own repo
+        # (see its own header for why: dvystrcil/homelab is private,
+        # raw.githubusercontent.com 404s unauthenticated fetches to it --
+        # discovered live building this). ${{ github.action_path }} is
+        # this action's own checkout, not the consumer repo's.
         python3 -c "import yaml" 2>/dev/null || pip install --quiet pyyaml
+        # No exemptions support in this composite action (see the
+        # vendored file's header) -- always an empty list.
+        echo "workloads: []" > /tmp/reloader-exemptions.yaml
 
     - name: Render and validate manifests
       shell: bash
@@ -120,7 +113,7 @@ runs:
           # from THIS repo's own rendered output (homelab#529) — the
           # Deployment and the InfisicalSecret CR managing its Secret are
           # expected to live in the same PR, no live cluster query needed.
-          python3 /tmp/audit-reloader-coverage.py \
+          python3 "${{ github.action_path }}/reloader_coverage_check.py" \
             --from-manifest /tmp/rendered.yaml \
             --exemptions-file /tmp/reloader-exemptions.yaml --strict \
             || { echo "::error::reloader-coverage $dir"; FAILED=1; }
