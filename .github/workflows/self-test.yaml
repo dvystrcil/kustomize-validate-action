@@ -22,7 +22,7 @@ jobs:
   reloader-coverage-fixtures:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Install pyyaml
         run: pip install --quiet pyyaml
