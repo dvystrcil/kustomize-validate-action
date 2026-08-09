@@ -2,7 +2,7 @@
 """VENDORED COPY -- homelab#529 (kustomize-validate-action#6).
 
 This file is copied from `dvystrcil/homelab`'s `bin/audit-reloader-coverage.py`
-at commit 9d888d980c09bf214b2b5f2ca371074611c0a152. It is NOT fetched at
+at commit 2beae1478106b7c9c98ee39169cfc3062fe70e85. It is NOT fetched at
 CI time: `dvystrcil/homelab` is a private repo, and raw.githubusercontent.com
 returns 404 for unauthenticated requests to private-repo content --
 discovered live while building this, after a pinned-SHA fetch design
@@ -28,7 +28,7 @@ that's a signal to revisit this design, not to work around it quietly.
 ---
 
 Reloader annotation coverage audit (homelab#289): every Deployment/
-StatefulSet/CronJob that consumes an InfisicalSecret-managed Secret (via
+StatefulSet that consumes an InfisicalSecret-managed Secret (via
 envFrom, env.valueFrom.secretKeyRef, a volume, or imagePullSecrets) should
 carry `reloader.stakater.com/auto: "true"` on its own top-level metadata,
 so a secret rotation actually rolls the consuming pod instead of
@@ -37,8 +37,16 @@ policy/reloader-exemptions.yaml. Workloads that don't reference any
 Infisical-managed secret are out of scope entirely (not a gap, not
 "covered", just irrelevant).
 
+CronJob is deliberately NOT in scope (was, until 2026-08-09): a CronJob
+spawns a fresh Pod from its spec on every scheduled run, referencing the
+Secret by name and picking up the CURRENT value naturally -- there is no
+long-running pod for Reloader to roll, so the annotation does nothing
+meaningful. Confirmed against a real false-positive
+(vaultwarden/vaultwarden-backup) surfaced while wiring homelab#472's
+per-repo CI check onto vaultwarden.
+
 The annotation is a Reloader property of the CONSUMING workload's own
-top-level `metadata.annotations` (Deployment/StatefulSet/CronJob), not
+top-level `metadata.annotations` (Deployment/StatefulSet), not
 the pod template underneath it and not the Secret. Verified against live
 examples already correctly wired in this cluster (n8n, oikb, mcp-server,
 sd-webui-rcom — all at `metadata.annotations`, none under
@@ -77,14 +85,13 @@ ROLLING_ISSUE_REPO = "dvystrcil/homelab"
 RELOADER_ANNOTATION = "reloader.stakater.com/auto"
 
 WORKLOAD_KINDS = (("Deployment", "deployments"),
-                  ("StatefulSet", "statefulsets"),
-                  ("CronJob", "cronjobs"))
+                  ("StatefulSet", "statefulsets"))
 
 
 @dataclass
 class Workload:
     namespace: str
-    kind: str                       # Deployment | StatefulSet | CronJob
+    kind: str                       # Deployment | StatefulSet
     name: str
     has_annotation: bool = False
     secrets: tuple[str, ...] = field(default_factory=tuple)
@@ -233,7 +240,7 @@ def gather_managed_secrets_from_docs(docs: list[dict | None]) -> set[tuple[str, 
     for doc in docs:
         if not doc or doc.get("kind") != "InfisicalSecret":
             continue
-        ns = doc["metadata"]["namespace"]
+        ns = doc["metadata"].get("namespace")
         spec = doc["spec"]
         if "managedSecretReference" in spec:
             out.add((ns, spec["managedSecretReference"]["secretName"]))
@@ -259,7 +266,14 @@ def gather_workloads_from_docs(docs: list[dict | None]) -> list[Workload]:
         if not doc or doc.get("kind") not in kind_map:
             continue
         kind = doc["kind"]
-        ns = doc["metadata"]["namespace"]
+        # kustomize doesn't require every resource to carry an explicit
+        # namespace: (it may rely on the apply-time/ArgoCD destination
+        # namespace instead) -- a bare `["namespace"]` crashed the whole
+        # check on any such repo (firecrawl, 2026-08-09, homelab#472) even
+        # though there was nothing wrong with its manifests. `None` is a
+        # valid, consistent namespace key here as long as it's used the
+        # same way on both sides of the match in referenced_managed_secrets.
+        ns = doc["metadata"].get("namespace")
         name = doc["metadata"]["name"]
         spec = pod_spec_of(kind, doc)
         secrets = referenced_managed_secrets(spec, ns, managed)
