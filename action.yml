@@ -35,6 +35,25 @@ runs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         fi
 
+    - name: Install kubectl
+      shell: bash
+      run: |
+        set -euo pipefail
+        # The render step below shells out to `kubectl kustomize`. GitHub's
+        # ubuntu-latest ships kubectl preinstalled, so this was never
+        # explicit -- but the act image does not, and the step died with
+        # `kubectl: command not found`. Installed the same guarded way as
+        # kubeconform above, so it is a no-op on GitHub and makes local
+        # `act` runs work.
+        if ! command -v kubectl >/dev/null; then
+          ver="$(curl -fsSL https://dl.k8s.io/release/stable.txt)"
+          curl -fsSL -o /tmp/kubectl \
+            "https://dl.k8s.io/release/${ver}/bin/linux/amd64/kubectl"
+          chmod +x /tmp/kubectl
+          mkdir -p "$HOME/.local/bin" && mv /tmp/kubectl "$HOME/.local/bin/"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        fi
+
     - name: Prep D-013 Reloader coverage checker
       shell: bash
       run: |
@@ -44,7 +63,22 @@ runs:
         # raw.githubusercontent.com 404s unauthenticated fetches to it --
         # discovered live building this). ${{ github.action_path }} is
         # this action's own checkout, not the consumer repo's.
-        python3 -c "import yaml" 2>/dev/null || pip install --quiet pyyaml
+        # Do NOT `pip install` into the system interpreter. GitHub's
+        # ubuntu-latest puts a hostedtoolcache Python first on PATH,
+        # which is not PEP 668 marked, so a bare `pip install` works
+        # there -- but on any Debian/Ubuntu system Python (notably
+        # ghcr.io/catthehacker/ubuntu:act-latest, i.e. every local `act`
+        # run) it dies with `externally-managed-environment`, which made
+        # `act` useless against every repo consuming this action.
+        # Export the interpreter that actually has pyyaml so the render
+        # step below runs the checker with it.
+        if python3 -c "import yaml" 2>/dev/null; then
+          echo "KV_PYTHON=python3" >> "$GITHUB_ENV"
+        else
+          python3 -m venv /tmp/kustomize-validate-venv
+          /tmp/kustomize-validate-venv/bin/pip install --quiet pyyaml
+          echo "KV_PYTHON=/tmp/kustomize-validate-venv/bin/python" >> "$GITHUB_ENV"
+        fi
         # No exemptions support in this composite action (see the
         # vendored file's header) -- always an empty list.
         echo "workloads: []" > /tmp/reloader-exemptions.yaml
@@ -113,7 +147,7 @@ runs:
           # from THIS repo's own rendered output (homelab#529) — the
           # Deployment and the InfisicalSecret CR managing its Secret are
           # expected to live in the same PR, no live cluster query needed.
-          python3 "${{ github.action_path }}/reloader_coverage_check.py" \
+          "${KV_PYTHON:-python3}" "${{ github.action_path }}/reloader_coverage_check.py" \
             --from-manifest /tmp/rendered.yaml \
             --exemptions-file /tmp/reloader-exemptions.yaml --strict \
             || { echo "::error::reloader-coverage $dir"; FAILED=1; }

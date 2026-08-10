@@ -25,7 +25,17 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install pyyaml
-        run: pip install --quiet pyyaml
+        # venv, not a bare `pip install` -- see the same note in action.yml:
+        # a system-Python install is PEP 668 blocked under `act`.
+        run: |
+          set -euo pipefail
+          if python3 -c "import yaml" 2>/dev/null; then
+            echo "KV_PYTHON=python3" >> "$GITHUB_ENV"
+          else
+            python3 -m venv /tmp/self-test-venv
+            /tmp/self-test-venv/bin/pip install --quiet pyyaml
+            echo "KV_PYTHON=/tmp/self-test-venv/bin/python" >> "$GITHUB_ENV"
+          fi
 
       - name: Fixture — gap present must fail (exit 1)
         run: |
@@ -53,7 +63,7 @@ jobs:
                           name: app-secrets
           EOF
           echo "workloads: []" > /tmp/no-exemptions.yaml
-          if python3 reloader_coverage_check.py --from-manifest /tmp/gap.yaml \
+          if "${KV_PYTHON:-python3}" reloader_coverage_check.py --from-manifest /tmp/gap.yaml \
               --exemptions-file /tmp/no-exemptions.yaml --strict; then
             echo "::error::expected exit 1 (gap present), got 0"; exit 1
           fi
@@ -86,7 +96,7 @@ jobs:
                       - secretRef:
                           name: app-secrets
           EOF
-          python3 reloader_coverage_check.py --from-manifest /tmp/covered.yaml \
+          "${KV_PYTHON:-python3}" reloader_coverage_check.py --from-manifest /tmp/covered.yaml \
             --exemptions-file /tmp/no-exemptions.yaml --strict
           echo "OK: correctly passed with the annotation present"
 
