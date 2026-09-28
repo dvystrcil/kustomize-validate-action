@@ -1,0 +1,6 @@
+# A Component that PATCHES a base resource: like dvystrcil/argocd's
+# global-patches, it cannot be built on its own (no resource to patch).
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+patches:
+- path: patch.yaml

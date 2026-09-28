@@ -14,6 +14,7 @@ on:
       - 'action.yml'
       - 'reloader_coverage_check.py'
       - '.github/workflows/self-test.yaml'
+      - 'tests/**'
 
 permissions:
   contents: read
@@ -101,3 +102,14 @@ jobs:
           echo "OK: correctly passed with the annotation present"
 
       - run: echo "SELF-TEST-COMPLETE"
+
+  # The action end to end on this repo, which contains tests/fixtures/
+  # component-repo: a base, a Component that PATCHES it, and an overlay using
+  # both. A patching Component cannot be built on its own; it is validated
+  # through the overlay. Before the fix, auto-discovery built it standalone and
+  # failed (dvystrcil/argocd#46, whose components are the same shape).
+  action-with-components:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./
