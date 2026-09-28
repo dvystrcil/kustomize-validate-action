@@ -136,6 +136,14 @@ runs:
                 -exec dirname {} \; | sort)
         for dir in ${{ inputs.paths }} $KDIRS; do
           case "$dir" in */base|*/base/*) continue ;; esac
+          # A kustomize Component is not a build root: one that patches a base
+          # resource cannot render on its own ("no resource matches strategic
+          # merge patch"). It is validated through every overlay that lists it
+          # under `components:`, which this loop builds.
+          if grep -qE '^kind:[[:space:]]*Component[[:space:]]*$' "$dir/kustomization.yaml" 2>/dev/null; then
+            echo "skip $dir: kustomize Component (validated via the overlays that include it)"
+            continue
+          fi
           echo "::group::kustomize build $dir"
           if ! kubectl kustomize "$dir" > /tmp/rendered.yaml; then
             echo "::error::kustomize build failed for $dir"; FAILED=1
