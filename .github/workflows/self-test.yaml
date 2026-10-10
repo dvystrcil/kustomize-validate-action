@@ -13,6 +13,7 @@ on:
     paths:
       - 'action.yml'
       - 'reloader_coverage_check.py'
+      - 'vpa_coverage_check.py'
       - '.github/workflows/self-test.yaml'
       - 'tests/**'
 
@@ -113,3 +114,17 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: ./
+
+  vpa-coverage-unit:
+    # D-012 PR-time check (homelab#529 AC2): added/changed workloads need a
+    # VPA, untouched and image-only changes are not judged.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Unit tests
+        run: |
+          set -euo pipefail
+          python3 -c "import yaml" 2>/dev/null || { python3 -m venv /tmp/v && /tmp/v/bin/pip install --quiet pyyaml && export PATH=/tmp/v/bin:$PATH; }
+          python3 -m unittest discover -s tests -p 'test_*.py' -v 2>&1 | tee ut.out
+          grep -q '^OK$' ut.out
+          grep -qE '^Ran [1-9][0-9]* tests' ut.out
