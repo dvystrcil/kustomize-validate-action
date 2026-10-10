@@ -6,8 +6,9 @@ description: >
   kubeconform (catches misspelled fields that CRDs with
   x-kubernetes-preserve-unknown-fields silently drop), and check
   homelab's own D-013 coverage rule (Reloader annotation on every
-  secret-consuming workload) — homelab#529. VPA coverage (D-012) is a
-  planned follow-up, not yet included. No cluster access needed;
+  secret-consuming workload) — homelab#529 — and, on pull requests, D-012:
+  every Deployment/StatefulSet the PR adds or changes (image-only changes
+  excepted) must have a VPA. No cluster access needed;
   server-side dry-run is deliberately NOT here (it authorizes with write
   verbs — see the README).
 
@@ -132,6 +133,25 @@ runs:
         # --- kustomize repos: render each ROOT kustomization, then conform.
         # (bases are reached through their overlays; a base alone can miss
         # patches.) Track their dirs so the raw pass skips them.
+        # D-012 on pull requests (homelab#529): render the PR's BASE commit
+        # too, so the VPA check can tell added/changed workloads from
+        # untouched ones. Untouched ones are the weekly cluster audit's
+        # (homelab bin/audit-vpa-coverage.py), whose rolling issue comments
+        # on every NEWLY uncovered workload -- that is the backstop for
+        # anything this check never sees. Not a PR (push): skipped.
+        VPA_BASE=""
+        BASE_SHA="${{ github.event.pull_request.base.sha }}"
+        if [ -n "$BASE_SHA" ]; then
+          if git fetch --no-tags --depth=1 origin "$BASE_SHA" >/dev/null 2>&1 \
+             && git worktree add -f /tmp/kv-base FETCH_HEAD >/dev/null 2>&1; then
+            VPA_BASE=/tmp/kv-base
+          else
+            # Fail closed: without the base every workload would read as
+            # untouched or as added, and either is a guess.
+            echo "::error::vpa-coverage: cannot check out the PR base $BASE_SHA"; FAILED=1
+          fi
+        fi
+
         KDIRS=$(find . -name kustomization.yaml -not -path './.git/*' \
                 -exec dirname {} \; | sort)
         for dir in ${{ inputs.paths }} $KDIRS; do
@@ -159,6 +179,20 @@ runs:
             --from-manifest /tmp/rendered.yaml \
             --exemptions-file /tmp/reloader-exemptions.yaml --strict \
             || { echo "::error::reloader-coverage $dir"; FAILED=1; }
+          # D-012: a workload this PR adds or changes must have a VPA.
+          if [ -n "$VPA_BASE" ]; then
+            BASEARG=()
+            if [ -f "$VPA_BASE/$dir/kustomization.yaml" ]; then
+              if kubectl kustomize "$VPA_BASE/$dir" > /tmp/base-rendered.yaml 2>/dev/null; then
+                BASEARG=(--base /tmp/base-rendered.yaml)
+              else
+                echo "::warning::vpa-coverage: the base of $dir does not render; every workload counts as added"
+              fi
+            fi
+            "${KV_PYTHON:-python3}" "${{ github.action_path }}/vpa_coverage_check.py" \
+              --head /tmp/rendered.yaml "${BASEARG[@]}" \
+              || { echo "::error::vpa-coverage $dir"; FAILED=1; }
+          fi
           echo "::endgroup::"
         done
 
