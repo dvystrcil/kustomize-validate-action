@@ -121,6 +121,22 @@ class TestJudgement(unittest.TestCase):
         self.assertEqual(check(head, ""), [])
 
 
+    def test_a_namespace_less_workload_matches_its_vpa_in_a_namespace(self):
+        """obico#37: obico-web/-tasks set no namespace (Argo's destination
+        supplies it) while base/vpa.yaml names `obico`. The render cannot know
+        the destination, so an unset namespace matches; the gate called two
+        covered Deployments uncovered and blocked a vpa-rightsize PR."""
+        head = deploy().replace("  namespace: apps\n", "") + vpa()
+        self.assertEqual(check(head, ""), [])
+
+    def test_a_namespaced_workload_matches_a_namespace_less_vpa(self):
+        head = deploy() + vpa().replace("  namespace: apps\n", "")
+        self.assertEqual(check(head, ""), [])
+
+    def test_an_unset_namespace_still_needs_the_same_kind_and_name(self):
+        head = deploy().replace("  namespace: apps\n", "") + vpa(target="other")
+        self.assertEqual(check(head, ""), [("Deployment", "", "app", "added")])
+
 class TestCli(unittest.TestCase):
     def run_cli(self, head, base=None):
         d = Path(tempfile.mkdtemp())

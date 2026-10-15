@@ -73,6 +73,15 @@ def _vpa_targets(docs: list[dict]) -> set[tuple[str, str, str]]:
     return out
 
 
+def _covered(key: tuple[str, str, str], vpas: set[tuple[str, str, str]]) -> bool:
+    """A VPA covers a workload of the same kind and name in the same namespace.
+    An UNSET namespace on either side is the Argo destination namespace, which
+    the render cannot know, so it matches any (obico#37: Deployments without
+    one, VPAs with `namespace: obico`). Two set, different namespaces never do."""
+    kind, ns, name = key
+    return any(k == kind and n == name and (not v or not ns or v == ns) for k, v, n in vpas)
+
+
 def missing(head: list[dict], base: list[dict]) -> list[tuple[str, str, str, str]]:
     """(kind, namespace, name, added|changed) for each touched workload without a VPA."""
     now, before, vpas = _workloads(head), _workloads(base), _vpa_targets(head)
@@ -86,7 +95,7 @@ def missing(head: list[dict], base: list[dict]) -> list[tuple[str, str, str, str
             why = "changed"
         else:
             why = "added"
-        if key not in vpas:
+        if not _covered(key, vpas):
             out.append((*key, why))
     return out
 
