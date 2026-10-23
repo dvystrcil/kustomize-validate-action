@@ -1,0 +1,7 @@
+# A raw manifest beside the chart: still validated (the skip is chart templates only).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: beside-the-chart
+data:
+  a: b

@@ -105,8 +105,10 @@ jobs:
       - run: echo "SELF-TEST-COMPLETE"
 
   # The action end to end on this repo, which contains tests/fixtures/
-  # component-repo: a base, a Component that PATCHES it, and an overlay using
-  # both. A patching Component cannot be built on its own; it is validated
+  # chart-repo: a Helm chart whose templates/ must be skipped (Go templates are
+  # not YAML until rendered), beside a raw manifest that must still be
+  # conformed; and component-repo: a base, a Component that PATCHES it, and an
+  # overlay using both. A patching Component cannot be built on its own; it is validated
   # through the overlay. Before the fix, auto-discovery built it standalone and
   # failed (dvystrcil/argocd#46, whose components are the same shape).
   action-with-components:
@@ -114,6 +116,23 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: ./
+
+  # The chart-template skip must not become a blind spot: a templates/ dir
+  # with NO Chart.yaml above it is not a chart, so a broken file there must
+  # still fail the action.
+  templates-without-chart-still-checked:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Plant a broken manifest in a templates/ dir that is not a chart
+        run: |
+          mkdir -p not-a-chart/templates
+          printf 'apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: {{ broken }}\n' > not-a-chart/templates/cm.yaml
+      - id: action
+        uses: ./
+        continue-on-error: true
+      - name: The action must have failed on it
+        run: test "${{ steps.action.outcome }}" = "failure"
 
   vpa-coverage-unit:
     # D-012 PR-time check (homelab#529 AC2): added/changed workloads need a

@@ -206,6 +206,20 @@ runs:
           skip=0
           for kd in $KDIRS; do case "$f" in "${kd#./}"/*|"$kd"/*) skip=1;; esac; done
           [ "$skip" -eq 1 ] && continue
+          # A Helm chart's templates/ are Go templates, not manifests: they
+          # only become YAML once rendered, and conforming them raw fails on
+          # `{{ ... }}` (gateway-services, homelab#1696). They are skipped
+          # ONLY when the directory above templates/ holds a Chart.yaml, so a
+          # stray raw manifest in some other templates/ dir is still checked.
+          # Rendering is helm-validate-action's job.
+          case "$f" in
+            */templates/*)
+              chart="${f%/templates/*}"
+              if [ -f "$chart/Chart.yaml" ]; then
+                echo "skip $f: Helm chart template (render with helm-validate-action)"
+                continue
+              fi ;;
+          esac
           grep -qE '^kind:' "$f" || continue
           echo "::group::kubeconform (raw) $f"
           $CONFORM "$f" || { echo "::error::kubeconform $f"; FAILED=1; }
