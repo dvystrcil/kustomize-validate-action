@@ -66,9 +66,14 @@ jobs:
           EOF
           echo "workloads: []" > /tmp/no-exemptions.yaml
           if "${KV_PYTHON:-python3}" reloader_coverage_check.py --from-manifest /tmp/gap.yaml \
-              --exemptions-file /tmp/no-exemptions.yaml --strict; then
+              --exemptions-file /tmp/no-exemptions.yaml --strict > /tmp/gap.out; then
             echo "::error::expected exit 1 (gap present), got 0"; exit 1
           fi
+          cat /tmp/gap.out
+          # The message is the fix instruction bin/ci-autofix.py hands a
+          # model (homelab#529 AC5) — it must say WHERE the annotation goes.
+          grep -q "own metadata.annotations (not spec.template.metadata)" /tmp/gap.out \
+            || { echo "::error::gap message no longer names the annotation's location"; exit 1; }
           echo "OK: correctly failed on a real gap"
 
       - name: Fixture — annotation present must pass (exit 0)
