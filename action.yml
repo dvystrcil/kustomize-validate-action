@@ -124,7 +124,15 @@ runs:
         # secrets/alertmanager-discord.yaml, 2026-07-24) — used across
         # nearly every repo in this cluster, so worth fixing here once
         # rather than per-repo.
+        #
+        # -cache: one schema download per URL per job, shared by every
+        # kustomize root below. Must be WRITABLE: kubeconform fails a
+        # resource whose schema it cannot write back (homelab#1812). It does
+        # not cache a 404, so the raw pass is ONE invocation instead (below).
+        KV_SCHEMA_CACHE="${RUNNER_TEMP:-/tmp}/kubeconform-schemas"
+        mkdir -p "$KV_SCHEMA_CACHE"
         CONFORM='kubeconform -strict -summary -ignore-missing-schemas
+          -cache '"$KV_SCHEMA_CACHE"'
           -skip ImageUpdater,SealedSecret,InfisicalSecret
           -schema-location default
           -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
@@ -201,6 +209,13 @@ runs:
         # of a kustomization tree. Skips helm values.yaml (no `kind:`).
         # This is what covers non-kustomize repos (obico, immich, …) that
         # the old kustomize-only action passed trivially.
+        #
+        # ONE kubeconform over all of them, not one per file (homelab#1812):
+        # each process re-fetched its schemas, and a CRD kind first 404s on
+        # `default`, which no cache keeps. argocd-projects' 152 files: 315
+        # connections and 78 s on a fast link (480 s p90 in CI) -> 8 and 1 s,
+        # same 164 valid / 0 errors. Errors still name the file.
+        RAW=()
         while IFS= read -r f; do
           [ -z "$f" ] && continue
           skip=0
@@ -221,9 +236,14 @@ runs:
               fi ;;
           esac
           grep -qE '^kind:' "$f" || continue
-          echo "::group::kubeconform (raw) $f"
-          $CONFORM "$f" || { echo "::error::kubeconform $f"; FAILED=1; }
-          echo "::endgroup::"
+          RAW+=("$f")
         done < <(find . \( -name '*.yaml' -o -name '*.yml' \) -not -path './.git/*' | sort)
+        # Guarded: kubeconform with no file arguments reads stdin.
+        if [ "${#RAW[@]}" -gt 0 ]; then
+          echo "::group::kubeconform (raw) ${#RAW[@]} files"
+          printf '  %s\n' "${RAW[@]}"
+          $CONFORM "${RAW[@]}" || { echo "::error::kubeconform (raw): see the failing file(s) above"; FAILED=1; }
+          echo "::endgroup::"
+        fi
 
         [ "$FAILED" -eq 0 ] && echo "KUSTOMIZE-VALIDATE-COMPLETE" || exit 1
