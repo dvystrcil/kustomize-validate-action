@@ -134,10 +134,15 @@ def evaluate_reloader_coverage(workloads: list[Workload], exemptions: dict
         elif (wl.namespace, wl.name) in wl_exempt:
             exempt.append(Exempt(wl.subject, wl_exempt[(wl.namespace, wl.name)]))
         else:
+            # The detail is the fix instruction ci-autofix hands a model
+            # (homelab#529 AC5): without the location, it annotated the
+            # pod template in 4 of 6 tries, which Reloader ignores.
             gaps.append(Gap(
                 "workload-missing-reloader-annotation", wl.subject,
                 f"{wl.kind} consumes Infisical-managed secret(s) "
-                f"{', '.join(wl.secrets)} but lacks {RELOADER_ANNOTATION}"))
+                f"{', '.join(wl.secrets)} but lacks {RELOADER_ANNOTATION}; "
+                f"add `{RELOADER_ANNOTATION}: \"true\"` to the {wl.kind}'s "
+                f"own metadata.annotations (not spec.template.metadata)"))
     return covered, exempt, gaps
 
 
