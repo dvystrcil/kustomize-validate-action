@@ -90,6 +90,21 @@ happens laptop-side in the tooling that generates manifests
 (structural render + offline schema with CRD catalog) catch the classes
 that have actually bitten: malformed lists and silently-dropped fields.
 
+## Releasing
+
+Consumers pin `@v1`, so moving `v1` is the release to every one of them.
+It happens on purpose, never on merge:
+
+```sh
+gh workflow run release.yaml --repo dvystrcil/kustomize-validate-action -f bump=patch
+```
+
+That creates the next `vX.Y.Z` with auto-generated release notes and moves
+`v1` to the same commit (`.github/workflows/release.yaml`, via
+`dvystrcil/release-action`). It refuses to run from any branch but `main`.
+A `major` bump creates `v2` and leaves `v1` alone. To roll back,
+`git tag -f v1 <previous sha> && git push --force origin refs/tags/v1`.
+
 ## License
 
 Code is [MIT](LICENSE).
