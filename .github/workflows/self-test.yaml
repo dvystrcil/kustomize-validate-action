@@ -134,6 +134,23 @@ jobs:
       - name: The action must have failed on it
         run: test "${{ steps.action.outcome }}" = "failure"
 
+  # The raw pass is ONE kubeconform over every file (homelab#1812). A single
+  # schema-invalid manifest among the valid fixtures must still fail the
+  # whole action -- batching must not average it away.
+  raw-batch-still-fails-on-one-bad-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Plant a schema-invalid raw manifest beside the valid fixtures
+        run: |
+          mkdir -p bad-raw
+          printf 'apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: bad\ndata:\n  - not-a-map\n' > bad-raw/cm.yaml
+      - id: action
+        uses: ./
+        continue-on-error: true
+      - name: The action must have failed on it
+        run: test "${{ steps.action.outcome }}" = "failure"
+
   vpa-coverage-unit:
     # D-012 PR-time check (homelab#529 AC2): added/changed workloads need a
     # VPA, untouched and image-only changes are not judged.
