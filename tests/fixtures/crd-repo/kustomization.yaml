@@ -1,0 +1,6 @@
+# #22: a repo that ships its own CRD (as dvystrcil/metallb vendors
+# metallb-native.yaml). The CR must be validated against THIS CRD, not the
+# datree catalog, whose L2Advertisement (2023-03-02) has no serviceSelectors.
+resources:
+  - crd.yaml
+  - l2advertisement.yaml

@@ -1,0 +1,101 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "createSnapshot": {
+     "type": "boolean"
+    },
+    "labels": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "volume": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "volume"
+   ],
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "checksum": {
+     "type": "string"
+    },
+    "checksumCalculatedAt": {
+     "type": "string"
+    },
+    "children": {
+     "additionalProperties": {
+      "type": "boolean"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "creationTime": {
+     "type": "string"
+    },
+    "error": {
+     "type": "string"
+    },
+    "labels": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "markRemoved": {
+     "type": "boolean"
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "parent": {
+     "type": "string"
+    },
+    "readyToUse": {
+     "type": "boolean"
+    },
+    "requestedTime": {
+     "type": "string"
+    },
+    "restoreSize": {
+     "format": "int64",
+     "type": "integer"
+    },
+    "size": {
+     "format": "int64",
+     "type": "integer"
+    },
+    "userCreated": {
+     "type": "boolean"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

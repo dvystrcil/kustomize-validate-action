@@ -1,0 +1,405 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "awsIam": {
+     "additionalProperties": false,
+     "properties": {
+      "identityIdRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      }
+     },
+     "required": [
+      "identityIdRef"
+     ],
+     "type": "object"
+    },
+    "azure": {
+     "additionalProperties": false,
+     "properties": {
+      "identityIdRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      },
+      "resource": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "identityIdRef"
+     ],
+     "type": "object"
+    },
+    "gcpIam": {
+     "additionalProperties": false,
+     "properties": {
+      "identityIdRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      },
+      "serviceAccountKeyFilePath": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "identityIdRef",
+      "serviceAccountKeyFilePath"
+     ],
+     "type": "object"
+    },
+    "gcpIdToken": {
+     "additionalProperties": false,
+     "properties": {
+      "identityIdRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      }
+     },
+     "required": [
+      "identityIdRef"
+     ],
+     "type": "object"
+    },
+    "infisicalConnectionRef": {
+     "additionalProperties": false,
+     "properties": {
+      "name": {
+       "type": "string"
+      },
+      "namespace": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "name",
+      "namespace"
+     ],
+     "type": "object"
+    },
+    "kubernetes": {
+     "additionalProperties": false,
+     "properties": {
+      "identityIdRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      },
+      "serviceAccountRef": {
+       "additionalProperties": false,
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      },
+      "serviceAccountTokenAudiences": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "identityIdRef",
+      "serviceAccountRef"
+     ],
+     "type": "object"
+    },
+    "ldap": {
+     "additionalProperties": false,
+     "properties": {
+      "identityIdRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      },
+      "passwordRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      },
+      "usernameRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      }
+     },
+     "required": [
+      "identityIdRef",
+      "passwordRef",
+      "usernameRef"
+     ],
+     "type": "object"
+    },
+    "method": {
+     "enum": [
+      "universal",
+      "kubernetes",
+      "aws-iam",
+      "azure",
+      "gcp-id-token",
+      "gcp-iam",
+      "ldap"
+     ],
+     "type": "string"
+    },
+    "universal": {
+     "additionalProperties": false,
+     "properties": {
+      "clientIdRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      },
+      "clientSecretRef": {
+       "additionalProperties": false,
+       "properties": {
+        "key": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        },
+        "namespace": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "key",
+        "name",
+        "namespace"
+       ],
+       "type": "object"
+      }
+     },
+     "required": [
+      "clientIdRef",
+      "clientSecretRef"
+     ],
+     "type": "object"
+    }
+   },
+   "required": [
+    "method"
+   ],
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastTransitionTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "message": {
+        "maxLength": 32768,
+        "type": "string"
+       },
+       "observedGeneration": {
+        "format": "int64",
+        "minimum": 0,
+        "type": "integer"
+       },
+       "reason": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+        "type": "string"
+       },
+       "status": {
+        "enum": [
+         "True",
+         "False",
+         "Unknown"
+        ],
+        "type": "string"
+       },
+       "type": {
+        "maxLength": 316,
+        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+        "type": "string"
+       }
+      },
+      "required": [
+       "lastTransitionTime",
+       "message",
+       "reason",
+       "status",
+       "type"
+      ],
+      "type": "object"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "conditions"
+   ],
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

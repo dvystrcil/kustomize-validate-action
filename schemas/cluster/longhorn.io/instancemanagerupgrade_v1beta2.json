@@ -1,0 +1,131 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "nodeID": {
+     "type": "string"
+    },
+    "targetImage": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "nodeID",
+    "targetImage"
+   ],
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "abortReason": {
+     "type": "string"
+    },
+    "abortRequested": {
+     "type": "boolean"
+    },
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "engines": {
+     "additionalProperties": {
+      "additionalProperties": false,
+      "properties": {
+       "originalNodeID": {
+        "type": "string"
+       },
+       "temporaryNodeID": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "originalNodeID"
+      ],
+      "type": "object"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "errorMsg": {
+     "type": "string"
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "plannedDetachedReplicas": {
+     "additionalProperties": {
+      "items": {
+       "additionalProperties": false,
+       "properties": {
+        "address": {
+         "type": "string"
+        },
+        "name": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "address",
+        "name"
+       ],
+       "type": "object"
+      },
+      "type": "array"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "startedAt": {
+     "type": "string"
+    },
+    "state": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

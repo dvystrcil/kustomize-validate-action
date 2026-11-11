@@ -1,0 +1,321 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "allowScheduling": {
+     "type": "boolean"
+    },
+    "disks": {
+     "additionalProperties": {
+      "additionalProperties": false,
+      "properties": {
+       "allowScheduling": {
+        "type": "boolean"
+       },
+       "diskDriver": {
+        "enum": [
+         "",
+         "auto",
+         "aio",
+         "nvme"
+        ],
+        "type": "string"
+       },
+       "diskType": {
+        "enum": [
+         "filesystem",
+         "block"
+        ],
+        "type": "string"
+       },
+       "evictionRequested": {
+        "type": "boolean"
+       },
+       "path": {
+        "type": "string"
+       },
+       "storageReserved": {
+        "format": "int64",
+        "type": "integer"
+       },
+       "tags": {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       }
+      },
+      "type": "object"
+     },
+     "type": "object"
+    },
+    "evictionRequested": {
+     "type": "boolean"
+    },
+    "instanceManagerCPURequest": {
+     "type": "integer"
+    },
+    "name": {
+     "type": "string"
+    },
+    "tags": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "autoEvicting": {
+     "type": "boolean"
+    },
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "cpuPolicy": {
+     "type": "string"
+    },
+    "diskStatus": {
+     "additionalProperties": {
+      "additionalProperties": false,
+      "properties": {
+       "conditions": {
+        "items": {
+         "additionalProperties": false,
+         "properties": {
+          "lastProbeTime": {
+           "type": "string"
+          },
+          "lastTransitionTime": {
+           "type": "string"
+          },
+          "message": {
+           "type": "string"
+          },
+          "reason": {
+           "type": "string"
+          },
+          "status": {
+           "type": "string"
+          },
+          "type": {
+           "type": "string"
+          }
+         },
+         "type": "object"
+        },
+        "type": [
+         "array",
+         "null"
+        ]
+       },
+       "diskDriver": {
+        "type": "string"
+       },
+       "diskName": {
+        "type": "string"
+       },
+       "diskPath": {
+        "type": "string"
+       },
+       "diskType": {
+        "type": "string"
+       },
+       "diskUUID": {
+        "type": "string"
+       },
+       "filesystemType": {
+        "type": "string"
+       },
+       "healthData": {
+        "additionalProperties": {
+         "additionalProperties": false,
+         "properties": {
+          "attributes": {
+           "items": {
+            "additionalProperties": false,
+            "properties": {
+             "id": {
+              "type": "integer"
+             },
+             "name": {
+              "type": "string"
+             },
+             "rawString": {
+              "type": "string"
+             },
+             "rawValue": {
+              "format": "int64",
+              "type": "integer"
+             },
+             "threshold": {
+              "type": "integer"
+             },
+             "value": {
+              "type": "integer"
+             },
+             "whenFailed": {
+              "type": "string"
+             },
+             "worst": {
+              "type": "integer"
+             }
+            },
+            "type": "object"
+           },
+           "type": "array"
+          },
+          "capacity": {
+           "format": "int64",
+           "type": "integer"
+          },
+          "diskName": {
+           "type": "string"
+          },
+          "diskType": {
+           "type": "string"
+          },
+          "firmwareVersion": {
+           "type": "string"
+          },
+          "healthStatus": {
+           "enum": [
+            "FAILED",
+            "PASSED",
+            "UNKNOWN",
+            "WARNING"
+           ],
+           "type": "string"
+          },
+          "modelName": {
+           "type": "string"
+          },
+          "serialNumber": {
+           "type": "string"
+          },
+          "source": {
+           "enum": [
+            "SMART",
+            "SPDK"
+           ],
+           "type": "string"
+          },
+          "temperature": {
+           "type": "integer"
+          }
+         },
+         "type": "object"
+        },
+        "type": "object"
+       },
+       "healthDataLastCollectedAt": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "instanceManagerName": {
+        "type": "string"
+       },
+       "scheduledBackingImage": {
+        "additionalProperties": {
+         "format": "int64",
+         "type": "integer"
+        },
+        "type": [
+         "object",
+         "null"
+        ]
+       },
+       "scheduledReplica": {
+        "additionalProperties": {
+         "format": "int64",
+         "type": "integer"
+        },
+        "type": [
+         "object",
+         "null"
+        ]
+       },
+       "storageAvailable": {
+        "format": "int64",
+        "type": "integer"
+       },
+       "storageMaximum": {
+        "format": "int64",
+        "type": "integer"
+       },
+       "storageScheduled": {
+        "format": "int64",
+        "type": "integer"
+       }
+      },
+      "type": "object"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "region": {
+     "type": "string"
+    },
+    "snapshotCheckStatus": {
+     "additionalProperties": false,
+     "properties": {
+      "lastPeriodicCheckedAt": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     "type": "object"
+    },
+    "zone": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

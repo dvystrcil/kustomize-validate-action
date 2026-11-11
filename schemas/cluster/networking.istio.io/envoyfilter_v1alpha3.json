@@ -1,0 +1,497 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "configPatches": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "applyTo": {
+        "enum": [
+         "INVALID",
+         "LISTENER",
+         "FILTER_CHAIN",
+         "NETWORK_FILTER",
+         "HTTP_FILTER",
+         "ROUTE_CONFIGURATION",
+         "VIRTUAL_HOST",
+         "HTTP_ROUTE",
+         "CLUSTER",
+         "EXTENSION_CONFIG",
+         "BOOTSTRAP",
+         "LISTENER_FILTER"
+        ],
+        "type": "string"
+       },
+       "match": {
+        "additionalProperties": false,
+        "oneOf": [
+         {
+          "not": {
+           "anyOf": [
+            {
+             "required": [
+              "listener"
+             ]
+            },
+            {
+             "required": [
+              "routeConfiguration"
+             ]
+            },
+            {
+             "required": [
+              "cluster"
+             ]
+            },
+            {
+             "required": [
+              "waypoint"
+             ]
+            }
+           ]
+          }
+         },
+         {
+          "required": [
+           "listener"
+          ]
+         },
+         {
+          "required": [
+           "routeConfiguration"
+          ]
+         },
+         {
+          "required": [
+           "cluster"
+          ]
+         },
+         {
+          "required": [
+           "waypoint"
+          ]
+         }
+        ],
+        "properties": {
+         "cluster": {
+          "additionalProperties": false,
+          "properties": {
+           "name": {
+            "type": "string"
+           },
+           "portNumber": {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+           },
+           "service": {
+            "type": "string"
+           },
+           "subset": {
+            "type": "string"
+           }
+          },
+          "type": "object"
+         },
+         "context": {
+          "enum": [
+           "ANY",
+           "SIDECAR_INBOUND",
+           "SIDECAR_OUTBOUND",
+           "GATEWAY",
+           "WAYPOINT"
+          ],
+          "type": "string"
+         },
+         "listener": {
+          "additionalProperties": false,
+          "properties": {
+           "filterChain": {
+            "additionalProperties": false,
+            "properties": {
+             "applicationProtocols": {
+              "type": "string"
+             },
+             "destinationPort": {
+              "maximum": 4294967295,
+              "minimum": 0,
+              "type": "integer"
+             },
+             "filter": {
+              "additionalProperties": false,
+              "properties": {
+               "name": {
+                "type": "string"
+               },
+               "subFilter": {
+                "additionalProperties": false,
+                "properties": {
+                 "name": {
+                  "type": "string"
+                 }
+                },
+                "type": "object"
+               }
+              },
+              "type": "object"
+             },
+             "name": {
+              "type": "string"
+             },
+             "sni": {
+              "type": "string"
+             },
+             "transportProtocol": {
+              "type": "string"
+             }
+            },
+            "type": "object"
+           },
+           "listenerFilter": {
+            "type": "string"
+           },
+           "name": {
+            "type": "string"
+           },
+           "portName": {
+            "type": "string"
+           },
+           "portNumber": {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+           }
+          },
+          "type": "object"
+         },
+         "proxy": {
+          "additionalProperties": false,
+          "properties": {
+           "metadata": {
+            "additionalProperties": {
+             "type": "string"
+            },
+            "type": "object"
+           },
+           "proxyVersion": {
+            "type": "string"
+           }
+          },
+          "type": "object"
+         },
+         "routeConfiguration": {
+          "additionalProperties": false,
+          "properties": {
+           "gateway": {
+            "type": "string"
+           },
+           "name": {
+            "type": "string"
+           },
+           "portName": {
+            "type": "string"
+           },
+           "portNumber": {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+           },
+           "vhost": {
+            "additionalProperties": false,
+            "properties": {
+             "domainName": {
+              "type": "string"
+             },
+             "name": {
+              "type": "string"
+             },
+             "route": {
+              "additionalProperties": false,
+              "properties": {
+               "action": {
+                "enum": [
+                 "ANY",
+                 "ROUTE",
+                 "REDIRECT",
+                 "DIRECT_RESPONSE"
+                ],
+                "type": "string"
+               },
+               "name": {
+                "type": "string"
+               }
+              },
+              "type": "object"
+             }
+            },
+            "type": "object"
+           }
+          },
+          "type": "object"
+         },
+         "waypoint": {
+          "additionalProperties": false,
+          "properties": {
+           "filter": {
+            "additionalProperties": false,
+            "properties": {
+             "name": {
+              "type": "string"
+             },
+             "subFilter": {
+              "additionalProperties": false,
+              "properties": {
+               "name": {
+                "type": "string"
+               }
+              },
+              "type": "object"
+             }
+            },
+            "type": "object"
+           },
+           "portNumber": {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer",
+            "x-kubernetes-validations": [
+             {
+              "message": "port must be between 1-65535",
+              "rule": "0 < self && self <= 65535"
+             }
+            ]
+           },
+           "route": {
+            "additionalProperties": false,
+            "properties": {
+             "name": {
+              "type": "string"
+             }
+            },
+            "type": "object"
+           }
+          },
+          "type": "object"
+         }
+        },
+        "type": "object",
+        "x-kubernetes-validations": [
+         {
+          "message": "only support waypointMatch when context is WAYPOINT",
+          "rule": "has(self.context) ? ((self.context == \"WAYPOINT\") ? has(self.waypoint) : !has(self.waypoint)) : !has(self.waypoint)"
+         }
+        ]
+       },
+       "patch": {
+        "additionalProperties": false,
+        "properties": {
+         "filterClass": {
+          "enum": [
+           "UNSPECIFIED",
+           "AUTHN",
+           "AUTHZ",
+           "STATS"
+          ],
+          "type": "string"
+         },
+         "operation": {
+          "enum": [
+           "INVALID",
+           "MERGE",
+           "ADD",
+           "REMOVE",
+           "INSERT_BEFORE",
+           "INSERT_AFTER",
+           "INSERT_FIRST",
+           "REPLACE",
+           "MERGE_AND_REPLACE_LIST"
+          ],
+          "type": "string"
+         },
+         "value": {
+          "type": "object",
+          "x-kubernetes-preserve-unknown-fields": true
+         }
+        },
+        "type": "object"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "priority": {
+     "format": "int32",
+     "type": "integer"
+    },
+    "targetRefs": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "group": {
+        "maxLength": 253,
+        "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
+        "type": "string"
+       },
+       "kind": {
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$",
+        "type": "string"
+       },
+       "name": {
+        "maxLength": 253,
+        "minLength": 1,
+        "type": "string"
+       },
+       "namespace": {
+        "type": "string",
+        "x-kubernetes-validations": [
+         {
+          "message": "cross namespace referencing is not currently supported",
+          "rule": "self.size() == 0"
+         }
+        ]
+       }
+      },
+      "required": [
+       "kind",
+       "name"
+      ],
+      "type": "object"
+     },
+     "maxItems": 16,
+     "type": "array"
+    },
+    "workloadSelector": {
+     "additionalProperties": false,
+     "properties": {
+      "labels": {
+       "additionalProperties": {
+        "maxLength": 63,
+        "type": "string",
+        "x-kubernetes-validations": [
+         {
+          "message": "wildcard is not supported in selector",
+          "rule": "!self.contains(\"*\")"
+         }
+        ]
+       },
+       "maxProperties": 256,
+       "type": "object"
+      }
+     },
+     "type": "object"
+    }
+   },
+   "type": "object",
+   "x-kubernetes-validations": [
+    {
+     "message": "only one of targetRefs or workloadSelector can be set",
+     "rule": "(has(self.workloadSelector) ? 1 : 0) + (has(self.targetRefs) ? 1 : 0) <= 1"
+    }
+   ]
+  },
+  "status": {
+   "properties": {
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "observedGeneration": {
+        "anyOf": [
+         {
+          "type": "integer"
+         },
+         {
+          "type": "string"
+         }
+        ]
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "observedGeneration": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "string"
+      }
+     ]
+    },
+    "validationMessages": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "documentationUrl": {
+        "type": "string"
+       },
+       "level": {
+        "enum": [
+         "UNKNOWN",
+         "ERROR",
+         "WARNING",
+         "INFO"
+        ],
+        "type": "string"
+       },
+       "type": {
+        "additionalProperties": false,
+        "properties": {
+         "code": {
+          "type": "string"
+         },
+         "name": {
+          "type": "string"
+         }
+        },
+        "type": "object"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    }
+   },
+   "type": "object",
+   "x-kubernetes-preserve-unknown-fields": true
+  }
+ },
+ "type": "object"
+}

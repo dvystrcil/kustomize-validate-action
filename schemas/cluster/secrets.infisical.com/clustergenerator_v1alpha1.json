@@ -1,0 +1,67 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "generator": {
+     "additionalProperties": false,
+     "properties": {
+      "passwordSpec": {
+       "additionalProperties": false,
+       "properties": {
+        "allowRepeat": {
+         "default": false,
+         "type": "boolean"
+        },
+        "digits": {
+         "type": "integer"
+        },
+        "length": {
+         "default": 24,
+         "type": "integer"
+        },
+        "noUpper": {
+         "default": false,
+         "type": "boolean"
+        },
+        "symbolCharacters": {
+         "type": "string"
+        },
+        "symbols": {
+         "type": "integer"
+        }
+       },
+       "type": "object"
+      },
+      "uuidSpec": {
+       "type": "object"
+      }
+     },
+     "type": "object"
+    },
+    "kind": {
+     "enum": [
+      "Password",
+      "UUID"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "kind"
+   ],
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

@@ -1,0 +1,138 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "backupBlockSize": {
+     "enum": [
+      "-1",
+      "2097152",
+      "16777216"
+     ],
+     "format": "int64",
+     "type": "string"
+    },
+    "backupMode": {
+     "enum": [
+      "full",
+      "incremental"
+     ],
+     "type": "string"
+    },
+    "labels": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "type": "object"
+    },
+    "snapshotName": {
+     "type": "string"
+    },
+    "syncRequestedAt": {
+     "format": "date-time",
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "backupCreatedAt": {
+     "type": "string"
+    },
+    "backupTargetName": {
+     "type": "string"
+    },
+    "compressionMethod": {
+     "type": "string"
+    },
+    "error": {
+     "type": "string"
+    },
+    "labels": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "lastSyncedAt": {
+     "format": "date-time",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "messages": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "newlyUploadDataSize": {
+     "type": "string"
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "progress": {
+     "type": "integer"
+    },
+    "reUploadedDataSize": {
+     "type": "string"
+    },
+    "replicaAddress": {
+     "type": "string"
+    },
+    "size": {
+     "type": "string"
+    },
+    "snapshotCreatedAt": {
+     "type": "string"
+    },
+    "snapshotName": {
+     "type": "string"
+    },
+    "state": {
+     "type": "string"
+    },
+    "url": {
+     "type": "string"
+    },
+    "volumeBackingImageName": {
+     "type": "string"
+    },
+    "volumeCreated": {
+     "type": "string"
+    },
+    "volumeName": {
+     "type": "string"
+    },
+    "volumeSize": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

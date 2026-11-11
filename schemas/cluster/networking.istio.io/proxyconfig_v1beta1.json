@@ -1,0 +1,163 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "concurrency": {
+     "format": "int32",
+     "minimum": 0,
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "environmentVariables": {
+     "additionalProperties": {
+      "maxLength": 2048,
+      "type": "string"
+     },
+     "type": "object"
+    },
+    "image": {
+     "additionalProperties": false,
+     "properties": {
+      "imageType": {
+       "type": "string"
+      }
+     },
+     "type": "object"
+    },
+    "selector": {
+     "additionalProperties": false,
+     "properties": {
+      "matchLabels": {
+       "additionalProperties": {
+        "maxLength": 63,
+        "type": "string",
+        "x-kubernetes-validations": [
+         {
+          "message": "wildcard not allowed in label value match",
+          "rule": "!self.contains(\"*\")"
+         }
+        ]
+       },
+       "maxProperties": 4096,
+       "type": "object",
+       "x-kubernetes-validations": [
+        {
+         "message": "wildcard not allowed in label key match",
+         "rule": "self.all(key, !key.contains(\"*\"))"
+        },
+        {
+         "message": "key must not be empty",
+         "rule": "self.all(key, key.size() != 0)"
+        }
+       ]
+      }
+     },
+     "type": "object"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "properties": {
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "observedGeneration": {
+        "anyOf": [
+         {
+          "type": "integer"
+         },
+         {
+          "type": "string"
+         }
+        ]
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "observedGeneration": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "string"
+      }
+     ]
+    },
+    "validationMessages": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "documentationUrl": {
+        "type": "string"
+       },
+       "level": {
+        "enum": [
+         "UNKNOWN",
+         "ERROR",
+         "WARNING",
+         "INFO"
+        ],
+        "type": "string"
+       },
+       "type": {
+        "additionalProperties": false,
+        "properties": {
+         "code": {
+          "type": "string"
+         },
+         "name": {
+          "type": "string"
+         }
+        },
+        "type": "object"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    }
+   },
+   "type": "object",
+   "x-kubernetes-preserve-unknown-fields": true
+  }
+ },
+ "type": "object"
+}

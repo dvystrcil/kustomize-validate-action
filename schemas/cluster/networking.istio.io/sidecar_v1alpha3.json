@@ -1,0 +1,669 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "egress": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "bind": {
+        "type": "string"
+       },
+       "captureMode": {
+        "enum": [
+         "DEFAULT",
+         "IPTABLES",
+         "NONE"
+        ],
+        "type": "string"
+       },
+       "hosts": {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       "port": {
+        "additionalProperties": false,
+        "properties": {
+         "name": {
+          "type": "string"
+         },
+         "number": {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer"
+         },
+         "protocol": {
+          "type": "string"
+         },
+         "targetPort": {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer"
+         }
+        },
+        "type": "object"
+       }
+      },
+      "required": [
+       "hosts"
+      ],
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "inboundConnectionPool": {
+     "additionalProperties": false,
+     "properties": {
+      "http": {
+       "additionalProperties": false,
+       "properties": {
+        "h2UpgradePolicy": {
+         "enum": [
+          "DEFAULT",
+          "DO_NOT_UPGRADE",
+          "UPGRADE"
+         ],
+         "type": "string"
+        },
+        "http1MaxPendingRequests": {
+         "format": "int32",
+         "type": "integer"
+        },
+        "http2KeepAlive": {
+         "additionalProperties": false,
+         "properties": {
+          "interval": {
+           "type": "string",
+           "x-kubernetes-validations": [
+            {
+             "message": "must be a valid duration greater than 1ms",
+             "rule": "duration(self) >= duration('1ms')"
+            }
+           ]
+          },
+          "timeout": {
+           "type": "string",
+           "x-kubernetes-validations": [
+            {
+             "message": "must be a valid duration greater than 1ms",
+             "rule": "duration(self) >= duration('1ms')"
+            }
+           ]
+          }
+         },
+         "type": "object"
+        },
+        "http2MaxRequests": {
+         "format": "int32",
+         "type": "integer"
+        },
+        "idleTimeout": {
+         "type": "string",
+         "x-kubernetes-validations": [
+          {
+           "message": "must be a valid duration greater than 1ms",
+           "rule": "duration(self) >= duration('1ms')"
+          }
+         ]
+        },
+        "maxConcurrentStreams": {
+         "format": "int32",
+         "type": "integer"
+        },
+        "maxRequestsPerConnection": {
+         "format": "int32",
+         "type": "integer"
+        },
+        "maxRetries": {
+         "format": "int32",
+         "type": "integer"
+        },
+        "useClientProtocol": {
+         "type": "boolean"
+        }
+       },
+       "type": "object"
+      },
+      "tcp": {
+       "additionalProperties": false,
+       "properties": {
+        "connectTimeout": {
+         "type": "string",
+         "x-kubernetes-validations": [
+          {
+           "message": "must be a valid duration greater than 1ms",
+           "rule": "duration(self) >= duration('1ms')"
+          }
+         ]
+        },
+        "idleTimeout": {
+         "type": "string"
+        },
+        "maxConnectionDuration": {
+         "type": "string",
+         "x-kubernetes-validations": [
+          {
+           "message": "must be a valid duration greater than 1ms",
+           "rule": "duration(self) >= duration('1ms')"
+          }
+         ]
+        },
+        "maxConnections": {
+         "format": "int32",
+         "type": "integer"
+        },
+        "tcpKeepalive": {
+         "additionalProperties": false,
+         "properties": {
+          "interval": {
+           "type": "string",
+           "x-kubernetes-validations": [
+            {
+             "message": "must be a valid duration greater than 1ms",
+             "rule": "duration(self) >= duration('1ms')"
+            }
+           ]
+          },
+          "probes": {
+           "maximum": 4294967295,
+           "minimum": 0,
+           "type": "integer"
+          },
+          "time": {
+           "type": "string",
+           "x-kubernetes-validations": [
+            {
+             "message": "must be a valid duration greater than 1ms",
+             "rule": "duration(self) >= duration('1ms')"
+            }
+           ]
+          }
+         },
+         "type": "object"
+        }
+       },
+       "type": "object"
+      }
+     },
+     "type": "object"
+    },
+    "ingress": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "bind": {
+        "type": "string"
+       },
+       "captureMode": {
+        "enum": [
+         "DEFAULT",
+         "IPTABLES",
+         "NONE"
+        ],
+        "type": "string"
+       },
+       "connectionPool": {
+        "additionalProperties": false,
+        "properties": {
+         "http": {
+          "additionalProperties": false,
+          "properties": {
+           "h2UpgradePolicy": {
+            "enum": [
+             "DEFAULT",
+             "DO_NOT_UPGRADE",
+             "UPGRADE"
+            ],
+            "type": "string"
+           },
+           "http1MaxPendingRequests": {
+            "format": "int32",
+            "type": "integer"
+           },
+           "http2KeepAlive": {
+            "additionalProperties": false,
+            "properties": {
+             "interval": {
+              "type": "string",
+              "x-kubernetes-validations": [
+               {
+                "message": "must be a valid duration greater than 1ms",
+                "rule": "duration(self) >= duration('1ms')"
+               }
+              ]
+             },
+             "timeout": {
+              "type": "string",
+              "x-kubernetes-validations": [
+               {
+                "message": "must be a valid duration greater than 1ms",
+                "rule": "duration(self) >= duration('1ms')"
+               }
+              ]
+             }
+            },
+            "type": "object"
+           },
+           "http2MaxRequests": {
+            "format": "int32",
+            "type": "integer"
+           },
+           "idleTimeout": {
+            "type": "string",
+            "x-kubernetes-validations": [
+             {
+              "message": "must be a valid duration greater than 1ms",
+              "rule": "duration(self) >= duration('1ms')"
+             }
+            ]
+           },
+           "maxConcurrentStreams": {
+            "format": "int32",
+            "type": "integer"
+           },
+           "maxRequestsPerConnection": {
+            "format": "int32",
+            "type": "integer"
+           },
+           "maxRetries": {
+            "format": "int32",
+            "type": "integer"
+           },
+           "useClientProtocol": {
+            "type": "boolean"
+           }
+          },
+          "type": "object"
+         },
+         "tcp": {
+          "additionalProperties": false,
+          "properties": {
+           "connectTimeout": {
+            "type": "string",
+            "x-kubernetes-validations": [
+             {
+              "message": "must be a valid duration greater than 1ms",
+              "rule": "duration(self) >= duration('1ms')"
+             }
+            ]
+           },
+           "idleTimeout": {
+            "type": "string"
+           },
+           "maxConnectionDuration": {
+            "type": "string",
+            "x-kubernetes-validations": [
+             {
+              "message": "must be a valid duration greater than 1ms",
+              "rule": "duration(self) >= duration('1ms')"
+             }
+            ]
+           },
+           "maxConnections": {
+            "format": "int32",
+            "type": "integer"
+           },
+           "tcpKeepalive": {
+            "additionalProperties": false,
+            "properties": {
+             "interval": {
+              "type": "string",
+              "x-kubernetes-validations": [
+               {
+                "message": "must be a valid duration greater than 1ms",
+                "rule": "duration(self) >= duration('1ms')"
+               }
+              ]
+             },
+             "probes": {
+              "maximum": 4294967295,
+              "minimum": 0,
+              "type": "integer"
+             },
+             "time": {
+              "type": "string",
+              "x-kubernetes-validations": [
+               {
+                "message": "must be a valid duration greater than 1ms",
+                "rule": "duration(self) >= duration('1ms')"
+               }
+              ]
+             }
+            },
+            "type": "object"
+           }
+          },
+          "type": "object"
+         }
+        },
+        "type": "object"
+       },
+       "defaultEndpoint": {
+        "type": "string"
+       },
+       "port": {
+        "additionalProperties": false,
+        "properties": {
+         "name": {
+          "type": "string"
+         },
+         "number": {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer"
+         },
+         "protocol": {
+          "type": "string"
+         },
+         "targetPort": {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer"
+         }
+        },
+        "type": "object"
+       },
+       "tls": {
+        "additionalProperties": false,
+        "properties": {
+         "caCertCredentialName": {
+          "type": "string"
+         },
+         "caCertificates": {
+          "type": "string"
+         },
+         "caCrl": {
+          "type": "string"
+         },
+         "cipherSuites": {
+          "items": {
+           "type": "string"
+          },
+          "type": "array"
+         },
+         "credentialName": {
+          "type": "string"
+         },
+         "credentialNames": {
+          "items": {
+           "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "type": "array"
+         },
+         "httpsRedirect": {
+          "type": "boolean"
+         },
+         "insecureSkipVerify": {
+          "type": [
+           "boolean",
+           "null"
+          ]
+         },
+         "maxProtocolVersion": {
+          "enum": [
+           "TLS_AUTO",
+           "TLSV1_0",
+           "TLSV1_1",
+           "TLSV1_2",
+           "TLSV1_3"
+          ],
+          "type": "string"
+         },
+         "minProtocolVersion": {
+          "enum": [
+           "TLS_AUTO",
+           "TLSV1_0",
+           "TLSV1_1",
+           "TLSV1_2",
+           "TLSV1_3"
+          ],
+          "type": "string"
+         },
+         "mode": {
+          "enum": [
+           "PASSTHROUGH",
+           "SIMPLE",
+           "MUTUAL",
+           "AUTO_PASSTHROUGH",
+           "ISTIO_MUTUAL",
+           "OPTIONAL_MUTUAL"
+          ],
+          "type": "string"
+         },
+         "privateKey": {
+          "type": "string"
+         },
+         "serverCertificate": {
+          "type": "string"
+         },
+         "subjectAltNames": {
+          "items": {
+           "type": "string"
+          },
+          "type": "array"
+         },
+         "tlsCertificates": {
+          "items": {
+           "additionalProperties": false,
+           "properties": {
+            "caCertificates": {
+             "type": "string"
+            },
+            "privateKey": {
+             "type": "string"
+            },
+            "serverCertificate": {
+             "type": "string"
+            }
+           },
+           "type": "object"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "type": "array"
+         },
+         "verifyCertificateHash": {
+          "items": {
+           "type": "string"
+          },
+          "type": "array"
+         },
+         "verifyCertificateSpki": {
+          "items": {
+           "type": "string"
+          },
+          "type": "array"
+         }
+        },
+        "type": "object",
+        "x-kubernetes-validations": [
+         {
+          "message": "only one of credentialNames or tlsCertificates can be set",
+          "rule": "(has(self.tlsCertificates) ? 1 : 0) + (has(self.credentialNames) ? 1 : 0) <= 1"
+         },
+         {
+          "message": "only one of credentialName or credentialNames can be set",
+          "rule": "(has(self.credentialName) ? 1 : 0) + (has(self.credentialNames) ? 1 : 0) <= 1"
+         },
+         {
+          "message": "only one of credentialName or tlsCertificates can be set",
+          "rule": "(has(self.credentialNames) ? 1 : 0) + (has(self.tlsCertificates) ? 1 : 0) <= 1"
+         }
+        ]
+       }
+      },
+      "required": [
+       "port"
+      ],
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "outboundTrafficPolicy": {
+     "additionalProperties": false,
+     "properties": {
+      "egressProxy": {
+       "additionalProperties": false,
+       "properties": {
+        "host": {
+         "type": "string"
+        },
+        "port": {
+         "additionalProperties": false,
+         "properties": {
+          "number": {
+           "maximum": 4294967295,
+           "minimum": 0,
+           "type": "integer"
+          }
+         },
+         "type": "object"
+        },
+        "subset": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "host"
+       ],
+       "type": "object"
+      },
+      "mode": {
+       "enum": [
+        "REGISTRY_ONLY",
+        "ALLOW_ANY"
+       ],
+       "type": "string"
+      }
+     },
+     "type": "object"
+    },
+    "workloadSelector": {
+     "additionalProperties": false,
+     "properties": {
+      "labels": {
+       "additionalProperties": {
+        "maxLength": 63,
+        "type": "string",
+        "x-kubernetes-validations": [
+         {
+          "message": "wildcard is not supported in selector",
+          "rule": "!self.contains(\"*\")"
+         }
+        ]
+       },
+       "maxProperties": 256,
+       "type": "object"
+      }
+     },
+     "type": "object"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "properties": {
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "observedGeneration": {
+        "anyOf": [
+         {
+          "type": "integer"
+         },
+         {
+          "type": "string"
+         }
+        ]
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "observedGeneration": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "string"
+      }
+     ]
+    },
+    "validationMessages": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "documentationUrl": {
+        "type": "string"
+       },
+       "level": {
+        "enum": [
+         "UNKNOWN",
+         "ERROR",
+         "WARNING",
+         "INFO"
+        ],
+        "type": "string"
+       },
+       "type": {
+        "additionalProperties": false,
+        "properties": {
+         "code": {
+          "type": "string"
+         },
+         "name": {
+          "type": "string"
+         }
+        },
+        "type": "object"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    }
+   },
+   "type": "object",
+   "x-kubernetes-preserve-unknown-fields": true
+  }
+ },
+ "type": "object"
+}

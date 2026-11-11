@@ -1,0 +1,397 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "oneOf": [
+    {
+     "not": {
+      "anyOf": [
+       {
+        "required": [
+         "wasm"
+        ]
+       },
+       {
+        "required": [
+         "lua"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "required": [
+      "wasm"
+     ]
+    },
+    {
+     "required": [
+      "lua"
+     ]
+    }
+   ],
+   "properties": {
+    "lua": {
+     "additionalProperties": false,
+     "properties": {
+      "inlineCode": {
+       "maxLength": 65536,
+       "minLength": 1,
+       "type": "string"
+      }
+     },
+     "required": [
+      "inlineCode"
+     ],
+     "type": "object"
+    },
+    "match": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "mode": {
+        "enum": [
+         "UNDEFINED",
+         "CLIENT",
+         "SERVER",
+         "CLIENT_AND_SERVER"
+        ],
+        "type": "string"
+       },
+       "ports": {
+        "items": {
+         "additionalProperties": false,
+         "properties": {
+          "number": {
+           "maximum": 65535,
+           "minimum": 1,
+           "type": "integer"
+          }
+         },
+         "required": [
+          "number"
+         ],
+         "type": "object"
+        },
+        "type": "array",
+        "x-kubernetes-list-map-keys": [
+         "number"
+        ],
+        "x-kubernetes-list-type": "map"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "phase": {
+     "enum": [
+      "UNSPECIFIED",
+      "AUTHN",
+      "AUTHZ",
+      "STATS"
+     ],
+     "type": "string"
+    },
+    "priority": {
+     "format": "int32",
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "selector": {
+     "additionalProperties": false,
+     "properties": {
+      "matchLabels": {
+       "additionalProperties": {
+        "maxLength": 63,
+        "type": "string",
+        "x-kubernetes-validations": [
+         {
+          "message": "wildcard not allowed in label value match",
+          "rule": "!self.contains(\"*\")"
+         }
+        ]
+       },
+       "maxProperties": 4096,
+       "type": "object",
+       "x-kubernetes-validations": [
+        {
+         "message": "wildcard not allowed in label key match",
+         "rule": "self.all(key, !key.contains(\"*\"))"
+        },
+        {
+         "message": "key must not be empty",
+         "rule": "self.all(key, key.size() != 0)"
+        }
+       ]
+      }
+     },
+     "type": "object"
+    },
+    "targetRefs": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "group": {
+        "maxLength": 253,
+        "pattern": "^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
+        "type": "string"
+       },
+       "kind": {
+        "maxLength": 63,
+        "minLength": 1,
+        "pattern": "^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$",
+        "type": "string"
+       },
+       "name": {
+        "maxLength": 253,
+        "minLength": 1,
+        "type": "string"
+       },
+       "namespace": {
+        "type": "string",
+        "x-kubernetes-validations": [
+         {
+          "message": "cross namespace referencing is not currently supported",
+          "rule": "self.size() == 0"
+         }
+        ]
+       }
+      },
+      "required": [
+       "kind",
+       "name"
+      ],
+      "type": "object"
+     },
+     "maxItems": 16,
+     "type": "array"
+    },
+    "wasm": {
+     "additionalProperties": false,
+     "properties": {
+      "failStrategy": {
+       "enum": [
+        "FAIL_CLOSE",
+        "FAIL_OPEN",
+        "FAIL_RELOAD"
+       ],
+       "type": "string"
+      },
+      "imagePullPolicy": {
+       "enum": [
+        "UNSPECIFIED_POLICY",
+        "IfNotPresent",
+        "Always"
+       ],
+       "type": "string"
+      },
+      "imagePullSecret": {
+       "maxLength": 253,
+       "minLength": 1,
+       "type": "string"
+      },
+      "pluginConfig": {
+       "type": "object",
+       "x-kubernetes-preserve-unknown-fields": true
+      },
+      "pluginName": {
+       "maxLength": 256,
+       "minLength": 1,
+       "type": "string"
+      },
+      "sha256": {
+       "pattern": "(^$|^[a-f0-9]{64}$)",
+       "type": "string"
+      },
+      "type": {
+       "enum": [
+        "UNSPECIFIED_PLUGIN_TYPE",
+        "HTTP",
+        "NETWORK"
+       ],
+       "type": "string"
+      },
+      "url": {
+       "minLength": 1,
+       "type": "string",
+       "x-kubernetes-validations": [
+        {
+         "message": "url must have schema one of [http, https, file, oci]",
+         "rule": "isURL(self) ? (url(self).getScheme() in [\"\", \"http\", \"https\", \"file\", \"oci\"]) : (isURL(\"http://\" + self) &&\nurl(\"http://\" + self).getScheme() in [\"\", \"http\", \"https\", \"file\", \"oci\"])"
+        }
+       ]
+      },
+      "verificationKey": {
+       "type": "string"
+      },
+      "vmConfig": {
+       "additionalProperties": false,
+       "properties": {
+        "env": {
+         "items": {
+          "additionalProperties": false,
+          "properties": {
+           "name": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+           },
+           "value": {
+            "maxLength": 2048,
+            "type": "string"
+           },
+           "valueFrom": {
+            "enum": [
+             "INLINE",
+             "HOST"
+            ],
+            "type": "string"
+           }
+          },
+          "required": [
+           "name"
+          ],
+          "type": "object",
+          "x-kubernetes-validations": [
+           {
+            "message": "value may only be set when valueFrom is INLINE",
+            "rule": "(has(self.valueFrom) ? self.valueFrom : \"\") != \"HOST\" || !has(self.value)"
+           }
+          ]
+         },
+         "maxItems": 256,
+         "type": "array",
+         "x-kubernetes-list-map-keys": [
+          "name"
+         ],
+         "x-kubernetes-list-type": "map"
+        }
+       },
+       "type": "object"
+      }
+     },
+     "required": [
+      "url"
+     ],
+     "type": "object"
+    }
+   },
+   "type": "object",
+   "x-kubernetes-validations": [
+    {
+     "message": "only one of targetRefs or selector can be set",
+     "rule": "(has(self.selector) ? 1 : 0) + (has(self.targetRefs) ? 1 : 0) <= 1"
+    },
+    {
+     "message": "exactly one of wasm or lua must be set",
+     "rule": "has(self.wasm) != has(self.lua)"
+    }
+   ]
+  },
+  "status": {
+   "properties": {
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "observedGeneration": {
+        "anyOf": [
+         {
+          "type": "integer"
+         },
+         {
+          "type": "string"
+         }
+        ]
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "observedGeneration": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "string"
+      }
+     ]
+    },
+    "validationMessages": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "documentationUrl": {
+        "type": "string"
+       },
+       "level": {
+        "enum": [
+         "UNKNOWN",
+         "ERROR",
+         "WARNING",
+         "INFO"
+        ],
+        "type": "string"
+       },
+       "type": {
+        "additionalProperties": false,
+        "properties": {
+         "code": {
+          "type": "string"
+         },
+         "name": {
+          "type": "string"
+         }
+        },
+        "type": "object"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    }
+   },
+   "type": "object",
+   "x-kubernetes-preserve-unknown-fields": true
+  }
+ },
+ "required": [
+  "spec"
+ ],
+ "type": "object"
+}

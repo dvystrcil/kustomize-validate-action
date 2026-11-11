@@ -1,0 +1,167 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "deletionPolicy": {
+     "enum": [
+      "Delete",
+      "Retain"
+     ],
+     "type": "string"
+    },
+    "driver": {
+     "type": "string"
+    },
+    "source": {
+     "additionalProperties": false,
+     "properties": {
+      "snapshotHandle": {
+       "type": "string",
+       "x-kubernetes-validations": [
+        {
+         "message": "snapshotHandle is immutable",
+         "rule": "self == oldSelf"
+        }
+       ]
+      },
+      "volumeHandle": {
+       "type": "string",
+       "x-kubernetes-validations": [
+        {
+         "message": "volumeHandle is immutable",
+         "rule": "self == oldSelf"
+        }
+       ]
+      }
+     },
+     "type": "object",
+     "x-kubernetes-validations": [
+      {
+       "message": "volumeHandle is required once set",
+       "rule": "!has(oldSelf.volumeHandle) || has(self.volumeHandle)"
+      },
+      {
+       "message": "snapshotHandle is required once set",
+       "rule": "!has(oldSelf.snapshotHandle) || has(self.snapshotHandle)"
+      },
+      {
+       "message": "exactly one of volumeHandle and snapshotHandle must be set",
+       "rule": "(has(self.volumeHandle) && !has(self.snapshotHandle)) || (!has(self.volumeHandle) && has(self.snapshotHandle))"
+      }
+     ]
+    },
+    "sourceVolumeMode": {
+     "type": "string",
+     "x-kubernetes-validations": [
+      {
+       "message": "sourceVolumeMode is immutable",
+       "rule": "self == oldSelf"
+      }
+     ]
+    },
+    "volumeSnapshotClassName": {
+     "type": "string"
+    },
+    "volumeSnapshotRef": {
+     "additionalProperties": false,
+     "properties": {
+      "apiVersion": {
+       "type": "string"
+      },
+      "fieldPath": {
+       "type": "string"
+      },
+      "kind": {
+       "type": "string"
+      },
+      "name": {
+       "type": "string"
+      },
+      "namespace": {
+       "type": "string"
+      },
+      "resourceVersion": {
+       "type": "string"
+      },
+      "uid": {
+       "type": "string"
+      }
+     },
+     "type": "object",
+     "x-kubernetes-map-type": "atomic",
+     "x-kubernetes-validations": [
+      {
+       "message": "both spec.volumeSnapshotRef.name and spec.volumeSnapshotRef.namespace must be set",
+       "rule": "has(self.name) && has(self.__namespace__)"
+      }
+     ]
+    }
+   },
+   "required": [
+    "deletionPolicy",
+    "driver",
+    "source",
+    "volumeSnapshotRef"
+   ],
+   "type": "object",
+   "x-kubernetes-validations": [
+    {
+     "message": "sourceVolumeMode is required once set",
+     "rule": "!has(oldSelf.sourceVolumeMode) || has(self.sourceVolumeMode)"
+    }
+   ]
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "creationTime": {
+     "format": "int64",
+     "type": "integer"
+    },
+    "error": {
+     "additionalProperties": false,
+     "properties": {
+      "message": {
+       "type": "string"
+      },
+      "time": {
+       "format": "date-time",
+       "type": "string"
+      }
+     },
+     "type": "object"
+    },
+    "readyToUse": {
+     "type": "boolean"
+    },
+    "restoreSize": {
+     "format": "int64",
+     "minimum": 0,
+     "type": "integer"
+    },
+    "snapshotHandle": {
+     "type": "string"
+    },
+    "volumeGroupSnapshotHandle": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "required": [
+  "spec"
+ ],
+ "type": "object"
+}

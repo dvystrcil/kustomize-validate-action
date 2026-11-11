@@ -1,0 +1,173 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "creationSize": {
+     "format": "int64",
+     "type": "integer",
+     "x-kubernetes-validations": [
+      {
+       "message": "CreationSize is immutable once set",
+       "rule": "oldSelf == 0 || self == oldSelf"
+      }
+     ]
+    },
+    "dataChunks": {
+     "minimum": 1,
+     "type": "integer"
+    },
+    "nodeID": {
+     "type": "string"
+    },
+    "parityChunks": {
+     "minimum": 1,
+     "type": "integer"
+    },
+    "stripSizeKB": {
+     "maximum": 1024,
+     "minimum": 4,
+     "type": "integer"
+    },
+    "volumeName": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "ecShardAddressMap": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "evictingSlots": {
+     "items": {
+      "type": "integer"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "failedCount": {
+     "type": "integer"
+    },
+    "growInProgress": {
+     "type": "boolean"
+    },
+    "headLvolUUID": {
+     "type": "string"
+    },
+    "instanceManagerName": {
+     "type": "string"
+    },
+    "intentionalDeleteSlots": {
+     "items": {
+      "type": "integer"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "lvstoreUUID": {
+     "type": "string"
+    },
+    "nqn": {
+     "type": "string"
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "port": {
+     "format": "int32",
+     "type": "integer"
+    },
+    "processState": {
+     "type": "string"
+    },
+    "rebuildInProgress": {
+     "type": "boolean"
+    },
+    "scrubInProgress": {
+     "type": "boolean"
+    },
+    "shardRefs": {
+     "items": {
+      "type": "string"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "state": {
+     "enum": [
+      "healthy",
+      "degraded",
+      "offline",
+      "rebuilding",
+      "growing",
+      ""
+     ],
+     "type": "string"
+    },
+    "storageIP": {
+     "type": "string"
+    },
+    "wibDirtyRegion": {
+     "type": "integer"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}
