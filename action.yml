@@ -19,7 +19,9 @@ inputs:
       auto-discovers every directory containing kustomization.yaml.
     default: ""
   kubeconform_flags:
-    description: Extra flags for kubeconform (e.g. -skip Something).
+    description: >
+      Extra flags for kubeconform (e.g. -skip Something). A -skip here is
+      MERGED with the action's own list, never a replacement for it (#22).
     default: ""
 runs:
   using: composite
@@ -86,44 +88,48 @@ runs:
 
     - name: Render and validate manifests
       shell: bash
+      env:
+        KV_FLAGS: ${{ inputs.kubeconform_flags }}
+        KV_ACTION_PATH: ${{ github.action_path }}
       run: |
         set -euo pipefail
         FAILED=0
-        # kubeconform's -skip takes ONE comma-separated value, not a
-        # repeatable flag — `-skip A -skip B` silently drops A (Go's
-        # flag.String keeps only the last occurrence). Adding a new
-        # exception means appending to the existing -skip line, never
-        # a second -skip line (broke ImageUpdater for ~13 repos when
-        # SealedSecret was added as a separate line, 2026-07-24 —
-        # caught by a live batch of real PRs turning red).
+        # --- Where schemas come from (#22), first match wins:
+        #  1. CRDs in THIS render: converted by crd_schemas.py into a fresh
+        #     dir per root. A PR that upgrades a CRD is checked against the
+        #     CRD it ships (metallb#22: serviceSelectors, which the datree
+        #     catalog's 2023-03-02 L2Advertisement lacks).
+        #  2. schemas/cluster/: every CRD served by the homelab cluster,
+        #     converted the same way (tools/refresh-cluster-schemas.sh). Covers
+        #     CRs whose CRD lives in another repo: InfisicalSecret,
+        #     ImageUpdater, SealedSecret, ...
+        #  3. default: kubeconform's own core-Kubernetes schemas.
+        #  4. the datree CRDs-catalog: last resort for a CRD this cluster does
+        #     not serve. A third party's snapshot, sometimes years old.
+        # crd_schemas.py follows the apiserver's structural-schema rules.
+        # datree's converter does not (it rejects fields under
+        # x-kubernetes-preserve-unknown-fields), which is what the old
+        # `-skip ImageUpdater,SealedSecret,InfisicalSecret` papered over:
+        # with 1 and 2 none of the three needs skipping.
         #
-        # -skip ImageUpdater: the datree catalog's schema for our
-        # argocd-image-updater CRD is WRONG (requires spec.namespace which
-        # the real CRD doesn't; rejects useAnnotations which it does allow)
-        # → false failures on valid CRs. IU CRs have their own structure
-        # audit (homelab bin/audit-iu-patterns.py) + the homelab-image-updater
-        # skill. Proper fix later: validate against cluster-extracted CRD
-        # schemas instead of the third-party catalog.
-        #
-        # -skip SealedSecret: same class of problem. `kubectl kustomize`
-        # always serializes creationTimestamp: null on every embedded
-        # ObjectMeta (standard API-machinery behavior, unavoidable) —
-        # including spec.template.metadata here — but the datree catalog's
-        # bitnami.com/sealedsecret schema doesn't allow it there. False
-        # failure on every valid SealedSecret (homelab/homepage#1,
-        # 2026-07-23).
-        #
-        # -skip InfisicalSecret: third occurrence of the same class of
-        # problem — datree's secrets.infisical.com/infisicalsecret schema
-        # marks resyncInterval as required (it's optional, operator
-        # defaults it) and rejects managedSecretReference.template.metadata
-        # (a real, commonly-used field — e.g. setting
-        # reloader.stakater.com/auto on the generated Secret). False
-        # failure on a well-formed CR matching this cluster's own documented
-        # InfisicalSecret pattern (dvystrcil/prometheus
-        # secrets/alertmanager-discord.yaml, 2026-07-24) — used across
-        # nearly every repo in this cluster, so worth fixing here once
-        # rather than per-repo.
+        # -skip: kubeconform keeps only the LAST -skip (Go flag.String), so a
+        # repo's own `-skip X` used to REPLACE the action's list silently
+        # (broke ImageUpdater for ~13 repos on 2026-07-24 when a second -skip
+        # line was added here). Every -skip in kubeconform_flags is now pulled
+        # out and merged with KV_SKIP into ONE -skip.
+        KV_SKIP=""
+        read -r -a _flags <<< "${KV_FLAGS:-}"
+        USER_FLAGS=() ; i=0
+        while [ $i -lt ${#_flags[@]} ]; do
+          f="${_flags[$i]}"
+          case "$f" in
+            -skip|--skip) i=$((i+1)); KV_SKIP="${KV_SKIP:+$KV_SKIP,}${_flags[$i]:-}" ;;
+            -skip=*|--skip=*) KV_SKIP="${KV_SKIP:+$KV_SKIP,}${f#*=}" ;;
+            *) USER_FLAGS+=("$f") ;;
+          esac
+          i=$((i+1))
+        done
+        SKIP_ARGS=() ; [ -n "$KV_SKIP" ] && SKIP_ARGS=(-skip "$KV_SKIP") && echo "kubeconform -skip $KV_SKIP"
         #
         # -cache: one schema download per URL per job, shared by every
         # kustomize root below. Must be WRITABLE: kubeconform fails a
@@ -131,12 +137,26 @@ runs:
         # not cache a 404, so the raw pass is ONE invocation instead (below).
         KV_SCHEMA_CACHE="${RUNNER_TEMP:-/tmp}/kubeconform-schemas"
         mkdir -p "$KV_SCHEMA_CACHE"
-        CONFORM='kubeconform -strict -summary -ignore-missing-schemas
-          -cache '"$KV_SCHEMA_CACHE"'
-          -skip ImageUpdater,SealedSecret,InfisicalSecret
-          -schema-location default
-          -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
-          ${{ inputs.kubeconform_flags }}'
+        KV_TPL='{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json'
+        # conform <dir of this render's CRD schemas> <files...>
+        conform() {
+          local rs="$1"; shift
+          kubeconform -strict -summary -ignore-missing-schemas \
+            -cache "$KV_SCHEMA_CACHE" \
+            "${SKIP_ARGS[@]}" \
+            -schema-location "$rs/$KV_TPL" \
+            -schema-location "$KV_ACTION_PATH/schemas/cluster/$KV_TPL" \
+            -schema-location default \
+            -schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/$KV_TPL" \
+            "${USER_FLAGS[@]}" "$@"
+        }
+        # render_schemas <manifest files...>: prints a fresh dir holding the
+        # JSON schemas of every CRD in them (empty when there are none).
+        render_schemas() {
+          local d; d="$(mktemp -d "${RUNNER_TEMP:-/tmp}/kv-crd-XXXXXX")"
+          "${KV_PYTHON:-python3}" "$KV_ACTION_PATH/crd_schemas.py" "$d" "$@" >&2
+          echo "$d"
+        }
 
         # --- kustomize repos: render each ROOT kustomization, then conform.
         # (bases are reached through their overlays; a base alone can miss
@@ -177,13 +197,14 @@ runs:
             echo "::error::kustomize build failed for $dir"; FAILED=1
             echo "::endgroup::"; continue
           fi
-          $CONFORM /tmp/rendered.yaml || { echo "::error::kubeconform $dir"; FAILED=1; }
+          conform "$(render_schemas /tmp/rendered.yaml)" /tmp/rendered.yaml \
+            || { echo "::error::kubeconform $dir"; FAILED=1; }
           # D-013: every workload consuming an InfisicalSecret-managed
           # Secret must carry reloader.stakater.com/auto itself. Checked
           # from THIS repo's own rendered output (homelab#529) — the
           # Deployment and the InfisicalSecret CR managing its Secret are
           # expected to live in the same PR, no live cluster query needed.
-          "${KV_PYTHON:-python3}" "${{ github.action_path }}/reloader_coverage_check.py" \
+          "${KV_PYTHON:-python3}" "$KV_ACTION_PATH/reloader_coverage_check.py" \
             --from-manifest /tmp/rendered.yaml \
             --exemptions-file /tmp/reloader-exemptions.yaml --strict \
             || { echo "::error::reloader-coverage $dir"; FAILED=1; }
@@ -197,7 +218,7 @@ runs:
                 echo "::warning::vpa-coverage: the base of $dir does not render; every workload counts as added"
               fi
             fi
-            "${KV_PYTHON:-python3}" "${{ github.action_path }}/vpa_coverage_check.py" \
+            "${KV_PYTHON:-python3}" "$KV_ACTION_PATH/vpa_coverage_check.py" \
               --head /tmp/rendered.yaml "${BASEARG[@]}" \
               || { echo "::error::vpa-coverage $dir"; FAILED=1; }
           fi
@@ -242,7 +263,8 @@ runs:
         if [ "${#RAW[@]}" -gt 0 ]; then
           echo "::group::kubeconform (raw) ${#RAW[@]} files"
           printf '  %s\n' "${RAW[@]}"
-          $CONFORM "${RAW[@]}" || { echo "::error::kubeconform (raw): see the failing file(s) above"; FAILED=1; }
+          conform "$(render_schemas "${RAW[@]}")" "${RAW[@]}" \
+            || { echo "::error::kubeconform (raw): see the failing file(s) above"; FAILED=1; }
           echo "::endgroup::"
         fi
 

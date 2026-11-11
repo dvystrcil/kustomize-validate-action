@@ -1,0 +1,72 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "startAt": {
+     "type": "string"
+    },
+    "targetImage": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "currentNode": {
+     "type": "string"
+    },
+    "nodes": {
+     "additionalProperties": {
+      "additionalProperties": false,
+      "properties": {
+       "completedAt": {
+        "type": "string"
+       },
+       "errorMsg": {
+        "type": "string"
+       },
+       "imuName": {
+        "type": "string"
+       },
+       "retryCount": {
+        "type": "integer"
+       },
+       "startedAt": {
+        "type": "string"
+       },
+       "state": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "state"
+      ],
+      "type": "object"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "ownerID": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

@@ -1,0 +1,472 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "applicationRefs": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "commonUpdateSettings": {
+        "additionalProperties": false,
+        "properties": {
+         "allowTags": {
+          "type": "string"
+         },
+         "forceUpdate": {
+          "default": false,
+          "type": "boolean"
+         },
+         "ignoreTags": {
+          "items": {
+           "type": "string"
+          },
+          "type": "array",
+          "x-kubernetes-list-type": "atomic"
+         },
+         "platforms": {
+          "items": {
+           "type": "string"
+          },
+          "type": "array",
+          "x-kubernetes-list-type": "atomic"
+         },
+         "pullSecret": {
+          "type": "string"
+         },
+         "updateStrategy": {
+          "default": "semver",
+          "type": "string"
+         }
+        },
+        "type": "object"
+       },
+       "images": {
+        "items": {
+         "additionalProperties": false,
+         "properties": {
+          "alias": {
+           "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-._]*$",
+           "type": "string"
+          },
+          "commonUpdateSettings": {
+           "additionalProperties": false,
+           "properties": {
+            "allowTags": {
+             "type": "string"
+            },
+            "forceUpdate": {
+             "default": false,
+             "type": "boolean"
+            },
+            "ignoreTags": {
+             "items": {
+              "type": "string"
+             },
+             "type": "array",
+             "x-kubernetes-list-type": "atomic"
+            },
+            "platforms": {
+             "items": {
+              "type": "string"
+             },
+             "type": "array",
+             "x-kubernetes-list-type": "atomic"
+            },
+            "pullSecret": {
+             "type": "string"
+            },
+            "updateStrategy": {
+             "default": "semver",
+             "type": "string"
+            }
+           },
+           "type": "object"
+          },
+          "imageName": {
+           "type": "string"
+          },
+          "manifestTargets": {
+           "additionalProperties": false,
+           "properties": {
+            "helm": {
+             "additionalProperties": false,
+             "properties": {
+              "name": {
+               "type": "string"
+              },
+              "spec": {
+               "type": "string"
+              },
+              "tag": {
+               "type": "string"
+              }
+             },
+             "type": "object"
+            },
+            "kustomize": {
+             "additionalProperties": false,
+             "properties": {
+              "name": {
+               "type": "string"
+              }
+             },
+             "required": [
+              "name"
+             ],
+             "type": "object"
+            }
+           },
+           "type": "object",
+           "x-kubernetes-validations": [
+            {
+             "message": "Exactly one of helm or kustomize must be specified within manifestTargets if the block is present.",
+             "rule": "has(self.helm) ? !has(self.kustomize) : has(self.kustomize)"
+            }
+           ]
+          }
+         },
+         "required": [
+          "alias",
+          "imageName"
+         ],
+         "type": "object"
+        },
+        "type": "array",
+        "x-kubernetes-list-map-keys": [
+         "alias"
+        ],
+        "x-kubernetes-list-type": "map"
+       },
+       "labelSelectors": {
+        "additionalProperties": false,
+        "properties": {
+         "matchExpressions": {
+          "items": {
+           "additionalProperties": false,
+           "properties": {
+            "key": {
+             "type": "string"
+            },
+            "operator": {
+             "type": "string"
+            },
+            "values": {
+             "items": {
+              "type": "string"
+             },
+             "type": "array",
+             "x-kubernetes-list-type": "atomic"
+            }
+           },
+           "required": [
+            "key",
+            "operator"
+           ],
+           "type": "object"
+          },
+          "type": "array",
+          "x-kubernetes-list-type": "atomic"
+         },
+         "matchLabels": {
+          "additionalProperties": {
+           "type": "string"
+          },
+          "type": "object"
+         }
+        },
+        "type": "object",
+        "x-kubernetes-map-type": "atomic"
+       },
+       "namePattern": {
+        "type": "string"
+       },
+       "useAnnotations": {
+        "default": false,
+        "type": "boolean"
+       },
+       "writeBackConfig": {
+        "additionalProperties": false,
+        "properties": {
+         "gitConfig": {
+          "additionalProperties": false,
+          "properties": {
+           "branch": {
+            "type": "string"
+           },
+           "pullRequest": {
+            "additionalProperties": false,
+            "properties": {
+             "github": {
+              "type": "object"
+             },
+             "gitlab": {
+              "type": "object"
+             }
+            },
+            "type": "object",
+            "x-kubernetes-validations": [
+             {
+              "message": "Exactly one of github or gitlab must be set",
+              "rule": "(has(self.github) ? 1 : 0) + (has(self.gitlab) ? 1 : 0) == 1"
+             }
+            ]
+           },
+           "repository": {
+            "type": "string"
+           },
+           "writeBackTarget": {
+            "type": "string"
+           }
+          },
+          "type": "object"
+         },
+         "method": {
+          "default": "argocd",
+          "pattern": "^(argocd|git|git:[a-zA-Z0-9][a-zA-Z0-9-._/:]*)$",
+          "type": "string"
+         }
+        },
+        "required": [
+         "method"
+        ],
+        "type": "object"
+       }
+      },
+      "required": [
+       "namePattern"
+      ],
+      "type": "object",
+      "x-kubernetes-validations": [
+       {
+        "message": "Either useAnnotations must be true, or images must be provided with at least one item",
+        "rule": "!(has(self.useAnnotations) && self.useAnnotations == true) ? (has(self.images) && size(self.images) > 0) : true"
+       }
+      ]
+     },
+     "minItems": 1,
+     "type": "array",
+     "x-kubernetes-list-map-keys": [
+      "namePattern"
+     ],
+     "x-kubernetes-list-type": "map"
+    },
+    "commonUpdateSettings": {
+     "additionalProperties": false,
+     "properties": {
+      "allowTags": {
+       "type": "string"
+      },
+      "forceUpdate": {
+       "default": false,
+       "type": "boolean"
+      },
+      "ignoreTags": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array",
+       "x-kubernetes-list-type": "atomic"
+      },
+      "platforms": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array",
+       "x-kubernetes-list-type": "atomic"
+      },
+      "pullSecret": {
+       "type": "string"
+      },
+      "updateStrategy": {
+       "default": "semver",
+       "type": "string"
+      }
+     },
+     "type": "object"
+    },
+    "writeBackConfig": {
+     "additionalProperties": false,
+     "properties": {
+      "gitConfig": {
+       "additionalProperties": false,
+       "properties": {
+        "branch": {
+         "type": "string"
+        },
+        "pullRequest": {
+         "additionalProperties": false,
+         "properties": {
+          "github": {
+           "type": "object"
+          },
+          "gitlab": {
+           "type": "object"
+          }
+         },
+         "type": "object",
+         "x-kubernetes-validations": [
+          {
+           "message": "Exactly one of github or gitlab must be set",
+           "rule": "(has(self.github) ? 1 : 0) + (has(self.gitlab) ? 1 : 0) == 1"
+          }
+         ]
+        },
+        "repository": {
+         "type": "string"
+        },
+        "writeBackTarget": {
+         "type": "string"
+        }
+       },
+       "type": "object"
+      },
+      "method": {
+       "default": "argocd",
+       "pattern": "^(argocd|git|git:[a-zA-Z0-9][a-zA-Z0-9-._/:]*)$",
+       "type": "string"
+      }
+     },
+     "required": [
+      "method"
+     ],
+     "type": "object"
+    }
+   },
+   "required": [
+    "applicationRefs"
+   ],
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "applicationsMatched": {
+     "format": "int32",
+     "minimum": 0,
+     "type": "integer"
+    },
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastTransitionTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "message": {
+        "maxLength": 32768,
+        "type": "string"
+       },
+       "observedGeneration": {
+        "format": "int64",
+        "minimum": 0,
+        "type": "integer"
+       },
+       "reason": {
+        "maxLength": 1024,
+        "minLength": 1,
+        "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+        "type": "string"
+       },
+       "status": {
+        "enum": [
+         "True",
+         "False",
+         "Unknown"
+        ],
+        "type": "string"
+       },
+       "type": {
+        "maxLength": 316,
+        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+        "type": "string"
+       }
+      },
+      "required": [
+       "lastTransitionTime",
+       "message",
+       "reason",
+       "status",
+       "type"
+      ],
+      "type": "object"
+     },
+     "type": "array",
+     "x-kubernetes-list-map-keys": [
+      "type"
+     ],
+     "x-kubernetes-list-type": "map"
+    },
+    "imagesManaged": {
+     "format": "int32",
+     "minimum": 0,
+     "type": "integer"
+    },
+    "lastCheckedAt": {
+     "format": "date-time",
+     "type": "string"
+    },
+    "lastUpdatedAt": {
+     "format": "date-time",
+     "type": "string"
+    },
+    "observedGeneration": {
+     "format": "int64",
+     "minimum": 0,
+     "type": "integer"
+    },
+    "recentUpdates": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "alias": {
+        "type": "string"
+       },
+       "applicationsUpdated": {
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+       },
+       "image": {
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "newVersion": {
+        "type": "string"
+       },
+       "updatedAt": {
+        "format": "date-time",
+        "type": "string"
+       }
+      },
+      "required": [
+       "alias",
+       "applicationsUpdated",
+       "image",
+       "newVersion",
+       "updatedAt"
+      ],
+      "type": "object"
+     },
+     "type": "array",
+     "x-kubernetes-list-type": "atomic"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

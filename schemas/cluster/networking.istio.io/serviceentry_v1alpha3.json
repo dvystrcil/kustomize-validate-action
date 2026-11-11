@@ -1,0 +1,337 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "addresses": {
+     "items": {
+      "maxLength": 64,
+      "type": "string"
+     },
+     "maxItems": 256,
+     "type": "array"
+    },
+    "endpoints": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "address": {
+        "maxLength": 256,
+        "type": "string",
+        "x-kubernetes-validations": [
+         {
+          "message": "UDS must be an absolute path or abstract socket",
+          "rule": "self.startsWith(\"unix://\") ? (self.substring(7, 8) == \"/\" || self.substring(7, 8) == \"@\") : true"
+         },
+         {
+          "message": "UDS may not be a dir",
+          "rule": "self.startsWith(\"unix://\") ? !self.endsWith(\"/\") : true"
+         }
+        ]
+       },
+       "labels": {
+        "additionalProperties": {
+         "type": "string"
+        },
+        "maxProperties": 256,
+        "type": "object"
+       },
+       "locality": {
+        "maxLength": 2048,
+        "type": "string"
+       },
+       "network": {
+        "maxLength": 2048,
+        "type": "string"
+       },
+       "ports": {
+        "additionalProperties": {
+         "maximum": 4294967295,
+         "minimum": 0,
+         "type": "integer",
+         "x-kubernetes-validations": [
+          {
+           "message": "port must be between 1-65535",
+           "rule": "0 < self && self <= 65535"
+          }
+         ]
+        },
+        "maxProperties": 128,
+        "type": "object",
+        "x-kubernetes-validations": [
+         {
+          "message": "port name must be valid",
+          "rule": "self.all(key, size(key) < 63 && key.matches(\"^[a-zA-Z0-9](?:[-a-zA-Z0-9]*[a-zA-Z0-9])?$\"))"
+         }
+        ]
+       },
+       "serviceAccount": {
+        "maxLength": 253,
+        "type": "string"
+       },
+       "weight": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+       }
+      },
+      "type": "object",
+      "x-kubernetes-validations": [
+       {
+        "message": "Address is required",
+        "rule": "has(self.address) || has(self.network)"
+       },
+       {
+        "message": "UDS may not include ports",
+        "rule": "(has(self.address) ? self.address : \"\").startsWith(\"unix://\") ? !has(self.ports) : true"
+       }
+      ]
+     },
+     "maxItems": 4096,
+     "type": "array"
+    },
+    "exportTo": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "hosts": {
+     "items": {
+      "type": "string",
+      "x-kubernetes-validations": [
+       {
+        "message": "hostname cannot be wildcard",
+        "rule": "self != \"*\""
+       }
+      ]
+     },
+     "maxItems": 256,
+     "minItems": 1,
+     "type": "array"
+    },
+    "location": {
+     "enum": [
+      "MESH_EXTERNAL",
+      "MESH_INTERNAL"
+     ],
+     "type": "string"
+    },
+    "ports": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "name": {
+        "maxLength": 256,
+        "type": "string"
+       },
+       "number": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer",
+        "x-kubernetes-validations": [
+         {
+          "message": "port must be between 1-65535",
+          "rule": "0 < self && self <= 65535"
+         }
+        ]
+       },
+       "protocol": {
+        "maxLength": 256,
+        "type": "string"
+       },
+       "targetPort": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer",
+        "x-kubernetes-validations": [
+         {
+          "message": "port must be between 1-65535",
+          "rule": "0 < self && self <= 65535"
+         }
+        ]
+       }
+      },
+      "required": [
+       "number",
+       "name"
+      ],
+      "type": "object"
+     },
+     "maxItems": 256,
+     "type": "array",
+     "x-kubernetes-list-map-keys": [
+      "name"
+     ],
+     "x-kubernetes-list-type": "map",
+     "x-kubernetes-validations": [
+      {
+       "message": "port number cannot be duplicated",
+       "rule": "self.all(l1, self.exists_one(l2, l1.number == l2.number))"
+      }
+     ]
+    },
+    "resolution": {
+     "enum": [
+      "NONE",
+      "STATIC",
+      "DNS",
+      "DNS_ROUND_ROBIN",
+      "DYNAMIC_DNS"
+     ],
+     "type": "string"
+    },
+    "subjectAltNames": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "workloadSelector": {
+     "additionalProperties": false,
+     "properties": {
+      "labels": {
+       "additionalProperties": {
+        "maxLength": 63,
+        "type": "string",
+        "x-kubernetes-validations": [
+         {
+          "message": "wildcard is not supported in selector",
+          "rule": "!self.contains(\"*\")"
+         }
+        ]
+       },
+       "maxProperties": 256,
+       "type": "object"
+      }
+     },
+     "type": "object"
+    }
+   },
+   "required": [
+    "hosts"
+   ],
+   "type": "object",
+   "x-kubernetes-validations": [
+    {
+     "message": "only one of WorkloadSelector or Endpoints can be set",
+     "rule": "(has(self.workloadSelector) ? 1 : 0) + (has(self.endpoints) ? 1 : 0) <= 1"
+    },
+    {
+     "message": "CIDR addresses are allowed only for NONE/STATIC resolution types",
+     "rule": "!((has(self.addresses) ? self.addresses : []).exists(k, k.contains(\"/\")) && !((has(self.resolution) ? self.resolution : \"NONE\") in [\"STATIC\", \"NONE\"]))"
+    },
+    {
+     "message": "NONE mode cannot set endpoints",
+     "rule": "((has(self.resolution) ? self.resolution : \"NONE\") == \"NONE\") ? !has(self.endpoints) : true"
+    },
+    {
+     "message": "DNS_ROUND_ROBIN mode cannot have multiple endpoints",
+     "rule": "((has(self.resolution) ? self.resolution : \"\") == \"DNS_ROUND_ROBIN\") ? ((has(self.endpoints) ? self.endpoints : []).size() <= 1) : true"
+    }
+   ]
+  },
+  "status": {
+   "properties": {
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "observedGeneration": {
+        "anyOf": [
+         {
+          "type": "integer"
+         },
+         {
+          "type": "string"
+         }
+        ]
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "observedGeneration": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "string"
+      }
+     ]
+    },
+    "validationMessages": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "documentationUrl": {
+        "type": "string"
+       },
+       "level": {
+        "enum": [
+         "UNKNOWN",
+         "ERROR",
+         "WARNING",
+         "INFO"
+        ],
+        "type": "string"
+       },
+       "type": {
+        "additionalProperties": false,
+        "properties": {
+         "code": {
+          "type": "string"
+         },
+         "name": {
+          "type": "string"
+         }
+        },
+        "type": "object"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    }
+   },
+   "type": "object",
+   "x-kubernetes-preserve-unknown-fields": true
+  }
+ },
+ "required": [
+  "spec"
+ ],
+ "type": "object"
+}

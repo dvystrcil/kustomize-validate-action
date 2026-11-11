@@ -1,0 +1,395 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "metadata": {
+     "additionalProperties": false,
+     "properties": {
+      "annotations": {
+       "additionalProperties": {
+        "type": "string"
+       },
+       "maxProperties": 256,
+       "type": "object"
+      },
+      "labels": {
+       "additionalProperties": {
+        "type": "string"
+       },
+       "maxProperties": 256,
+       "type": "object"
+      }
+     },
+     "type": "object"
+    },
+    "probe": {
+     "additionalProperties": false,
+     "oneOf": [
+      {
+       "not": {
+        "anyOf": [
+         {
+          "required": [
+           "httpGet"
+          ]
+         },
+         {
+          "required": [
+           "tcpSocket"
+          ]
+         },
+         {
+          "required": [
+           "exec"
+          ]
+         },
+         {
+          "required": [
+           "grpc"
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "required": [
+        "httpGet"
+       ]
+      },
+      {
+       "required": [
+        "tcpSocket"
+       ]
+      },
+      {
+       "required": [
+        "exec"
+       ]
+      },
+      {
+       "required": [
+        "grpc"
+       ]
+      }
+     ],
+     "properties": {
+      "exec": {
+       "additionalProperties": false,
+       "properties": {
+        "command": {
+         "items": {
+          "minLength": 1,
+          "type": "string"
+         },
+         "type": "array"
+        }
+       },
+       "required": [
+        "command"
+       ],
+       "type": "object"
+      },
+      "failureThreshold": {
+       "format": "int32",
+       "minimum": 0,
+       "type": "integer"
+      },
+      "grpc": {
+       "additionalProperties": false,
+       "properties": {
+        "port": {
+         "maximum": 4294967295,
+         "minimum": 0,
+         "type": "integer",
+         "x-kubernetes-validations": [
+          {
+           "message": "port must be between 1-65535",
+           "rule": "0 < self && self <= 65535"
+          }
+         ]
+        },
+        "service": {
+         "type": "string"
+        }
+       },
+       "type": "object"
+      },
+      "httpGet": {
+       "additionalProperties": false,
+       "properties": {
+        "host": {
+         "type": "string"
+        },
+        "httpHeaders": {
+         "items": {
+          "additionalProperties": false,
+          "properties": {
+           "name": {
+            "pattern": "^[-_A-Za-z0-9]+$",
+            "type": "string"
+           },
+           "value": {
+            "type": "string"
+           }
+          },
+          "type": "object"
+         },
+         "type": "array"
+        },
+        "path": {
+         "type": "string"
+        },
+        "port": {
+         "maximum": 4294967295,
+         "minimum": 0,
+         "type": "integer",
+         "x-kubernetes-validations": [
+          {
+           "message": "port must be between 1-65535",
+           "rule": "0 < self && self <= 65535"
+          }
+         ]
+        },
+        "scheme": {
+         "type": "string",
+         "x-kubernetes-validations": [
+          {
+           "message": "scheme must be one of [HTTP, HTTPS]",
+           "rule": "self in [\"\", \"HTTP\", \"HTTPS\"]"
+          }
+         ]
+        }
+       },
+       "required": [
+        "port"
+       ],
+       "type": "object"
+      },
+      "initialDelaySeconds": {
+       "format": "int32",
+       "minimum": 0,
+       "type": "integer"
+      },
+      "periodSeconds": {
+       "format": "int32",
+       "minimum": 0,
+       "type": "integer"
+      },
+      "successThreshold": {
+       "format": "int32",
+       "minimum": 0,
+       "type": "integer"
+      },
+      "tcpSocket": {
+       "additionalProperties": false,
+       "properties": {
+        "host": {
+         "type": "string"
+        },
+        "port": {
+         "maximum": 4294967295,
+         "minimum": 0,
+         "type": "integer",
+         "x-kubernetes-validations": [
+          {
+           "message": "port must be between 1-65535",
+           "rule": "0 < self && self <= 65535"
+          }
+         ]
+        }
+       },
+       "required": [
+        "port"
+       ],
+       "type": "object"
+      },
+      "timeoutSeconds": {
+       "format": "int32",
+       "minimum": 0,
+       "type": "integer"
+      }
+     },
+     "type": "object"
+    },
+    "template": {
+     "additionalProperties": false,
+     "properties": {
+      "address": {
+       "maxLength": 256,
+       "type": "string",
+       "x-kubernetes-validations": [
+        {
+         "message": "UDS must be an absolute path or abstract socket",
+         "rule": "self.startsWith(\"unix://\") ? (self.substring(7, 8) == \"/\" || self.substring(7, 8) == \"@\") : true"
+        },
+        {
+         "message": "UDS may not be a dir",
+         "rule": "self.startsWith(\"unix://\") ? !self.endsWith(\"/\") : true"
+        }
+       ]
+      },
+      "labels": {
+       "additionalProperties": {
+        "type": "string"
+       },
+       "maxProperties": 256,
+       "type": "object"
+      },
+      "locality": {
+       "maxLength": 2048,
+       "type": "string"
+      },
+      "network": {
+       "maxLength": 2048,
+       "type": "string"
+      },
+      "ports": {
+       "additionalProperties": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer",
+        "x-kubernetes-validations": [
+         {
+          "message": "port must be between 1-65535",
+          "rule": "0 < self && self <= 65535"
+         }
+        ]
+       },
+       "maxProperties": 128,
+       "type": "object",
+       "x-kubernetes-validations": [
+        {
+         "message": "port name must be valid",
+         "rule": "self.all(key, size(key) < 63 && key.matches(\"^[a-zA-Z0-9](?:[-a-zA-Z0-9]*[a-zA-Z0-9])?$\"))"
+        }
+       ]
+      },
+      "serviceAccount": {
+       "maxLength": 253,
+       "type": "string"
+      },
+      "weight": {
+       "maximum": 4294967295,
+       "minimum": 0,
+       "type": "integer"
+      }
+     },
+     "type": "object",
+     "x-kubernetes-validations": [
+      {
+       "message": "UDS may not include ports",
+       "rule": "(has(self.address) ? self.address : \"\").startsWith(\"unix://\") ? !has(self.ports) : true"
+      }
+     ]
+    }
+   },
+   "required": [
+    "template"
+   ],
+   "type": "object"
+  },
+  "status": {
+   "properties": {
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "format": "date-time",
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "observedGeneration": {
+        "anyOf": [
+         {
+          "type": "integer"
+         },
+         {
+          "type": "string"
+         }
+        ]
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "observedGeneration": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "string"
+      }
+     ]
+    },
+    "validationMessages": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "documentationUrl": {
+        "type": "string"
+       },
+       "level": {
+        "enum": [
+         "UNKNOWN",
+         "ERROR",
+         "WARNING",
+         "INFO"
+        ],
+        "type": "string"
+       },
+       "type": {
+        "additionalProperties": false,
+        "properties": {
+         "code": {
+          "type": "string"
+         },
+         "name": {
+          "type": "string"
+         }
+        },
+        "type": "object"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    }
+   },
+   "type": "object",
+   "x-kubernetes-preserve-unknown-fields": true
+  }
+ },
+ "required": [
+  "spec"
+ ],
+ "type": "object"
+}

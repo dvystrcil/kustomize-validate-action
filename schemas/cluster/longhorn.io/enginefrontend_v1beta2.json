@@ -1,0 +1,213 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "active": {
+     "type": "boolean"
+    },
+    "dataEngine": {
+     "enum": [
+      "v1",
+      "v2"
+     ],
+     "type": "string"
+    },
+    "desireState": {
+     "type": "string"
+    },
+    "disableFrontend": {
+     "type": "boolean"
+    },
+    "engineName": {
+     "type": "string"
+    },
+    "frontend": {
+     "enum": [
+      "blockdev",
+      "iscsi",
+      "nvmf",
+      "ublk",
+      ""
+     ],
+     "type": "string"
+    },
+    "image": {
+     "type": "string"
+    },
+    "logRequested": {
+     "type": "boolean"
+    },
+    "nodeID": {
+     "type": "string"
+    },
+    "nvmeTcpNrIoQueues": {
+     "type": "integer"
+    },
+    "salvageRequested": {
+     "type": "boolean"
+    },
+    "size": {
+     "format": "int64",
+     "type": "string"
+    },
+    "targetIP": {
+     "type": "string"
+    },
+    "targetPort": {
+     "type": "integer"
+    },
+    "ublkNumberOfQueue": {
+     "type": "integer"
+    },
+    "ublkQueueDepth": {
+     "type": "integer"
+    },
+    "volumeName": {
+     "type": "string"
+    },
+    "volumeSize": {
+     "format": "int64",
+     "type": "string"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "activePath": {
+     "type": "string"
+    },
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "currentImage": {
+     "type": "string"
+    },
+    "currentSize": {
+     "format": "int64",
+     "type": "string"
+    },
+    "currentState": {
+     "type": "string"
+    },
+    "endpoint": {
+     "type": "string"
+    },
+    "instanceManagerName": {
+     "type": "string"
+    },
+    "ip": {
+     "type": "string"
+    },
+    "logFetched": {
+     "type": "boolean"
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "paths": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "anaState": {
+        "type": "string"
+       },
+       "engineName": {
+        "type": "string"
+       },
+       "nguid": {
+        "type": "string"
+       },
+       "nqn": {
+        "type": "string"
+       },
+       "targetIP": {
+        "type": "string"
+       },
+       "targetPort": {
+        "type": "integer"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array"
+    },
+    "port": {
+     "type": "integer"
+    },
+    "preferredPath": {
+     "type": "string"
+    },
+    "salvageExecuted": {
+     "type": "boolean"
+    },
+    "started": {
+     "type": "boolean"
+    },
+    "starting": {
+     "type": "boolean"
+    },
+    "storageIP": {
+     "type": "string"
+    },
+    "switchoverPhase": {
+     "type": "string"
+    },
+    "targetIP": {
+     "type": "string"
+    },
+    "targetPort": {
+     "type": "integer"
+    },
+    "ublkID": {
+     "format": "int32",
+     "type": "integer"
+    },
+    "uuid": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

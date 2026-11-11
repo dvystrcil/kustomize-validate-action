@@ -1,0 +1,115 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "image": {
+     "minLength": 1,
+     "type": "string"
+    }
+   },
+   "required": [
+    "image"
+   ],
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "buildDate": {
+     "type": "string"
+    },
+    "cliAPIMinVersion": {
+     "type": "integer"
+    },
+    "cliAPIVersion": {
+     "type": "integer"
+    },
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "controllerAPIMinVersion": {
+     "type": "integer"
+    },
+    "controllerAPIVersion": {
+     "type": "integer"
+    },
+    "dataFormatMinVersion": {
+     "type": "integer"
+    },
+    "dataFormatVersion": {
+     "type": "integer"
+    },
+    "gitCommit": {
+     "type": "string"
+    },
+    "incompatible": {
+     "type": "boolean"
+    },
+    "noRefSince": {
+     "type": "string"
+    },
+    "nodeDeploymentMap": {
+     "additionalProperties": {
+      "type": "boolean"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "refCount": {
+     "type": "integer"
+    },
+    "state": {
+     "type": "string"
+    },
+    "version": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

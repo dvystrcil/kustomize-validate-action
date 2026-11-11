@@ -14,6 +14,8 @@ on:
       - 'action.yml'
       - 'reloader_coverage_check.py'
       - 'vpa_coverage_check.py'
+      - 'crd_schemas.py'
+      - 'schemas/**'
       - '.github/workflows/self-test.yaml'
       - 'tests/**'
 
@@ -156,12 +158,119 @@ jobs:
       - name: The action must have failed on it
         run: test "${{ steps.action.outcome }}" = "failure"
 
-  vpa-coverage-unit:
-    # D-012 PR-time check (homelab#529 AC2): added/changed workloads need a
-    # VPA, untouched and image-only changes are not judged.
+  # #22: a CR whose CRD is NOT in the repo (here InfisicalSecret, in nearly
+  # every consumer) is checked against schemas/cluster/, the cluster's own
+  # CRDs, instead of being skipped. On the old action it was in the -skip
+  # list, so a typo passed.
+  cluster-schema-catches-a-typo:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Plant an InfisicalSecret with a misspelled field
+        run: |
+          # Only the planted file: the repo's fixtures must not decide this job.
+          rm -rf tests/fixtures
+          mkdir -p bad-cr
+          cat > bad-cr/infisical.yaml <<'EOF'
+          apiVersion: secrets.infisical.com/v1alpha1
+          kind: InfisicalSecret
+          metadata:
+            name: x
+          spec:
+            managedSecretReference:
+              secretName: x
+              secretNamespace: x
+            resyncIntervall: 60
+          EOF
+      - id: action
+        uses: ./
+        continue-on-error: true
+      - name: The action must have failed on it
+        run: test "${{ steps.action.outcome }}" = "failure"
+
+  # #22: the CR shapes the old -skip list existed for must now PASS against
+  # the cluster schemas, unskipped: kustomize's creationTimestamp: null under
+  # SealedSecret spec.template.metadata (x-kubernetes-preserve-unknown-fields)
+  # and InfisicalSecret managedSecretReference.template.metadata.
+  formerly-skipped-shapes-pass:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Plant the shapes datree's schemas rejected
+        run: |
+          # Only the planted file: the repo's fixtures must not decide this job.
+          rm -rf tests/fixtures
+          mkdir -p ok-cr
+          cat > ok-cr/kustomization.yaml <<'EOF'
+          resources: [sealed.yaml, infisical.yaml]
+          EOF
+          cat > ok-cr/sealed.yaml <<'EOF'
+          apiVersion: bitnami.com/v1alpha1
+          kind: SealedSecret
+          metadata:
+            name: x
+            namespace: x
+          spec:
+            encryptedData:
+              k: AgB=
+            template:
+              metadata:
+                name: x
+                namespace: x
+                annotations:
+                  reloader.stakater.com/auto: "true"
+          EOF
+          cat > ok-cr/infisical.yaml <<'EOF'
+          apiVersion: secrets.infisical.com/v1alpha1
+          kind: InfisicalSecret
+          metadata:
+            name: x
+            namespace: x
+          spec:
+            managedSecretReference:
+              secretName: x
+              secretNamespace: x
+              template:
+                metadata:
+                  annotations:
+                    reloader.stakater.com/auto: "true"
+          EOF
+      - uses: ./
+
+  # #22 AC2: kubeconform keeps only the LAST -skip. Two -skips in
+  # kubeconform_flags must BOTH apply (and so would the action's own list).
+  every-skip-in-flags-applies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Plant a schema-invalid ConfigMap
+        run: |
+          # Only the planted file: the repo's fixtures must not decide this job.
+          rm -rf tests/fixtures
+          mkdir -p skipped
+          printf 'apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: bad\ndata:\n  - not-a-map\n' > skipped/cm.yaml
+      - uses: ./
+        with:
+          kubeconform_flags: -skip ConfigMap -skip Secret
+
+  vpa-coverage-unit:
+    # D-012 PR-time check (homelab#529 AC2): added/changed workloads need a
+    # VPA, untouched and image-only changes are not judged. Also every other
+    # tests/test_*.py, incl. crd_schemas.py (#22).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install kubeconform (the version action.yml pins)
+        # tests/test_crd_schemas.py round-trips converted schemas through the
+        # real kubeconform and SKIPS without it; the `^OK$` check below then
+        # fails on "OK (skipped=2)". Installed so they run, not skip.
+        run: |
+          set -euo pipefail
+          curl -fsSL -o /tmp/kc.tar.gz \
+            https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz
+          tar -xzf /tmp/kc.tar.gz -C /tmp kubeconform
+          mkdir -p "$HOME/.local/bin" && mv /tmp/kubeconform "$HOME/.local/bin/"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - name: Unit tests
         run: |
           set -euo pipefail

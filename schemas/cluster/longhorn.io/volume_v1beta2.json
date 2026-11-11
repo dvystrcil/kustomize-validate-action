@@ -1,0 +1,490 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "Standby": {
+     "type": "boolean"
+    },
+    "accessMode": {
+     "enum": [
+      "rwo",
+      "rwop",
+      "rwx"
+     ],
+     "type": "string"
+    },
+    "backingImage": {
+     "type": "string",
+     "x-kubernetes-validations": [
+      {
+       "message": "BackingImage is immutable",
+       "rule": "self == oldSelf"
+      }
+     ]
+    },
+    "backupBlockSize": {
+     "enum": [
+      "2097152",
+      "16777216"
+     ],
+     "format": "int64",
+     "type": "string"
+    },
+    "backupCompressionMethod": {
+     "enum": [
+      "none",
+      "lz4",
+      "gzip"
+     ],
+     "type": "string"
+    },
+    "backupTargetName": {
+     "type": "string"
+    },
+    "cloneMode": {
+     "enum": [
+      "",
+      "full-copy",
+      "linked-clone"
+     ],
+     "type": "string"
+    },
+    "dataEngine": {
+     "enum": [
+      "v1",
+      "v2"
+     ],
+     "type": "string"
+    },
+    "dataLayout": {
+     "additionalProperties": false,
+     "properties": {
+      "dataChunks": {
+       "minimum": 0,
+       "type": "integer"
+      },
+      "mode": {
+       "enum": [
+        "raid1",
+        "erasureCoding",
+        ""
+       ],
+       "type": "string"
+      },
+      "parityChunks": {
+       "minimum": 0,
+       "type": "integer"
+      },
+      "stripSizeKB": {
+       "minimum": 0,
+       "type": "integer"
+      },
+      "type": {
+       "enum": [
+        "replicated",
+        "sharded",
+        ""
+       ],
+       "type": "string"
+      }
+     },
+     "type": "object",
+     "x-kubernetes-validations": [
+      {
+       "message": "DataLayout is immutable",
+       "rule": "self == oldSelf"
+      }
+     ]
+    },
+    "dataLocality": {
+     "enum": [
+      "disabled",
+      "best-effort",
+      "strict-local"
+     ],
+     "type": "string"
+    },
+    "dataSource": {
+     "type": "string"
+    },
+    "disableFrontend": {
+     "type": "boolean"
+    },
+    "diskSelector": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "encrypted": {
+     "type": "boolean",
+     "x-kubernetes-validations": [
+      {
+       "message": "Encrypted is immutable",
+       "rule": "self == oldSelf"
+      }
+     ]
+    },
+    "engineNodeID": {
+     "type": "string"
+    },
+    "freezeFilesystemForSnapshot": {
+     "enum": [
+      "ignored",
+      "enabled",
+      "disabled"
+     ],
+     "type": "string"
+    },
+    "fromBackup": {
+     "type": "string"
+    },
+    "frontend": {
+     "enum": [
+      "blockdev",
+      "iscsi",
+      "nvmf",
+      "ublk",
+      ""
+     ],
+     "type": "string"
+    },
+    "image": {
+     "type": "string"
+    },
+    "lastAttachedBy": {
+     "type": "string"
+    },
+    "migratable": {
+     "type": "boolean"
+    },
+    "migrationNodeID": {
+     "type": "string"
+    },
+    "nodeID": {
+     "type": "string"
+    },
+    "nodeSelector": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "numberOfReplicas": {
+     "type": "integer"
+    },
+    "nvmeTcpNrIoQueues": {
+     "type": "integer"
+    },
+    "offlineRebuilding": {
+     "enum": [
+      "ignored",
+      "disabled",
+      "enabled"
+     ],
+     "type": "string"
+    },
+    "rebuildConcurrentSyncLimit": {
+     "maximum": 5,
+     "minimum": 0,
+     "type": "integer"
+    },
+    "replicaAutoBalance": {
+     "enum": [
+      "ignored",
+      "disabled",
+      "least-effort",
+      "best-effort"
+     ],
+     "type": "string"
+    },
+    "replicaDiskSoftAntiAffinity": {
+     "enum": [
+      "ignored",
+      "enabled",
+      "disabled"
+     ],
+     "type": "string"
+    },
+    "replicaRebuildingBandwidthLimit": {
+     "format": "int64",
+     "minimum": 0,
+     "type": "integer"
+    },
+    "replicaSoftAntiAffinity": {
+     "enum": [
+      "ignored",
+      "enabled",
+      "disabled"
+     ],
+     "type": "string"
+    },
+    "replicaZoneSoftAntiAffinity": {
+     "enum": [
+      "ignored",
+      "enabled",
+      "disabled"
+     ],
+     "type": "string"
+    },
+    "restoreVolumeRecurringJob": {
+     "enum": [
+      "ignored",
+      "enabled",
+      "disabled"
+     ],
+     "type": "string"
+    },
+    "revisionCounterDisabled": {
+     "type": "boolean"
+    },
+    "size": {
+     "format": "int64",
+     "type": "string"
+    },
+    "snapshotDataIntegrity": {
+     "enum": [
+      "ignored",
+      "disabled",
+      "enabled",
+      "fast-check"
+     ],
+     "type": "string"
+    },
+    "snapshotHashingRequestedAt": {
+     "type": "string"
+    },
+    "snapshotMaxCount": {
+     "type": "integer"
+    },
+    "snapshotMaxSize": {
+     "format": "int64",
+     "type": "string"
+    },
+    "staleReplicaTimeout": {
+     "type": "integer"
+    },
+    "topologyRequirement": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "region": {
+        "type": "string"
+       },
+       "zone": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": "array",
+     "x-kubernetes-validations": [
+      {
+       "message": "TopologyRequirement is immutable",
+       "rule": "self == oldSelf"
+      }
+     ]
+    },
+    "ublkNumberOfQueue": {
+     "type": "integer"
+    },
+    "ublkQueueDepth": {
+     "type": "integer"
+    },
+    "unmapMarkSnapChainRemoved": {
+     "enum": [
+      "ignored",
+      "disabled",
+      "enabled"
+     ],
+     "type": "string"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "actualSize": {
+     "format": "int64",
+     "type": "integer"
+    },
+    "cloneStatus": {
+     "additionalProperties": false,
+     "properties": {
+      "attemptCount": {
+       "type": "integer"
+      },
+      "nextAllowedAttemptAt": {
+       "type": "string"
+      },
+      "snapshot": {
+       "type": "string"
+      },
+      "sourceVolume": {
+       "type": "string"
+      },
+      "state": {
+       "type": "string"
+      }
+     },
+     "type": "object"
+    },
+    "conditions": {
+     "items": {
+      "additionalProperties": false,
+      "properties": {
+       "lastProbeTime": {
+        "type": "string"
+       },
+       "lastTransitionTime": {
+        "type": "string"
+       },
+       "message": {
+        "type": "string"
+       },
+       "reason": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "type": [
+      "array",
+      "null"
+     ]
+    },
+    "currentEngineNodeID": {
+     "type": "string"
+    },
+    "currentImage": {
+     "type": "string"
+    },
+    "currentMigrationNodeID": {
+     "type": "string"
+    },
+    "currentNodeID": {
+     "type": "string"
+    },
+    "expansionRequired": {
+     "type": "boolean"
+    },
+    "frontendDisabled": {
+     "type": "boolean"
+    },
+    "isStandby": {
+     "type": "boolean"
+    },
+    "kubernetesStatus": {
+     "additionalProperties": false,
+     "properties": {
+      "lastPVCRefAt": {
+       "type": "string"
+      },
+      "lastPodRefAt": {
+       "type": "string"
+      },
+      "namespace": {
+       "type": "string"
+      },
+      "pvName": {
+       "type": "string"
+      },
+      "pvStatus": {
+       "type": "string"
+      },
+      "pvcName": {
+       "type": "string"
+      },
+      "workloadsStatus": {
+       "items": {
+        "additionalProperties": false,
+        "properties": {
+         "podName": {
+          "type": "string"
+         },
+         "podStatus": {
+          "type": "string"
+         },
+         "workloadName": {
+          "type": "string"
+         },
+         "workloadType": {
+          "type": "string"
+         }
+        },
+        "type": "object"
+       },
+       "type": [
+        "array",
+        "null"
+       ]
+      }
+     },
+     "type": "object"
+    },
+    "lastAutoSalvagedAt": {
+     "type": "string"
+    },
+    "lastBackup": {
+     "type": "string"
+    },
+    "lastBackupAt": {
+     "type": "string"
+    },
+    "lastDegradedAt": {
+     "type": "string"
+    },
+    "lastOnDemandSnapshotHashingCompleteAt": {
+     "type": "string"
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "remountRequestedAt": {
+     "type": "string"
+    },
+    "restoreInitiated": {
+     "type": "boolean"
+    },
+    "restoreRequired": {
+     "type": "boolean"
+    },
+    "robustness": {
+     "type": "string"
+    },
+    "shareEndpoint": {
+     "type": "string"
+    },
+    "shareState": {
+     "type": "string"
+    },
+    "state": {
+     "type": "string"
+    },
+    "switchoverState": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

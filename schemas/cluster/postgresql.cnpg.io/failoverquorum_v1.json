@@ -1,0 +1,39 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "method": {
+     "type": "string"
+    },
+    "primary": {
+     "type": "string"
+    },
+    "standbyNames": {
+     "items": {
+      "type": "string"
+     },
+     "type": "array"
+    },
+    "standbyNumber": {
+     "type": "integer"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "required": [
+  "metadata"
+ ],
+ "type": "object"
+}

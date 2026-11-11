@@ -1,0 +1,86 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "diskPath": {
+     "type": "string"
+    },
+    "diskUUID": {
+     "type": "string"
+    },
+    "evictionRequested": {
+     "type": "boolean"
+    },
+    "nodeID": {
+     "type": "string"
+    },
+    "shardGroupName": {
+     "type": "string"
+    },
+    "size": {
+     "format": "int64",
+     "type": "string"
+    },
+    "slotIndex": {
+     "minimum": 0,
+     "type": "integer"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "lastFailureTimestamp": {
+     "type": "string"
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "port": {
+     "format": "int32",
+     "type": "integer"
+    },
+    "rebuildProgress": {
+     "type": "integer"
+    },
+    "replaceTriggered": {
+     "type": "boolean"
+    },
+    "role": {
+     "enum": [
+      "data",
+      "parity",
+      ""
+     ],
+     "type": "string"
+    },
+    "state": {
+     "enum": [
+      "normal",
+      "failed",
+      "replacing",
+      ""
+     ],
+     "type": "string"
+    },
+    "storageIP": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}

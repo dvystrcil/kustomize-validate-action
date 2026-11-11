@@ -1,0 +1,108 @@
+{
+ "additionalProperties": false,
+ "properties": {
+  "apiVersion": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "metadata": {
+   "type": "object"
+  },
+  "spec": {
+   "additionalProperties": false,
+   "properties": {
+    "backupTargetName": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "syncRequestedAt": {
+     "format": "date-time",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "volumeName": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  },
+  "status": {
+   "additionalProperties": false,
+   "properties": {
+    "backingImageChecksum": {
+     "type": "string"
+    },
+    "backingImageName": {
+     "type": "string"
+    },
+    "createdAt": {
+     "type": "string"
+    },
+    "dataStored": {
+     "type": "string"
+    },
+    "labels": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "lastBackupAt": {
+     "type": "string"
+    },
+    "lastBackupName": {
+     "type": "string"
+    },
+    "lastModificationTime": {
+     "format": "date-time",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "lastSyncedAt": {
+     "format": "date-time",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "linkedCloneSourceSnapshot": {
+     "type": "string"
+    },
+    "linkedCloneSourceVolume": {
+     "type": "string"
+    },
+    "messages": {
+     "additionalProperties": {
+      "type": "string"
+     },
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "ownerID": {
+     "type": "string"
+    },
+    "size": {
+     "type": "string"
+    },
+    "storageClassName": {
+     "type": "string"
+    }
+   },
+   "type": "object"
+  }
+ },
+ "type": "object"
+}
