@@ -199,6 +199,17 @@ runs:
           fi
           conform "$(render_schemas /tmp/rendered.yaml)" /tmp/rendered.yaml \
             || { echo "::error::kubeconform $dir"; FAILED=1; }
+          # A kustomization under a tests/ directory is a test harness, never
+          # deployed: it is built and schema-checked above, but the DEPLOY
+          # policies below do not apply (dvystrcil/argocd#55: its mTLS harness
+          # went red on every ArgoCD bump for lacking the VPAs prod has).
+          # Keyed on the path, not an opt-out marker, so a deployable root
+          # cannot exempt itself with a comment.
+          case "$dir" in
+            ./tests/*|*/tests/*)
+              echo "note: $dir is a test harness (under tests/): build + kubeconform only, D-012/D-013 coverage skipped"
+              echo "::endgroup::"; continue ;;
+          esac
           # D-013: every workload consuming an InfisicalSecret-managed
           # Secret must carry reloader.stakater.com/auto itself. Checked
           # from THIS repo's own rendered output (homelab#529) — the

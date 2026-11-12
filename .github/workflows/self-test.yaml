@@ -278,3 +278,90 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_*.py' -v 2>&1 | tee ut.out
           grep -q '^OK$' ut.out
           grep -qE '^Ran [1-9][0-9]* tests' ut.out
+
+  # dvystrcil/argocd#55: a kustomization under tests/ is a test harness that is
+  # never deployed. It must still BUILD and pass kubeconform, but the deploy
+  # policies (D-012 VPA, D-013 Reloader) do not apply to it: argocd's mTLS
+  # harness (upstream base + one Component) went red on every ArgoCD bump for
+  # lacking VPAs that prod has. The planted workload has BOTH gaps and is
+  # absent from the PR base, so on a PR it counts as added (VPA check runs).
+  test-harness-skips-deploy-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Plant a harness workload with no VPA and no Reloader annotation
+        run: &plant |
+          # Only the planted file: the repo's fixtures must not decide this job.
+          rm -rf tests/fixtures
+          d=${PLANT_DIR:-tests/harness}
+          mkdir -p "$d"
+          cat > "$d/kustomization.yaml" <<'EOF'
+          resources: [workload.yaml]
+          EOF
+          cat > "$d/workload.yaml" <<'EOF'
+          apiVersion: secrets.infisical.com/v1alpha1
+          kind: InfisicalSecret
+          metadata:
+            name: app
+            namespace: harness
+          spec:
+            managedSecretReference:
+              secretName: app-secrets
+              secretNamespace: harness
+          ---
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: app
+            namespace: harness
+          spec:
+            selector:
+              matchLabels: {app: app}
+            template:
+              metadata:
+                labels: {app: app}
+              spec:
+                containers:
+                - name: app
+                  image: busybox:1.37
+                  envFrom:
+                  - secretRef:
+                      name: app-secrets
+          EOF
+      - uses: ./
+
+  # The exemption is for coverage policies only: a schema error in a harness
+  # must still fail.
+  test-harness-still-schema-checked:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Plant a schema-invalid ConfigMap in a harness
+        run: |
+          rm -rf tests/fixtures
+          mkdir -p tests/harness
+          printf 'resources: [cm.yaml]\n' > tests/harness/kustomization.yaml
+          printf 'apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: bad\ndata:\n  - not-a-map\n' > tests/harness/cm.yaml
+      - id: action
+        uses: ./
+        continue-on-error: true
+      - name: The action must have failed on it
+        run: test "${{ steps.action.outcome }}" = "failure"
+
+  # Guard: the same workload OUTSIDE tests/ is a deployable root, and both
+  # coverage gaps must still fail it. Without this job the exemption could
+  # silently widen to everything.
+  deploy-root-still-coverage-checked:
+    runs-on: ubuntu-latest
+    env:
+      PLANT_DIR: deploy/app
+    steps:
+      - uses: actions/checkout@v7
+      - name: Plant the same workload in a deployable root
+        run: *plant
+      - id: action
+        uses: ./
+        continue-on-error: true
+      - name: The action must have failed on it (PR only; the VPA base needs one)
+        if: github.event_name == 'pull_request'
+        run: test "${{ steps.action.outcome }}" = "failure"
