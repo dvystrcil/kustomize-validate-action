@@ -26,7 +26,7 @@ jobs:
   reloader-coverage-fixtures:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Install pyyaml
         # venv, not a bare `pip install` -- see the same note in action.yml:
@@ -121,7 +121,7 @@ jobs:
   action-with-components:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: ./
 
   # The chart-template skip must not become a blind spot: a templates/ dir
@@ -130,7 +130,7 @@ jobs:
   templates-without-chart-still-checked:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Plant a broken manifest in a templates/ dir that is not a chart
         run: |
           mkdir -p not-a-chart/templates
@@ -147,7 +147,7 @@ jobs:
   raw-batch-still-fails-on-one-bad-file:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Plant a schema-invalid raw manifest beside the valid fixtures
         run: |
           mkdir -p bad-raw
@@ -165,7 +165,7 @@ jobs:
   cluster-schema-catches-a-typo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Plant an InfisicalSecret with a misspelled field
         run: |
           # Only the planted file: the repo's fixtures must not decide this job.
@@ -195,7 +195,7 @@ jobs:
   formerly-skipped-shapes-pass:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Plant the shapes datree's schemas rejected
         run: |
           # Only the planted file: the repo's fixtures must not decide this job.
@@ -242,7 +242,7 @@ jobs:
   every-skip-in-flags-applies:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Plant a schema-invalid ConfigMap
         run: |
           # Only the planted file: the repo's fixtures must not decide this job.
@@ -259,7 +259,7 @@ jobs:
     # tests/test_*.py, incl. crd_schemas.py (#22).
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Install kubeconform (the version action.yml pins)
         # tests/test_crd_schemas.py round-trips converted schemas through the
         # real kubeconform and SKIPS without it; the `^OK$` check below then
@@ -288,7 +288,7 @@ jobs:
   test-harness-skips-deploy-coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Plant a harness workload with no VPA and no Reloader annotation
         run: &plant |
           # Only the planted file: the repo's fixtures must not decide this job.
@@ -335,7 +335,7 @@ jobs:
   test-harness-still-schema-checked:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Plant a schema-invalid ConfigMap in a harness
         run: |
           rm -rf tests/fixtures
@@ -356,7 +356,7 @@ jobs:
     env:
       PLANT_DIR: deploy/app
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Plant the same workload in a deployable root
         run: *plant
       - id: action
