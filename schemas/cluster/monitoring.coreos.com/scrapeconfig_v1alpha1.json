@@ -3910,6 +3910,9 @@
      },
      "type": "array"
     },
+    "extraScrapeMetrics": {
+     "type": "boolean"
+    },
     "fallbackScrapeProtocol": {
      "enum": [
       "PrometheusProto",

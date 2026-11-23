@@ -379,6 +379,12 @@
        "tls": {
         "additionalProperties": false,
         "properties": {
+         "alpnProtocols": {
+          "items": {
+           "type": "string"
+          },
+          "type": "array"
+         },
          "caCertCredentialName": {
           "type": "string"
          },
@@ -403,6 +409,12 @@
           },
           "maxItems": 2,
           "minItems": 1,
+          "type": "array"
+         },
+         "ecdhCurves": {
+          "items": {
+           "type": "string"
+          },
           "type": "array"
          },
          "httpsRedirect": {

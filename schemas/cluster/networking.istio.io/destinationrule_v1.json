@@ -189,6 +189,11 @@
                "required": [
                 "consistentHash"
                ]
+              },
+              {
+               "required": [
+                "backendUtilization"
+               ]
               }
              ]
             }
@@ -202,9 +207,40 @@
             "required": [
              "consistentHash"
             ]
+           },
+           {
+            "required": [
+             "backendUtilization"
+            ]
            }
           ],
           "properties": {
+           "backendUtilization": {
+            "additionalProperties": false,
+            "properties": {
+             "errorUtilizationPenaltyPercent": {
+              "maximum": 4294967295,
+              "minimum": 0,
+              "type": "integer"
+             },
+             "metricNamesForComputingUtilization": {
+              "items": {
+               "type": "string"
+              },
+              "type": "array"
+             },
+             "weightExpirationPeriod": {
+              "type": "string"
+             },
+             "weightStabilizationPeriod": {
+              "type": "string"
+             },
+             "weightUpdatePeriod": {
+              "type": "string"
+             }
+            },
+            "type": "object"
+           },
            "consistentHash": {
             "additionalProperties": false,
             "allOf": [
@@ -554,6 +590,14 @@
              "null"
             ]
            },
+           "failurePercentageThreshold": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": [
+             "integer",
+             "null"
+            ]
+           },
            "interval": {
             "type": "string",
             "x-kubernetes-validations": [
@@ -740,6 +784,11 @@
                   "required": [
                    "consistentHash"
                   ]
+                 },
+                 {
+                  "required": [
+                   "backendUtilization"
+                  ]
                  }
                 ]
                }
@@ -753,9 +802,40 @@
                "required": [
                 "consistentHash"
                ]
+              },
+              {
+               "required": [
+                "backendUtilization"
+               ]
               }
              ],
              "properties": {
+              "backendUtilization": {
+               "additionalProperties": false,
+               "properties": {
+                "errorUtilizationPenaltyPercent": {
+                 "maximum": 4294967295,
+                 "minimum": 0,
+                 "type": "integer"
+                },
+                "metricNamesForComputingUtilization": {
+                 "items": {
+                  "type": "string"
+                 },
+                 "type": "array"
+                },
+                "weightExpirationPeriod": {
+                 "type": "string"
+                },
+                "weightStabilizationPeriod": {
+                 "type": "string"
+                },
+                "weightUpdatePeriod": {
+                 "type": "string"
+                }
+               },
+               "type": "object"
+              },
               "consistentHash": {
                "additionalProperties": false,
                "allOf": [
@@ -1105,6 +1185,14 @@
                 "null"
                ]
               },
+              "failurePercentageThreshold": {
+               "maximum": 100,
+               "minimum": 0,
+               "type": [
+                "integer",
+                "null"
+               ]
+              },
               "interval": {
                "type": "string",
                "x-kubernetes-validations": [
@@ -1150,6 +1238,9 @@
             "tls": {
              "additionalProperties": false,
              "properties": {
+              "caCertCredentialName": {
+               "type": "string"
+              },
               "caCertificates": {
                "type": "string"
               },
@@ -1237,6 +1328,9 @@
          "tls": {
           "additionalProperties": false,
           "properties": {
+           "caCertCredentialName": {
+            "type": "string"
+           },
            "caCertificates": {
             "type": "string"
            },
@@ -1465,6 +1559,11 @@
             "required": [
              "consistentHash"
             ]
+           },
+           {
+            "required": [
+             "backendUtilization"
+            ]
            }
           ]
          }
@@ -1478,9 +1577,40 @@
          "required": [
           "consistentHash"
          ]
+        },
+        {
+         "required": [
+          "backendUtilization"
+         ]
         }
        ],
        "properties": {
+        "backendUtilization": {
+         "additionalProperties": false,
+         "properties": {
+          "errorUtilizationPenaltyPercent": {
+           "maximum": 4294967295,
+           "minimum": 0,
+           "type": "integer"
+          },
+          "metricNamesForComputingUtilization": {
+           "items": {
+            "type": "string"
+           },
+           "type": "array"
+          },
+          "weightExpirationPeriod": {
+           "type": "string"
+          },
+          "weightStabilizationPeriod": {
+           "type": "string"
+          },
+          "weightUpdatePeriod": {
+           "type": "string"
+          }
+         },
+         "type": "object"
+        },
         "consistentHash": {
          "additionalProperties": false,
          "allOf": [
@@ -1830,6 +1960,14 @@
           "null"
          ]
         },
+        "failurePercentageThreshold": {
+         "maximum": 100,
+         "minimum": 0,
+         "type": [
+          "integer",
+          "null"
+         ]
+        },
         "interval": {
          "type": "string",
          "x-kubernetes-validations": [
@@ -2016,6 +2154,11 @@
                "required": [
                 "consistentHash"
                ]
+              },
+              {
+               "required": [
+                "backendUtilization"
+               ]
               }
              ]
             }
@@ -2029,9 +2172,40 @@
             "required": [
              "consistentHash"
             ]
+           },
+           {
+            "required": [
+             "backendUtilization"
+            ]
            }
           ],
           "properties": {
+           "backendUtilization": {
+            "additionalProperties": false,
+            "properties": {
+             "errorUtilizationPenaltyPercent": {
+              "maximum": 4294967295,
+              "minimum": 0,
+              "type": "integer"
+             },
+             "metricNamesForComputingUtilization": {
+              "items": {
+               "type": "string"
+              },
+              "type": "array"
+             },
+             "weightExpirationPeriod": {
+              "type": "string"
+             },
+             "weightStabilizationPeriod": {
+              "type": "string"
+             },
+             "weightUpdatePeriod": {
+              "type": "string"
+             }
+            },
+            "type": "object"
+           },
            "consistentHash": {
             "additionalProperties": false,
             "allOf": [
@@ -2381,6 +2555,14 @@
              "null"
             ]
            },
+           "failurePercentageThreshold": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": [
+             "integer",
+             "null"
+            ]
+           },
            "interval": {
             "type": "string",
             "x-kubernetes-validations": [
@@ -2426,6 +2608,9 @@
          "tls": {
           "additionalProperties": false,
           "properties": {
+           "caCertCredentialName": {
+            "type": "string"
+           },
            "caCertificates": {
             "type": "string"
            },
@@ -2513,6 +2698,9 @@
       "tls": {
        "additionalProperties": false,
        "properties": {
+        "caCertCredentialName": {
+         "type": "string"
+        },
         "caCertificates": {
          "type": "string"
         },
