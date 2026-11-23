@@ -106,7 +106,8 @@
           "bzip2",
           "gzip",
           "lz4",
-          "snappy"
+          "snappy",
+          "zstd"
          ],
          "type": "string"
         },
@@ -188,6 +189,14 @@
        },
        "type": "object"
       },
+      "s3AddressingStyle": {
+       "enum": [
+        "auto",
+        "virtual",
+        "path"
+       ],
+       "type": "string"
+      },
       "s3Credentials": {
        "additionalProperties": false,
        "properties": {
@@ -243,6 +252,22 @@
          "type": "object"
         },
         "sessionToken": {
+         "additionalProperties": false,
+         "properties": {
+          "key": {
+           "type": "string"
+          },
+          "name": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "key",
+          "name"
+         ],
+         "type": "object"
+        },
+        "sseCustomerKey": {
          "additionalProperties": false,
          "properties": {
           "key": {
@@ -321,6 +346,24 @@
        "message": "use the 'serverName' plugin parameter in the Cluster resource",
        "reason": "FieldValueForbidden",
        "rule": "!has(self.serverName)"
+      },
+      {
+       "fieldPath": ".data.encryption",
+       "message": "cannot be used together with s3Credentials.sseCustomerKey",
+       "reason": "FieldValueForbidden",
+       "rule": "!has(self.s3Credentials) || !has(self.s3Credentials.sseCustomerKey) || !has(self.data) || !has(self.data.encryption)"
+      },
+      {
+       "fieldPath": ".wal.encryption",
+       "message": "cannot be used together with s3Credentials.sseCustomerKey",
+       "reason": "FieldValueForbidden",
+       "rule": "!has(self.s3Credentials) || !has(self.s3Credentials.sseCustomerKey) || !has(self.wal) || !has(self.wal.encryption)"
+      },
+      {
+       "fieldPath": ".s3AddressingStyle",
+       "message": "s3AddressingStyle requires s3Credentials",
+       "reason": "FieldValueForbidden",
+       "rule": "!has(self.s3AddressingStyle) || has(self.s3Credentials)"
       }
      ]
     },

@@ -114,6 +114,13 @@
        "outputPayloadToHeader": {
         "type": "string"
        },
+       "presence": {
+        "enum": [
+         "OPTIONAL",
+         "REQUIRED"
+        ],
+        "type": "string"
+       },
        "spaceDelimitedClaims": {
         "items": {
          "minLength": 1,

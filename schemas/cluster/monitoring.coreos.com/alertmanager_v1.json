@@ -712,6 +712,14 @@
      },
      "type": "object"
     },
+    "alertmanagerConfigFileSystemMode": {
+     "enum": [
+      "AllowAll",
+      "FromAlertmanagerConfigMatcherStrategy",
+      "DenyAll"
+     ],
+     "type": "string"
+    },
     "alertmanagerConfigMatcherStrategy": {
      "additionalProperties": false,
      "properties": {
@@ -1755,9 +1763,39 @@
           "apiURL": {
            "pattern": "^(http|https)://.+$",
            "type": "string"
+          },
+          "botToken": {
+           "additionalProperties": false,
+           "properties": {
+            "key": {
+             "type": "string"
+            },
+            "name": {
+             "default": "",
+             "type": "string"
+            },
+            "optional": {
+             "type": "boolean"
+            }
+           },
+           "required": [
+            "key"
+           ],
+           "type": "object",
+           "x-kubernetes-map-type": "atomic"
+          },
+          "botTokenFile": {
+           "minLength": 1,
+           "type": "string"
           }
          },
-         "type": "object"
+         "type": "object",
+         "x-kubernetes-validations": [
+          {
+           "message": "botToken and botTokenFile are mutually exclusive.",
+           "rule": "!has(self.botToken) || !has(self.botTokenFile)"
+          }
+         ]
         },
         "victorops": {
          "additionalProperties": false,
@@ -2124,6 +2162,13 @@
          "type": "array"
         },
         "clientAuthType": {
+         "enum": [
+          "NoClientCert",
+          "RequestClientCert",
+          "RequireAnyClientCert",
+          "VerifyClientCertIfGiven",
+          "RequireAndVerifyClientCert"
+         ],
          "type": "string"
         },
         "clientCAFile": {
@@ -5504,6 +5549,7 @@
                 "type": "string"
                },
                "reason": {
+                "minLength": 1,
                 "type": "string"
                },
                "status": {
@@ -5512,6 +5558,7 @@
                  "Degraded",
                  "Inaccessible"
                 ],
+                "minLength": 1,
                 "type": "string"
                }
               },
@@ -5521,6 +5568,7 @@
               ],
               "type": "object"
              },
+             "maxItems": 16,
              "type": "array",
              "x-kubernetes-list-map-keys": [
               "status",
@@ -7194,6 +7242,13 @@
          "type": "array"
         },
         "clientAuthType": {
+         "enum": [
+          "NoClientCert",
+          "RequestClientCert",
+          "RequireAnyClientCert",
+          "VerifyClientCertIfGiven",
+          "RequireAndVerifyClientCert"
+         ],
          "type": "string"
         },
         "clientCAFile": {

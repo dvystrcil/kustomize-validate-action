@@ -823,7 +823,8 @@
             "bzip2",
             "gzip",
             "lz4",
-            "snappy"
+            "snappy",
+            "zstd"
            ],
            "type": "string"
           },
@@ -905,6 +906,14 @@
          },
          "type": "object"
         },
+        "s3AddressingStyle": {
+         "enum": [
+          "auto",
+          "virtual",
+          "path"
+         ],
+         "type": "string"
+        },
         "s3Credentials": {
          "additionalProperties": false,
          "properties": {
@@ -960,6 +969,22 @@
            "type": "object"
           },
           "sessionToken": {
+           "additionalProperties": false,
+           "properties": {
+            "key": {
+             "type": "string"
+            },
+            "name": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "key",
+            "name"
+           ],
+           "type": "object"
+          },
+          "sseCustomerKey": {
            "additionalProperties": false,
            "properties": {
             "key": {
@@ -1031,7 +1056,15 @@
        "required": [
         "destinationPath"
        ],
-       "type": "object"
+       "type": "object",
+       "x-kubernetes-validations": [
+        {
+         "fieldPath": ".s3AddressingStyle",
+         "message": "s3AddressingStyle requires s3Credentials",
+         "reason": "FieldValueForbidden",
+         "rule": "!has(self.s3AddressingStyle) || has(self.s3Credentials)"
+        }
+       ]
       },
       "retentionPolicy": {
        "pattern": "^[1-9][0-9]*[dwm]$",
@@ -2100,7 +2133,8 @@
              "bzip2",
              "gzip",
              "lz4",
-             "snappy"
+             "snappy",
+             "zstd"
             ],
             "type": "string"
            },
@@ -2182,6 +2216,14 @@
           },
           "type": "object"
          },
+         "s3AddressingStyle": {
+          "enum": [
+           "auto",
+           "virtual",
+           "path"
+          ],
+          "type": "string"
+         },
          "s3Credentials": {
           "additionalProperties": false,
           "properties": {
@@ -2237,6 +2279,22 @@
             "type": "object"
            },
            "sessionToken": {
+            "additionalProperties": false,
+            "properties": {
+             "key": {
+              "type": "string"
+             },
+             "name": {
+              "type": "string"
+             }
+            },
+            "required": [
+             "key",
+             "name"
+            ],
+            "type": "object"
+           },
+           "sseCustomerKey": {
             "additionalProperties": false,
             "properties": {
              "key": {
@@ -2308,7 +2366,15 @@
         "required": [
          "destinationPath"
         ],
-        "type": "object"
+        "type": "object",
+        "x-kubernetes-validations": [
+         {
+          "fieldPath": ".s3AddressingStyle",
+          "message": "s3AddressingStyle requires s3Credentials",
+          "reason": "FieldValueForbidden",
+          "rule": "!has(self.s3AddressingStyle) || has(self.s3Credentials)"
+         }
+        ]
        },
        "connectionParameters": {
         "additionalProperties": {

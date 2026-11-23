@@ -201,6 +201,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -585,6 +588,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -1003,6 +1009,9 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -1657,6 +1666,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -2041,6 +2053,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -2459,6 +2474,9 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -3116,6 +3134,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -3500,6 +3521,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -3918,6 +3942,9 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -4539,6 +4566,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -4923,6 +4953,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -5341,6 +5374,9 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -6000,6 +6036,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -6384,6 +6423,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -6802,6 +6844,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -7456,6 +7501,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -7840,6 +7888,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -8258,6 +8309,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -8915,6 +8969,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -9299,6 +9356,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -9717,6 +9777,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -10338,6 +10401,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -10722,6 +10788,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -11140,6 +11209,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -11617,36 +11689,57 @@
             "merge": {
              "x-kubernetes-preserve-unknown-fields": true
             },
-            "plugin": {
+            "oci": {
              "additionalProperties": false,
              "properties": {
-              "configMapRef": {
-               "additionalProperties": false,
-               "properties": {
-                "name": {
-                 "type": "string"
-                }
-               },
-               "required": [
-                "name"
-               ],
-               "type": "object"
-              },
-              "input": {
-               "additionalProperties": false,
-               "properties": {
-                "parameters": {
-                 "additionalProperties": {
-                  "x-kubernetes-preserve-unknown-fields": true
+              "directories": {
+               "items": {
+                "additionalProperties": false,
+                "properties": {
+                 "exclude": {
+                  "type": "boolean"
                  },
-                 "type": "object"
-                }
+                 "path": {
+                  "type": "string"
+                 }
+                },
+                "required": [
+                 "path"
+                ],
+                "type": "object"
                },
-               "type": "object"
+               "type": "array"
+              },
+              "files": {
+               "items": {
+                "additionalProperties": false,
+                "properties": {
+                 "exclude": {
+                  "type": "boolean"
+                 },
+                 "path": {
+                  "type": "string"
+                 }
+                },
+                "required": [
+                 "path"
+                ],
+                "type": "object"
+               },
+               "type": "array"
+              },
+              "pathParamPrefix": {
+               "type": "string"
+              },
+              "repoURL": {
+               "type": "string"
               },
               "requeueAfterSeconds": {
                "format": "int64",
                "type": "integer"
+              },
+              "revision": {
+               "type": "string"
               },
               "template": {
                "additionalProperties": false,
@@ -11776,6 +11869,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -12160,6 +12256,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -12578,6 +12677,1460 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
+                       "exclude": {
+                        "type": "string"
+                       },
+                       "include": {
+                        "type": "string"
+                       },
+                       "jsonnet": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "extVars": {
+                          "items": {
+                           "additionalProperties": false,
+                           "properties": {
+                            "code": {
+                             "type": "boolean"
+                            },
+                            "name": {
+                             "type": "string"
+                            },
+                            "value": {
+                             "type": "string"
+                            }
+                           },
+                           "required": [
+                            "name",
+                            "value"
+                           ],
+                           "type": "object"
+                          },
+                          "type": "array"
+                         },
+                         "libs": {
+                          "items": {
+                           "type": "string"
+                          },
+                          "type": "array"
+                         },
+                         "tlas": {
+                          "items": {
+                           "additionalProperties": false,
+                           "properties": {
+                            "code": {
+                             "type": "boolean"
+                            },
+                            "name": {
+                             "type": "string"
+                            },
+                            "value": {
+                             "type": "string"
+                            }
+                           },
+                           "required": [
+                            "name",
+                            "value"
+                           ],
+                           "type": "object"
+                          },
+                          "type": "array"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "recurse": {
+                        "type": "boolean"
+                       }
+                      },
+                      "type": "object"
+                     },
+                     "helm": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "apiVersions": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "fileParameters": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "name": {
+                           "type": "string"
+                          },
+                          "path": {
+                           "type": "string"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "ignoreMissingValueFiles": {
+                        "type": "boolean"
+                       },
+                       "kubeVersion": {
+                        "type": "string"
+                       },
+                       "namespace": {
+                        "type": "string"
+                       },
+                       "parameters": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "forceString": {
+                           "type": "boolean"
+                          },
+                          "name": {
+                           "type": "string"
+                          },
+                          "value": {
+                           "type": "string"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "passCredentials": {
+                        "type": "boolean"
+                       },
+                       "releaseName": {
+                        "type": "string"
+                       },
+                       "skipCrds": {
+                        "type": "boolean"
+                       },
+                       "skipSchemaValidation": {
+                        "type": "boolean"
+                       },
+                       "skipTests": {
+                        "type": "boolean"
+                       },
+                       "valueFiles": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "values": {
+                        "type": "string"
+                       },
+                       "valuesObject": {
+                        "type": "object",
+                        "x-kubernetes-preserve-unknown-fields": true
+                       },
+                       "version": {
+                        "type": "string"
+                       }
+                      },
+                      "type": "object"
+                     },
+                     "kustomize": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "apiVersions": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "commonAnnotations": {
+                        "additionalProperties": {
+                         "type": "string"
+                        },
+                        "type": "object"
+                       },
+                       "commonAnnotationsEnvsubst": {
+                        "type": "boolean"
+                       },
+                       "commonLabels": {
+                        "additionalProperties": {
+                         "type": "string"
+                        },
+                        "type": "object"
+                       },
+                       "components": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "forceCommonAnnotations": {
+                        "type": "boolean"
+                       },
+                       "forceCommonLabels": {
+                        "type": "boolean"
+                       },
+                       "ignoreMissingComponents": {
+                        "type": "boolean"
+                       },
+                       "images": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "kubeVersion": {
+                        "type": "string"
+                       },
+                       "labelIncludeTemplates": {
+                        "type": "boolean"
+                       },
+                       "labelWithoutSelector": {
+                        "type": "boolean"
+                       },
+                       "namePrefix": {
+                        "type": "string"
+                       },
+                       "nameSuffix": {
+                        "type": "string"
+                       },
+                       "namespace": {
+                        "type": "string"
+                       },
+                       "patches": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "options": {
+                           "additionalProperties": {
+                            "type": "boolean"
+                           },
+                           "type": "object"
+                          },
+                          "patch": {
+                           "type": "string"
+                          },
+                          "path": {
+                           "type": "string"
+                          },
+                          "target": {
+                           "additionalProperties": false,
+                           "properties": {
+                            "annotationSelector": {
+                             "type": "string"
+                            },
+                            "group": {
+                             "type": "string"
+                            },
+                            "kind": {
+                             "type": "string"
+                            },
+                            "labelSelector": {
+                             "type": "string"
+                            },
+                            "name": {
+                             "type": "string"
+                            },
+                            "namespace": {
+                             "type": "string"
+                            },
+                            "version": {
+                             "type": "string"
+                            }
+                           },
+                           "type": "object"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "replicas": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "count": {
+                           "anyOf": [
+                            {
+                             "type": "integer"
+                            },
+                            {
+                             "type": "string"
+                            }
+                           ]
+                          },
+                          "name": {
+                           "type": "string"
+                          }
+                         },
+                         "required": [
+                          "count",
+                          "name"
+                         ],
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "version": {
+                        "type": "string"
+                       }
+                      },
+                      "type": "object"
+                     },
+                     "name": {
+                      "type": "string"
+                     },
+                     "path": {
+                      "type": "string"
+                     },
+                     "plugin": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "env": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "name": {
+                           "type": "string"
+                          },
+                          "value": {
+                           "type": "string"
+                          }
+                         },
+                         "required": [
+                          "name",
+                          "value"
+                         ],
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "name": {
+                        "type": "string"
+                       },
+                       "parameters": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "array": {
+                           "items": {
+                            "type": "string"
+                           },
+                           "type": "array"
+                          },
+                          "map": {
+                           "additionalProperties": {
+                            "type": "string"
+                           },
+                           "type": "object"
+                          },
+                          "name": {
+                           "type": "string"
+                          },
+                          "string": {
+                           "type": "string"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "type": "array"
+                       }
+                      },
+                      "type": "object"
+                     },
+                     "ref": {
+                      "type": "string"
+                     },
+                     "repoURL": {
+                      "type": "string"
+                     },
+                     "tagPrefix": {
+                      "type": "string"
+                     },
+                     "targetRevision": {
+                      "type": "string"
+                     }
+                    },
+                    "required": [
+                     "repoURL"
+                    ],
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "syncPolicy": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "automated": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "allowEmpty": {
+                       "type": "boolean"
+                      },
+                      "enabled": {
+                       "type": "boolean"
+                      },
+                      "prune": {
+                       "type": "boolean"
+                      },
+                      "selfHeal": {
+                       "type": "boolean"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "managedNamespaceMetadata": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "annotations": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      },
+                      "labels": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "retry": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "backoff": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "duration": {
+                         "type": "string"
+                        },
+                        "factor": {
+                         "format": "int64",
+                         "type": "integer"
+                        },
+                        "maxDuration": {
+                         "type": "string"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "limit": {
+                       "format": "int64",
+                       "type": "integer"
+                      },
+                      "refresh": {
+                       "type": "boolean"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "syncOptions": {
+                     "items": {
+                      "type": "string"
+                     },
+                     "type": "array"
+                    }
+                   },
+                   "type": "object"
+                  }
+                 },
+                 "required": [
+                  "destination",
+                  "project"
+                 ],
+                 "type": "object"
+                }
+               },
+               "required": [
+                "metadata",
+                "spec"
+               ],
+               "type": "object"
+              },
+              "values": {
+               "additionalProperties": {
+                "type": "string"
+               },
+               "type": "object"
+              }
+             },
+             "required": [
+              "repoURL",
+              "revision"
+             ],
+             "type": "object"
+            },
+            "plugin": {
+             "additionalProperties": false,
+             "properties": {
+              "configMapRef": {
+               "additionalProperties": false,
+               "properties": {
+                "name": {
+                 "type": "string"
+                }
+               },
+               "required": [
+                "name"
+               ],
+               "type": "object"
+              },
+              "input": {
+               "additionalProperties": false,
+               "properties": {
+                "parameters": {
+                 "additionalProperties": {
+                  "x-kubernetes-preserve-unknown-fields": true
+                 },
+                 "type": "object"
+                }
+               },
+               "type": "object"
+              },
+              "requeueAfterSeconds": {
+               "format": "int64",
+               "type": "integer"
+              },
+              "template": {
+               "additionalProperties": false,
+               "properties": {
+                "metadata": {
+                 "additionalProperties": false,
+                 "properties": {
+                  "annotations": {
+                   "additionalProperties": {
+                    "type": "string"
+                   },
+                   "type": "object"
+                  },
+                  "finalizers": {
+                   "items": {
+                    "type": "string"
+                   },
+                   "type": "array"
+                  },
+                  "labels": {
+                   "additionalProperties": {
+                    "type": "string"
+                   },
+                   "type": "object"
+                  },
+                  "name": {
+                   "type": "string"
+                  },
+                  "namespace": {
+                   "type": "string"
+                  }
+                 },
+                 "type": "object"
+                },
+                "spec": {
+                 "additionalProperties": false,
+                 "properties": {
+                  "destination": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "name": {
+                     "type": "string"
+                    },
+                    "namespace": {
+                     "type": "string"
+                    },
+                    "server": {
+                     "type": "string"
+                    }
+                   },
+                   "type": "object"
+                  },
+                  "ignoreDifferences": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "group": {
+                      "type": "string"
+                     },
+                     "jqPathExpressions": {
+                      "items": {
+                       "type": "string"
+                      },
+                      "type": "array"
+                     },
+                     "jsonPointers": {
+                      "items": {
+                       "type": "string"
+                      },
+                      "type": "array"
+                     },
+                     "kind": {
+                      "type": "string"
+                     },
+                     "managedFieldsManagers": {
+                      "items": {
+                       "type": "string"
+                      },
+                      "type": "array"
+                     },
+                     "name": {
+                      "type": "string"
+                     },
+                     "namespace": {
+                      "type": "string"
+                     }
+                    },
+                    "required": [
+                     "kind"
+                    ],
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "info": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "name": {
+                      "type": "string"
+                     },
+                     "value": {
+                      "type": "string"
+                     }
+                    },
+                    "required": [
+                     "name",
+                     "value"
+                    ],
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "project": {
+                   "type": "string"
+                  },
+                  "revisionHistoryLimit": {
+                   "format": "int64",
+                   "type": "integer"
+                  },
+                  "source": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "chart": {
+                     "type": "string"
+                    },
+                    "directory": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
+                      "exclude": {
+                       "type": "string"
+                      },
+                      "include": {
+                       "type": "string"
+                      },
+                      "jsonnet": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "extVars": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "code": {
+                            "type": "boolean"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "value": {
+                            "type": "string"
+                           }
+                          },
+                          "required": [
+                           "name",
+                           "value"
+                          ],
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "libs": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "tlas": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "code": {
+                            "type": "boolean"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "value": {
+                            "type": "string"
+                           }
+                          },
+                          "required": [
+                           "name",
+                           "value"
+                          ],
+                          "type": "object"
+                         },
+                         "type": "array"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "recurse": {
+                       "type": "boolean"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "helm": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "apiVersions": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "fileParameters": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "name": {
+                          "type": "string"
+                         },
+                         "path": {
+                          "type": "string"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "ignoreMissingValueFiles": {
+                       "type": "boolean"
+                      },
+                      "kubeVersion": {
+                       "type": "string"
+                      },
+                      "namespace": {
+                       "type": "string"
+                      },
+                      "parameters": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "forceString": {
+                          "type": "boolean"
+                         },
+                         "name": {
+                          "type": "string"
+                         },
+                         "value": {
+                          "type": "string"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "passCredentials": {
+                       "type": "boolean"
+                      },
+                      "releaseName": {
+                       "type": "string"
+                      },
+                      "skipCrds": {
+                       "type": "boolean"
+                      },
+                      "skipSchemaValidation": {
+                       "type": "boolean"
+                      },
+                      "skipTests": {
+                       "type": "boolean"
+                      },
+                      "valueFiles": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "values": {
+                       "type": "string"
+                      },
+                      "valuesObject": {
+                       "type": "object",
+                       "x-kubernetes-preserve-unknown-fields": true
+                      },
+                      "version": {
+                       "type": "string"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "kustomize": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "apiVersions": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "commonAnnotations": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      },
+                      "commonAnnotationsEnvsubst": {
+                       "type": "boolean"
+                      },
+                      "commonLabels": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      },
+                      "components": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "forceCommonAnnotations": {
+                       "type": "boolean"
+                      },
+                      "forceCommonLabels": {
+                       "type": "boolean"
+                      },
+                      "ignoreMissingComponents": {
+                       "type": "boolean"
+                      },
+                      "images": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "kubeVersion": {
+                       "type": "string"
+                      },
+                      "labelIncludeTemplates": {
+                       "type": "boolean"
+                      },
+                      "labelWithoutSelector": {
+                       "type": "boolean"
+                      },
+                      "namePrefix": {
+                       "type": "string"
+                      },
+                      "nameSuffix": {
+                       "type": "string"
+                      },
+                      "namespace": {
+                       "type": "string"
+                      },
+                      "patches": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "options": {
+                          "additionalProperties": {
+                           "type": "boolean"
+                          },
+                          "type": "object"
+                         },
+                         "patch": {
+                          "type": "string"
+                         },
+                         "path": {
+                          "type": "string"
+                         },
+                         "target": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "annotationSelector": {
+                            "type": "string"
+                           },
+                           "group": {
+                            "type": "string"
+                           },
+                           "kind": {
+                            "type": "string"
+                           },
+                           "labelSelector": {
+                            "type": "string"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "namespace": {
+                            "type": "string"
+                           },
+                           "version": {
+                            "type": "string"
+                           }
+                          },
+                          "type": "object"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "replicas": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "count": {
+                          "anyOf": [
+                           {
+                            "type": "integer"
+                           },
+                           {
+                            "type": "string"
+                           }
+                          ]
+                         },
+                         "name": {
+                          "type": "string"
+                         }
+                        },
+                        "required": [
+                         "count",
+                         "name"
+                        ],
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "version": {
+                       "type": "string"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "name": {
+                     "type": "string"
+                    },
+                    "path": {
+                     "type": "string"
+                    },
+                    "plugin": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "env": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "name": {
+                          "type": "string"
+                         },
+                         "value": {
+                          "type": "string"
+                         }
+                        },
+                        "required": [
+                         "name",
+                         "value"
+                        ],
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "name": {
+                       "type": "string"
+                      },
+                      "parameters": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "array": {
+                          "items": {
+                           "type": "string"
+                          },
+                          "type": "array"
+                         },
+                         "map": {
+                          "additionalProperties": {
+                           "type": "string"
+                          },
+                          "type": "object"
+                         },
+                         "name": {
+                          "type": "string"
+                         },
+                         "string": {
+                          "type": "string"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "type": "array"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "ref": {
+                     "type": "string"
+                    },
+                    "repoURL": {
+                     "type": "string"
+                    },
+                    "tagPrefix": {
+                     "type": "string"
+                    },
+                    "targetRevision": {
+                     "type": "string"
+                    }
+                   },
+                   "required": [
+                    "repoURL"
+                   ],
+                   "type": "object"
+                  },
+                  "sourceHydrator": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "drySource": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "directory": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
+                        "exclude": {
+                         "type": "string"
+                        },
+                        "include": {
+                         "type": "string"
+                        },
+                        "jsonnet": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "extVars": {
+                           "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                             "code": {
+                              "type": "boolean"
+                             },
+                             "name": {
+                              "type": "string"
+                             },
+                             "value": {
+                              "type": "string"
+                             }
+                            },
+                            "required": [
+                             "name",
+                             "value"
+                            ],
+                            "type": "object"
+                           },
+                           "type": "array"
+                          },
+                          "libs": {
+                           "items": {
+                            "type": "string"
+                           },
+                           "type": "array"
+                          },
+                          "tlas": {
+                           "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                             "code": {
+                              "type": "boolean"
+                             },
+                             "name": {
+                              "type": "string"
+                             },
+                             "value": {
+                              "type": "string"
+                             }
+                            },
+                            "required": [
+                             "name",
+                             "value"
+                            ],
+                            "type": "object"
+                           },
+                           "type": "array"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "recurse": {
+                         "type": "boolean"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "helm": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "apiVersions": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "fileParameters": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "name": {
+                            "type": "string"
+                           },
+                           "path": {
+                            "type": "string"
+                           }
+                          },
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "ignoreMissingValueFiles": {
+                         "type": "boolean"
+                        },
+                        "kubeVersion": {
+                         "type": "string"
+                        },
+                        "namespace": {
+                         "type": "string"
+                        },
+                        "parameters": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "forceString": {
+                            "type": "boolean"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "value": {
+                            "type": "string"
+                           }
+                          },
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "passCredentials": {
+                         "type": "boolean"
+                        },
+                        "releaseName": {
+                         "type": "string"
+                        },
+                        "skipCrds": {
+                         "type": "boolean"
+                        },
+                        "skipSchemaValidation": {
+                         "type": "boolean"
+                        },
+                        "skipTests": {
+                         "type": "boolean"
+                        },
+                        "valueFiles": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "values": {
+                         "type": "string"
+                        },
+                        "valuesObject": {
+                         "type": "object",
+                         "x-kubernetes-preserve-unknown-fields": true
+                        },
+                        "version": {
+                         "type": "string"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "kustomize": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "apiVersions": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "commonAnnotations": {
+                         "additionalProperties": {
+                          "type": "string"
+                         },
+                         "type": "object"
+                        },
+                        "commonAnnotationsEnvsubst": {
+                         "type": "boolean"
+                        },
+                        "commonLabels": {
+                         "additionalProperties": {
+                          "type": "string"
+                         },
+                         "type": "object"
+                        },
+                        "components": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "forceCommonAnnotations": {
+                         "type": "boolean"
+                        },
+                        "forceCommonLabels": {
+                         "type": "boolean"
+                        },
+                        "ignoreMissingComponents": {
+                         "type": "boolean"
+                        },
+                        "images": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "kubeVersion": {
+                         "type": "string"
+                        },
+                        "labelIncludeTemplates": {
+                         "type": "boolean"
+                        },
+                        "labelWithoutSelector": {
+                         "type": "boolean"
+                        },
+                        "namePrefix": {
+                         "type": "string"
+                        },
+                        "nameSuffix": {
+                         "type": "string"
+                        },
+                        "namespace": {
+                         "type": "string"
+                        },
+                        "patches": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "options": {
+                            "additionalProperties": {
+                             "type": "boolean"
+                            },
+                            "type": "object"
+                           },
+                           "patch": {
+                            "type": "string"
+                           },
+                           "path": {
+                            "type": "string"
+                           },
+                           "target": {
+                            "additionalProperties": false,
+                            "properties": {
+                             "annotationSelector": {
+                              "type": "string"
+                             },
+                             "group": {
+                              "type": "string"
+                             },
+                             "kind": {
+                              "type": "string"
+                             },
+                             "labelSelector": {
+                              "type": "string"
+                             },
+                             "name": {
+                              "type": "string"
+                             },
+                             "namespace": {
+                              "type": "string"
+                             },
+                             "version": {
+                              "type": "string"
+                             }
+                            },
+                            "type": "object"
+                           }
+                          },
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "replicas": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "count": {
+                            "anyOf": [
+                             {
+                              "type": "integer"
+                             },
+                             {
+                              "type": "string"
+                             }
+                            ]
+                           },
+                           "name": {
+                            "type": "string"
+                           }
+                          },
+                          "required": [
+                           "count",
+                           "name"
+                          ],
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "version": {
+                         "type": "string"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "path": {
+                       "type": "string"
+                      },
+                      "plugin": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "env": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "name": {
+                            "type": "string"
+                           },
+                           "value": {
+                            "type": "string"
+                           }
+                          },
+                          "required": [
+                           "name",
+                           "value"
+                          ],
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "name": {
+                         "type": "string"
+                        },
+                        "parameters": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "array": {
+                            "items": {
+                             "type": "string"
+                            },
+                            "type": "array"
+                           },
+                           "map": {
+                            "additionalProperties": {
+                             "type": "string"
+                            },
+                            "type": "object"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "string": {
+                            "type": "string"
+                           }
+                          },
+                          "type": "object"
+                         },
+                         "type": "array"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "repoURL": {
+                       "type": "string"
+                      },
+                      "targetRevision": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "path",
+                      "repoURL",
+                      "targetRevision"
+                     ],
+                     "type": "object"
+                    },
+                    "hydrateTo": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "targetBranch": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "targetBranch"
+                     ],
+                     "type": "object"
+                    },
+                    "syncSource": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "path": {
+                       "minLength": 1,
+                       "pattern": "^.{2,}|[^./]$",
+                       "type": "string"
+                      },
+                      "repoURL": {
+                       "type": "string"
+                      },
+                      "targetBranch": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "path",
+                      "targetBranch"
+                     ],
+                     "type": "object"
+                    }
+                   },
+                   "required": [
+                    "drySource",
+                    "syncSource"
+                   ],
+                   "type": "object"
+                  },
+                  "sources": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "chart": {
+                      "type": "string"
+                     },
+                     "directory": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -13573,6 +15126,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -13957,6 +15513,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -14375,6 +15934,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -15366,6 +16928,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -15750,6 +17315,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -16168,6 +17736,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -16818,6 +18389,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -17202,6 +18776,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -17620,6 +19197,9 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -18282,6 +19862,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -18666,6 +20249,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -19084,6 +20670,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -19738,6 +21327,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -20122,6 +21714,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -20540,6 +22135,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -21197,6 +22795,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -21581,6 +23182,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -21999,6 +23603,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -22620,6 +24227,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -23004,6 +24614,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -23422,6 +25035,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -23899,36 +25515,57 @@
             "merge": {
              "x-kubernetes-preserve-unknown-fields": true
             },
-            "plugin": {
+            "oci": {
              "additionalProperties": false,
              "properties": {
-              "configMapRef": {
-               "additionalProperties": false,
-               "properties": {
-                "name": {
-                 "type": "string"
-                }
-               },
-               "required": [
-                "name"
-               ],
-               "type": "object"
-              },
-              "input": {
-               "additionalProperties": false,
-               "properties": {
-                "parameters": {
-                 "additionalProperties": {
-                  "x-kubernetes-preserve-unknown-fields": true
+              "directories": {
+               "items": {
+                "additionalProperties": false,
+                "properties": {
+                 "exclude": {
+                  "type": "boolean"
                  },
-                 "type": "object"
-                }
+                 "path": {
+                  "type": "string"
+                 }
+                },
+                "required": [
+                 "path"
+                ],
+                "type": "object"
                },
-               "type": "object"
+               "type": "array"
+              },
+              "files": {
+               "items": {
+                "additionalProperties": false,
+                "properties": {
+                 "exclude": {
+                  "type": "boolean"
+                 },
+                 "path": {
+                  "type": "string"
+                 }
+                },
+                "required": [
+                 "path"
+                ],
+                "type": "object"
+               },
+               "type": "array"
+              },
+              "pathParamPrefix": {
+               "type": "string"
+              },
+              "repoURL": {
+               "type": "string"
               },
               "requeueAfterSeconds": {
                "format": "int64",
                "type": "integer"
+              },
+              "revision": {
+               "type": "string"
               },
               "template": {
                "additionalProperties": false,
@@ -24058,6 +25695,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -24442,6 +26082,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -24860,6 +26503,1460 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
+                       "exclude": {
+                        "type": "string"
+                       },
+                       "include": {
+                        "type": "string"
+                       },
+                       "jsonnet": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "extVars": {
+                          "items": {
+                           "additionalProperties": false,
+                           "properties": {
+                            "code": {
+                             "type": "boolean"
+                            },
+                            "name": {
+                             "type": "string"
+                            },
+                            "value": {
+                             "type": "string"
+                            }
+                           },
+                           "required": [
+                            "name",
+                            "value"
+                           ],
+                           "type": "object"
+                          },
+                          "type": "array"
+                         },
+                         "libs": {
+                          "items": {
+                           "type": "string"
+                          },
+                          "type": "array"
+                         },
+                         "tlas": {
+                          "items": {
+                           "additionalProperties": false,
+                           "properties": {
+                            "code": {
+                             "type": "boolean"
+                            },
+                            "name": {
+                             "type": "string"
+                            },
+                            "value": {
+                             "type": "string"
+                            }
+                           },
+                           "required": [
+                            "name",
+                            "value"
+                           ],
+                           "type": "object"
+                          },
+                          "type": "array"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "recurse": {
+                        "type": "boolean"
+                       }
+                      },
+                      "type": "object"
+                     },
+                     "helm": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "apiVersions": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "fileParameters": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "name": {
+                           "type": "string"
+                          },
+                          "path": {
+                           "type": "string"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "ignoreMissingValueFiles": {
+                        "type": "boolean"
+                       },
+                       "kubeVersion": {
+                        "type": "string"
+                       },
+                       "namespace": {
+                        "type": "string"
+                       },
+                       "parameters": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "forceString": {
+                           "type": "boolean"
+                          },
+                          "name": {
+                           "type": "string"
+                          },
+                          "value": {
+                           "type": "string"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "passCredentials": {
+                        "type": "boolean"
+                       },
+                       "releaseName": {
+                        "type": "string"
+                       },
+                       "skipCrds": {
+                        "type": "boolean"
+                       },
+                       "skipSchemaValidation": {
+                        "type": "boolean"
+                       },
+                       "skipTests": {
+                        "type": "boolean"
+                       },
+                       "valueFiles": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "values": {
+                        "type": "string"
+                       },
+                       "valuesObject": {
+                        "type": "object",
+                        "x-kubernetes-preserve-unknown-fields": true
+                       },
+                       "version": {
+                        "type": "string"
+                       }
+                      },
+                      "type": "object"
+                     },
+                     "kustomize": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "apiVersions": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "commonAnnotations": {
+                        "additionalProperties": {
+                         "type": "string"
+                        },
+                        "type": "object"
+                       },
+                       "commonAnnotationsEnvsubst": {
+                        "type": "boolean"
+                       },
+                       "commonLabels": {
+                        "additionalProperties": {
+                         "type": "string"
+                        },
+                        "type": "object"
+                       },
+                       "components": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "forceCommonAnnotations": {
+                        "type": "boolean"
+                       },
+                       "forceCommonLabels": {
+                        "type": "boolean"
+                       },
+                       "ignoreMissingComponents": {
+                        "type": "boolean"
+                       },
+                       "images": {
+                        "items": {
+                         "type": "string"
+                        },
+                        "type": "array"
+                       },
+                       "kubeVersion": {
+                        "type": "string"
+                       },
+                       "labelIncludeTemplates": {
+                        "type": "boolean"
+                       },
+                       "labelWithoutSelector": {
+                        "type": "boolean"
+                       },
+                       "namePrefix": {
+                        "type": "string"
+                       },
+                       "nameSuffix": {
+                        "type": "string"
+                       },
+                       "namespace": {
+                        "type": "string"
+                       },
+                       "patches": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "options": {
+                           "additionalProperties": {
+                            "type": "boolean"
+                           },
+                           "type": "object"
+                          },
+                          "patch": {
+                           "type": "string"
+                          },
+                          "path": {
+                           "type": "string"
+                          },
+                          "target": {
+                           "additionalProperties": false,
+                           "properties": {
+                            "annotationSelector": {
+                             "type": "string"
+                            },
+                            "group": {
+                             "type": "string"
+                            },
+                            "kind": {
+                             "type": "string"
+                            },
+                            "labelSelector": {
+                             "type": "string"
+                            },
+                            "name": {
+                             "type": "string"
+                            },
+                            "namespace": {
+                             "type": "string"
+                            },
+                            "version": {
+                             "type": "string"
+                            }
+                           },
+                           "type": "object"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "replicas": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "count": {
+                           "anyOf": [
+                            {
+                             "type": "integer"
+                            },
+                            {
+                             "type": "string"
+                            }
+                           ]
+                          },
+                          "name": {
+                           "type": "string"
+                          }
+                         },
+                         "required": [
+                          "count",
+                          "name"
+                         ],
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "version": {
+                        "type": "string"
+                       }
+                      },
+                      "type": "object"
+                     },
+                     "name": {
+                      "type": "string"
+                     },
+                     "path": {
+                      "type": "string"
+                     },
+                     "plugin": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "env": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "name": {
+                           "type": "string"
+                          },
+                          "value": {
+                           "type": "string"
+                          }
+                         },
+                         "required": [
+                          "name",
+                          "value"
+                         ],
+                         "type": "object"
+                        },
+                        "type": "array"
+                       },
+                       "name": {
+                        "type": "string"
+                       },
+                       "parameters": {
+                        "items": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "array": {
+                           "items": {
+                            "type": "string"
+                           },
+                           "type": "array"
+                          },
+                          "map": {
+                           "additionalProperties": {
+                            "type": "string"
+                           },
+                           "type": "object"
+                          },
+                          "name": {
+                           "type": "string"
+                          },
+                          "string": {
+                           "type": "string"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "type": "array"
+                       }
+                      },
+                      "type": "object"
+                     },
+                     "ref": {
+                      "type": "string"
+                     },
+                     "repoURL": {
+                      "type": "string"
+                     },
+                     "tagPrefix": {
+                      "type": "string"
+                     },
+                     "targetRevision": {
+                      "type": "string"
+                     }
+                    },
+                    "required": [
+                     "repoURL"
+                    ],
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "syncPolicy": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "automated": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "allowEmpty": {
+                       "type": "boolean"
+                      },
+                      "enabled": {
+                       "type": "boolean"
+                      },
+                      "prune": {
+                       "type": "boolean"
+                      },
+                      "selfHeal": {
+                       "type": "boolean"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "managedNamespaceMetadata": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "annotations": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      },
+                      "labels": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "retry": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "backoff": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "duration": {
+                         "type": "string"
+                        },
+                        "factor": {
+                         "format": "int64",
+                         "type": "integer"
+                        },
+                        "maxDuration": {
+                         "type": "string"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "limit": {
+                       "format": "int64",
+                       "type": "integer"
+                      },
+                      "refresh": {
+                       "type": "boolean"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "syncOptions": {
+                     "items": {
+                      "type": "string"
+                     },
+                     "type": "array"
+                    }
+                   },
+                   "type": "object"
+                  }
+                 },
+                 "required": [
+                  "destination",
+                  "project"
+                 ],
+                 "type": "object"
+                }
+               },
+               "required": [
+                "metadata",
+                "spec"
+               ],
+               "type": "object"
+              },
+              "values": {
+               "additionalProperties": {
+                "type": "string"
+               },
+               "type": "object"
+              }
+             },
+             "required": [
+              "repoURL",
+              "revision"
+             ],
+             "type": "object"
+            },
+            "plugin": {
+             "additionalProperties": false,
+             "properties": {
+              "configMapRef": {
+               "additionalProperties": false,
+               "properties": {
+                "name": {
+                 "type": "string"
+                }
+               },
+               "required": [
+                "name"
+               ],
+               "type": "object"
+              },
+              "input": {
+               "additionalProperties": false,
+               "properties": {
+                "parameters": {
+                 "additionalProperties": {
+                  "x-kubernetes-preserve-unknown-fields": true
+                 },
+                 "type": "object"
+                }
+               },
+               "type": "object"
+              },
+              "requeueAfterSeconds": {
+               "format": "int64",
+               "type": "integer"
+              },
+              "template": {
+               "additionalProperties": false,
+               "properties": {
+                "metadata": {
+                 "additionalProperties": false,
+                 "properties": {
+                  "annotations": {
+                   "additionalProperties": {
+                    "type": "string"
+                   },
+                   "type": "object"
+                  },
+                  "finalizers": {
+                   "items": {
+                    "type": "string"
+                   },
+                   "type": "array"
+                  },
+                  "labels": {
+                   "additionalProperties": {
+                    "type": "string"
+                   },
+                   "type": "object"
+                  },
+                  "name": {
+                   "type": "string"
+                  },
+                  "namespace": {
+                   "type": "string"
+                  }
+                 },
+                 "type": "object"
+                },
+                "spec": {
+                 "additionalProperties": false,
+                 "properties": {
+                  "destination": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "name": {
+                     "type": "string"
+                    },
+                    "namespace": {
+                     "type": "string"
+                    },
+                    "server": {
+                     "type": "string"
+                    }
+                   },
+                   "type": "object"
+                  },
+                  "ignoreDifferences": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "group": {
+                      "type": "string"
+                     },
+                     "jqPathExpressions": {
+                      "items": {
+                       "type": "string"
+                      },
+                      "type": "array"
+                     },
+                     "jsonPointers": {
+                      "items": {
+                       "type": "string"
+                      },
+                      "type": "array"
+                     },
+                     "kind": {
+                      "type": "string"
+                     },
+                     "managedFieldsManagers": {
+                      "items": {
+                       "type": "string"
+                      },
+                      "type": "array"
+                     },
+                     "name": {
+                      "type": "string"
+                     },
+                     "namespace": {
+                      "type": "string"
+                     }
+                    },
+                    "required": [
+                     "kind"
+                    ],
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "info": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "name": {
+                      "type": "string"
+                     },
+                     "value": {
+                      "type": "string"
+                     }
+                    },
+                    "required": [
+                     "name",
+                     "value"
+                    ],
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "project": {
+                   "type": "string"
+                  },
+                  "revisionHistoryLimit": {
+                   "format": "int64",
+                   "type": "integer"
+                  },
+                  "source": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "chart": {
+                     "type": "string"
+                    },
+                    "directory": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
+                      "exclude": {
+                       "type": "string"
+                      },
+                      "include": {
+                       "type": "string"
+                      },
+                      "jsonnet": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "extVars": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "code": {
+                            "type": "boolean"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "value": {
+                            "type": "string"
+                           }
+                          },
+                          "required": [
+                           "name",
+                           "value"
+                          ],
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "libs": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "tlas": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "code": {
+                            "type": "boolean"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "value": {
+                            "type": "string"
+                           }
+                          },
+                          "required": [
+                           "name",
+                           "value"
+                          ],
+                          "type": "object"
+                         },
+                         "type": "array"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "recurse": {
+                       "type": "boolean"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "helm": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "apiVersions": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "fileParameters": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "name": {
+                          "type": "string"
+                         },
+                         "path": {
+                          "type": "string"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "ignoreMissingValueFiles": {
+                       "type": "boolean"
+                      },
+                      "kubeVersion": {
+                       "type": "string"
+                      },
+                      "namespace": {
+                       "type": "string"
+                      },
+                      "parameters": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "forceString": {
+                          "type": "boolean"
+                         },
+                         "name": {
+                          "type": "string"
+                         },
+                         "value": {
+                          "type": "string"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "passCredentials": {
+                       "type": "boolean"
+                      },
+                      "releaseName": {
+                       "type": "string"
+                      },
+                      "skipCrds": {
+                       "type": "boolean"
+                      },
+                      "skipSchemaValidation": {
+                       "type": "boolean"
+                      },
+                      "skipTests": {
+                       "type": "boolean"
+                      },
+                      "valueFiles": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "values": {
+                       "type": "string"
+                      },
+                      "valuesObject": {
+                       "type": "object",
+                       "x-kubernetes-preserve-unknown-fields": true
+                      },
+                      "version": {
+                       "type": "string"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "kustomize": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "apiVersions": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "commonAnnotations": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      },
+                      "commonAnnotationsEnvsubst": {
+                       "type": "boolean"
+                      },
+                      "commonLabels": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      },
+                      "components": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "forceCommonAnnotations": {
+                       "type": "boolean"
+                      },
+                      "forceCommonLabels": {
+                       "type": "boolean"
+                      },
+                      "ignoreMissingComponents": {
+                       "type": "boolean"
+                      },
+                      "images": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "kubeVersion": {
+                       "type": "string"
+                      },
+                      "labelIncludeTemplates": {
+                       "type": "boolean"
+                      },
+                      "labelWithoutSelector": {
+                       "type": "boolean"
+                      },
+                      "namePrefix": {
+                       "type": "string"
+                      },
+                      "nameSuffix": {
+                       "type": "string"
+                      },
+                      "namespace": {
+                       "type": "string"
+                      },
+                      "patches": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "options": {
+                          "additionalProperties": {
+                           "type": "boolean"
+                          },
+                          "type": "object"
+                         },
+                         "patch": {
+                          "type": "string"
+                         },
+                         "path": {
+                          "type": "string"
+                         },
+                         "target": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "annotationSelector": {
+                            "type": "string"
+                           },
+                           "group": {
+                            "type": "string"
+                           },
+                           "kind": {
+                            "type": "string"
+                           },
+                           "labelSelector": {
+                            "type": "string"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "namespace": {
+                            "type": "string"
+                           },
+                           "version": {
+                            "type": "string"
+                           }
+                          },
+                          "type": "object"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "replicas": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "count": {
+                          "anyOf": [
+                           {
+                            "type": "integer"
+                           },
+                           {
+                            "type": "string"
+                           }
+                          ]
+                         },
+                         "name": {
+                          "type": "string"
+                         }
+                        },
+                        "required": [
+                         "count",
+                         "name"
+                        ],
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "version": {
+                       "type": "string"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "name": {
+                     "type": "string"
+                    },
+                    "path": {
+                     "type": "string"
+                    },
+                    "plugin": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "env": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "name": {
+                          "type": "string"
+                         },
+                         "value": {
+                          "type": "string"
+                         }
+                        },
+                        "required": [
+                         "name",
+                         "value"
+                        ],
+                        "type": "object"
+                       },
+                       "type": "array"
+                      },
+                      "name": {
+                       "type": "string"
+                      },
+                      "parameters": {
+                       "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                         "array": {
+                          "items": {
+                           "type": "string"
+                          },
+                          "type": "array"
+                         },
+                         "map": {
+                          "additionalProperties": {
+                           "type": "string"
+                          },
+                          "type": "object"
+                         },
+                         "name": {
+                          "type": "string"
+                         },
+                         "string": {
+                          "type": "string"
+                         }
+                        },
+                        "type": "object"
+                       },
+                       "type": "array"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "ref": {
+                     "type": "string"
+                    },
+                    "repoURL": {
+                     "type": "string"
+                    },
+                    "tagPrefix": {
+                     "type": "string"
+                    },
+                    "targetRevision": {
+                     "type": "string"
+                    }
+                   },
+                   "required": [
+                    "repoURL"
+                   ],
+                   "type": "object"
+                  },
+                  "sourceHydrator": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "drySource": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "directory": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
+                        "exclude": {
+                         "type": "string"
+                        },
+                        "include": {
+                         "type": "string"
+                        },
+                        "jsonnet": {
+                         "additionalProperties": false,
+                         "properties": {
+                          "extVars": {
+                           "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                             "code": {
+                              "type": "boolean"
+                             },
+                             "name": {
+                              "type": "string"
+                             },
+                             "value": {
+                              "type": "string"
+                             }
+                            },
+                            "required": [
+                             "name",
+                             "value"
+                            ],
+                            "type": "object"
+                           },
+                           "type": "array"
+                          },
+                          "libs": {
+                           "items": {
+                            "type": "string"
+                           },
+                           "type": "array"
+                          },
+                          "tlas": {
+                           "items": {
+                            "additionalProperties": false,
+                            "properties": {
+                             "code": {
+                              "type": "boolean"
+                             },
+                             "name": {
+                              "type": "string"
+                             },
+                             "value": {
+                              "type": "string"
+                             }
+                            },
+                            "required": [
+                             "name",
+                             "value"
+                            ],
+                            "type": "object"
+                           },
+                           "type": "array"
+                          }
+                         },
+                         "type": "object"
+                        },
+                        "recurse": {
+                         "type": "boolean"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "helm": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "apiVersions": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "fileParameters": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "name": {
+                            "type": "string"
+                           },
+                           "path": {
+                            "type": "string"
+                           }
+                          },
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "ignoreMissingValueFiles": {
+                         "type": "boolean"
+                        },
+                        "kubeVersion": {
+                         "type": "string"
+                        },
+                        "namespace": {
+                         "type": "string"
+                        },
+                        "parameters": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "forceString": {
+                            "type": "boolean"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "value": {
+                            "type": "string"
+                           }
+                          },
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "passCredentials": {
+                         "type": "boolean"
+                        },
+                        "releaseName": {
+                         "type": "string"
+                        },
+                        "skipCrds": {
+                         "type": "boolean"
+                        },
+                        "skipSchemaValidation": {
+                         "type": "boolean"
+                        },
+                        "skipTests": {
+                         "type": "boolean"
+                        },
+                        "valueFiles": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "values": {
+                         "type": "string"
+                        },
+                        "valuesObject": {
+                         "type": "object",
+                         "x-kubernetes-preserve-unknown-fields": true
+                        },
+                        "version": {
+                         "type": "string"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "kustomize": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "apiVersions": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "commonAnnotations": {
+                         "additionalProperties": {
+                          "type": "string"
+                         },
+                         "type": "object"
+                        },
+                        "commonAnnotationsEnvsubst": {
+                         "type": "boolean"
+                        },
+                        "commonLabels": {
+                         "additionalProperties": {
+                          "type": "string"
+                         },
+                         "type": "object"
+                        },
+                        "components": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "forceCommonAnnotations": {
+                         "type": "boolean"
+                        },
+                        "forceCommonLabels": {
+                         "type": "boolean"
+                        },
+                        "ignoreMissingComponents": {
+                         "type": "boolean"
+                        },
+                        "images": {
+                         "items": {
+                          "type": "string"
+                         },
+                         "type": "array"
+                        },
+                        "kubeVersion": {
+                         "type": "string"
+                        },
+                        "labelIncludeTemplates": {
+                         "type": "boolean"
+                        },
+                        "labelWithoutSelector": {
+                         "type": "boolean"
+                        },
+                        "namePrefix": {
+                         "type": "string"
+                        },
+                        "nameSuffix": {
+                         "type": "string"
+                        },
+                        "namespace": {
+                         "type": "string"
+                        },
+                        "patches": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "options": {
+                            "additionalProperties": {
+                             "type": "boolean"
+                            },
+                            "type": "object"
+                           },
+                           "patch": {
+                            "type": "string"
+                           },
+                           "path": {
+                            "type": "string"
+                           },
+                           "target": {
+                            "additionalProperties": false,
+                            "properties": {
+                             "annotationSelector": {
+                              "type": "string"
+                             },
+                             "group": {
+                              "type": "string"
+                             },
+                             "kind": {
+                              "type": "string"
+                             },
+                             "labelSelector": {
+                              "type": "string"
+                             },
+                             "name": {
+                              "type": "string"
+                             },
+                             "namespace": {
+                              "type": "string"
+                             },
+                             "version": {
+                              "type": "string"
+                             }
+                            },
+                            "type": "object"
+                           }
+                          },
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "replicas": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "count": {
+                            "anyOf": [
+                             {
+                              "type": "integer"
+                             },
+                             {
+                              "type": "string"
+                             }
+                            ]
+                           },
+                           "name": {
+                            "type": "string"
+                           }
+                          },
+                          "required": [
+                           "count",
+                           "name"
+                          ],
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "version": {
+                         "type": "string"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "path": {
+                       "type": "string"
+                      },
+                      "plugin": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "env": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "name": {
+                            "type": "string"
+                           },
+                           "value": {
+                            "type": "string"
+                           }
+                          },
+                          "required": [
+                           "name",
+                           "value"
+                          ],
+                          "type": "object"
+                         },
+                         "type": "array"
+                        },
+                        "name": {
+                         "type": "string"
+                        },
+                        "parameters": {
+                         "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                           "array": {
+                            "items": {
+                             "type": "string"
+                            },
+                            "type": "array"
+                           },
+                           "map": {
+                            "additionalProperties": {
+                             "type": "string"
+                            },
+                            "type": "object"
+                           },
+                           "name": {
+                            "type": "string"
+                           },
+                           "string": {
+                            "type": "string"
+                           }
+                          },
+                          "type": "object"
+                         },
+                         "type": "array"
+                        }
+                       },
+                       "type": "object"
+                      },
+                      "repoURL": {
+                       "type": "string"
+                      },
+                      "targetRevision": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "path",
+                      "repoURL",
+                      "targetRevision"
+                     ],
+                     "type": "object"
+                    },
+                    "hydrateTo": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "targetBranch": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "targetBranch"
+                     ],
+                     "type": "object"
+                    },
+                    "syncSource": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "path": {
+                       "minLength": 1,
+                       "pattern": "^.{2,}|[^./]$",
+                       "type": "string"
+                      },
+                      "repoURL": {
+                       "type": "string"
+                      },
+                      "targetBranch": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "path",
+                      "targetBranch"
+                     ],
+                     "type": "object"
+                    }
+                   },
+                   "required": [
+                    "drySource",
+                    "syncSource"
+                   ],
+                   "type": "object"
+                  },
+                  "sources": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "chart": {
+                      "type": "string"
+                     },
+                     "directory": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -25855,6 +28952,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -26239,6 +29339,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -26657,6 +29760,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -27648,6 +30754,9 @@
                     "directory": {
                      "additionalProperties": false,
                      "properties": {
+                      "disableExtensionFilter": {
+                       "type": "boolean"
+                      },
                       "exclude": {
                        "type": "string"
                       },
@@ -28032,6 +31141,9 @@
                       "directory": {
                        "additionalProperties": false,
                        "properties": {
+                        "disableExtensionFilter": {
+                         "type": "boolean"
+                        },
                         "exclude": {
                          "type": "string"
                         },
@@ -28450,6 +31562,9 @@
                      "directory": {
                       "additionalProperties": false,
                       "properties": {
+                       "disableExtensionFilter": {
+                        "type": "boolean"
+                       },
                        "exclude": {
                         "type": "string"
                        },
@@ -29106,6 +32221,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -29490,6 +32608,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -29908,6 +33029,9 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -30383,36 +33507,57 @@
         ],
         "type": "object"
        },
-       "plugin": {
+       "oci": {
         "additionalProperties": false,
         "properties": {
-         "configMapRef": {
-          "additionalProperties": false,
-          "properties": {
-           "name": {
-            "type": "string"
-           }
-          },
-          "required": [
-           "name"
-          ],
-          "type": "object"
-         },
-         "input": {
-          "additionalProperties": false,
-          "properties": {
-           "parameters": {
-            "additionalProperties": {
-             "x-kubernetes-preserve-unknown-fields": true
+         "directories": {
+          "items": {
+           "additionalProperties": false,
+           "properties": {
+            "exclude": {
+             "type": "boolean"
             },
-            "type": "object"
-           }
+            "path": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "path"
+           ],
+           "type": "object"
           },
-          "type": "object"
+          "type": "array"
+         },
+         "files": {
+          "items": {
+           "additionalProperties": false,
+           "properties": {
+            "exclude": {
+             "type": "boolean"
+            },
+            "path": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "path"
+           ],
+           "type": "object"
+          },
+          "type": "array"
+         },
+         "pathParamPrefix": {
+          "type": "string"
+         },
+         "repoURL": {
+          "type": "string"
          },
          "requeueAfterSeconds": {
           "format": "int64",
           "type": "integer"
+         },
+         "revision": {
+          "type": "string"
          },
          "template": {
           "additionalProperties": false,
@@ -30542,6 +33687,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -30926,6 +34074,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -31344,6 +34495,1460 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
+                  "exclude": {
+                   "type": "string"
+                  },
+                  "include": {
+                   "type": "string"
+                  },
+                  "jsonnet": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "extVars": {
+                     "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "code": {
+                        "type": "boolean"
+                       },
+                       "name": {
+                        "type": "string"
+                       },
+                       "value": {
+                        "type": "string"
+                       }
+                      },
+                      "required": [
+                       "name",
+                       "value"
+                      ],
+                      "type": "object"
+                     },
+                     "type": "array"
+                    },
+                    "libs": {
+                     "items": {
+                      "type": "string"
+                     },
+                     "type": "array"
+                    },
+                    "tlas": {
+                     "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "code": {
+                        "type": "boolean"
+                       },
+                       "name": {
+                        "type": "string"
+                       },
+                       "value": {
+                        "type": "string"
+                       }
+                      },
+                      "required": [
+                       "name",
+                       "value"
+                      ],
+                      "type": "object"
+                     },
+                     "type": "array"
+                    }
+                   },
+                   "type": "object"
+                  },
+                  "recurse": {
+                   "type": "boolean"
+                  }
+                 },
+                 "type": "object"
+                },
+                "helm": {
+                 "additionalProperties": false,
+                 "properties": {
+                  "apiVersions": {
+                   "items": {
+                    "type": "string"
+                   },
+                   "type": "array"
+                  },
+                  "fileParameters": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "name": {
+                      "type": "string"
+                     },
+                     "path": {
+                      "type": "string"
+                     }
+                    },
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "ignoreMissingValueFiles": {
+                   "type": "boolean"
+                  },
+                  "kubeVersion": {
+                   "type": "string"
+                  },
+                  "namespace": {
+                   "type": "string"
+                  },
+                  "parameters": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "forceString": {
+                      "type": "boolean"
+                     },
+                     "name": {
+                      "type": "string"
+                     },
+                     "value": {
+                      "type": "string"
+                     }
+                    },
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "passCredentials": {
+                   "type": "boolean"
+                  },
+                  "releaseName": {
+                   "type": "string"
+                  },
+                  "skipCrds": {
+                   "type": "boolean"
+                  },
+                  "skipSchemaValidation": {
+                   "type": "boolean"
+                  },
+                  "skipTests": {
+                   "type": "boolean"
+                  },
+                  "valueFiles": {
+                   "items": {
+                    "type": "string"
+                   },
+                   "type": "array"
+                  },
+                  "values": {
+                   "type": "string"
+                  },
+                  "valuesObject": {
+                   "type": "object",
+                   "x-kubernetes-preserve-unknown-fields": true
+                  },
+                  "version": {
+                   "type": "string"
+                  }
+                 },
+                 "type": "object"
+                },
+                "kustomize": {
+                 "additionalProperties": false,
+                 "properties": {
+                  "apiVersions": {
+                   "items": {
+                    "type": "string"
+                   },
+                   "type": "array"
+                  },
+                  "commonAnnotations": {
+                   "additionalProperties": {
+                    "type": "string"
+                   },
+                   "type": "object"
+                  },
+                  "commonAnnotationsEnvsubst": {
+                   "type": "boolean"
+                  },
+                  "commonLabels": {
+                   "additionalProperties": {
+                    "type": "string"
+                   },
+                   "type": "object"
+                  },
+                  "components": {
+                   "items": {
+                    "type": "string"
+                   },
+                   "type": "array"
+                  },
+                  "forceCommonAnnotations": {
+                   "type": "boolean"
+                  },
+                  "forceCommonLabels": {
+                   "type": "boolean"
+                  },
+                  "ignoreMissingComponents": {
+                   "type": "boolean"
+                  },
+                  "images": {
+                   "items": {
+                    "type": "string"
+                   },
+                   "type": "array"
+                  },
+                  "kubeVersion": {
+                   "type": "string"
+                  },
+                  "labelIncludeTemplates": {
+                   "type": "boolean"
+                  },
+                  "labelWithoutSelector": {
+                   "type": "boolean"
+                  },
+                  "namePrefix": {
+                   "type": "string"
+                  },
+                  "nameSuffix": {
+                   "type": "string"
+                  },
+                  "namespace": {
+                   "type": "string"
+                  },
+                  "patches": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "options": {
+                      "additionalProperties": {
+                       "type": "boolean"
+                      },
+                      "type": "object"
+                     },
+                     "patch": {
+                      "type": "string"
+                     },
+                     "path": {
+                      "type": "string"
+                     },
+                     "target": {
+                      "additionalProperties": false,
+                      "properties": {
+                       "annotationSelector": {
+                        "type": "string"
+                       },
+                       "group": {
+                        "type": "string"
+                       },
+                       "kind": {
+                        "type": "string"
+                       },
+                       "labelSelector": {
+                        "type": "string"
+                       },
+                       "name": {
+                        "type": "string"
+                       },
+                       "namespace": {
+                        "type": "string"
+                       },
+                       "version": {
+                        "type": "string"
+                       }
+                      },
+                      "type": "object"
+                     }
+                    },
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "replicas": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "count": {
+                      "anyOf": [
+                       {
+                        "type": "integer"
+                       },
+                       {
+                        "type": "string"
+                       }
+                      ]
+                     },
+                     "name": {
+                      "type": "string"
+                     }
+                    },
+                    "required": [
+                     "count",
+                     "name"
+                    ],
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "version": {
+                   "type": "string"
+                  }
+                 },
+                 "type": "object"
+                },
+                "name": {
+                 "type": "string"
+                },
+                "path": {
+                 "type": "string"
+                },
+                "plugin": {
+                 "additionalProperties": false,
+                 "properties": {
+                  "env": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "name": {
+                      "type": "string"
+                     },
+                     "value": {
+                      "type": "string"
+                     }
+                    },
+                    "required": [
+                     "name",
+                     "value"
+                    ],
+                    "type": "object"
+                   },
+                   "type": "array"
+                  },
+                  "name": {
+                   "type": "string"
+                  },
+                  "parameters": {
+                   "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "array": {
+                      "items": {
+                       "type": "string"
+                      },
+                      "type": "array"
+                     },
+                     "map": {
+                      "additionalProperties": {
+                       "type": "string"
+                      },
+                      "type": "object"
+                     },
+                     "name": {
+                      "type": "string"
+                     },
+                     "string": {
+                      "type": "string"
+                     }
+                    },
+                    "type": "object"
+                   },
+                   "type": "array"
+                  }
+                 },
+                 "type": "object"
+                },
+                "ref": {
+                 "type": "string"
+                },
+                "repoURL": {
+                 "type": "string"
+                },
+                "tagPrefix": {
+                 "type": "string"
+                },
+                "targetRevision": {
+                 "type": "string"
+                }
+               },
+               "required": [
+                "repoURL"
+               ],
+               "type": "object"
+              },
+              "type": "array"
+             },
+             "syncPolicy": {
+              "additionalProperties": false,
+              "properties": {
+               "automated": {
+                "additionalProperties": false,
+                "properties": {
+                 "allowEmpty": {
+                  "type": "boolean"
+                 },
+                 "enabled": {
+                  "type": "boolean"
+                 },
+                 "prune": {
+                  "type": "boolean"
+                 },
+                 "selfHeal": {
+                  "type": "boolean"
+                 }
+                },
+                "type": "object"
+               },
+               "managedNamespaceMetadata": {
+                "additionalProperties": false,
+                "properties": {
+                 "annotations": {
+                  "additionalProperties": {
+                   "type": "string"
+                  },
+                  "type": "object"
+                 },
+                 "labels": {
+                  "additionalProperties": {
+                   "type": "string"
+                  },
+                  "type": "object"
+                 }
+                },
+                "type": "object"
+               },
+               "retry": {
+                "additionalProperties": false,
+                "properties": {
+                 "backoff": {
+                  "additionalProperties": false,
+                  "properties": {
+                   "duration": {
+                    "type": "string"
+                   },
+                   "factor": {
+                    "format": "int64",
+                    "type": "integer"
+                   },
+                   "maxDuration": {
+                    "type": "string"
+                   }
+                  },
+                  "type": "object"
+                 },
+                 "limit": {
+                  "format": "int64",
+                  "type": "integer"
+                 },
+                 "refresh": {
+                  "type": "boolean"
+                 }
+                },
+                "type": "object"
+               },
+               "syncOptions": {
+                "items": {
+                 "type": "string"
+                },
+                "type": "array"
+               }
+              },
+              "type": "object"
+             }
+            },
+            "required": [
+             "destination",
+             "project"
+            ],
+            "type": "object"
+           }
+          },
+          "required": [
+           "metadata",
+           "spec"
+          ],
+          "type": "object"
+         },
+         "values": {
+          "additionalProperties": {
+           "type": "string"
+          },
+          "type": "object"
+         }
+        },
+        "required": [
+         "repoURL",
+         "revision"
+        ],
+        "type": "object"
+       },
+       "plugin": {
+        "additionalProperties": false,
+        "properties": {
+         "configMapRef": {
+          "additionalProperties": false,
+          "properties": {
+           "name": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "name"
+          ],
+          "type": "object"
+         },
+         "input": {
+          "additionalProperties": false,
+          "properties": {
+           "parameters": {
+            "additionalProperties": {
+             "x-kubernetes-preserve-unknown-fields": true
+            },
+            "type": "object"
+           }
+          },
+          "type": "object"
+         },
+         "requeueAfterSeconds": {
+          "format": "int64",
+          "type": "integer"
+         },
+         "template": {
+          "additionalProperties": false,
+          "properties": {
+           "metadata": {
+            "additionalProperties": false,
+            "properties": {
+             "annotations": {
+              "additionalProperties": {
+               "type": "string"
+              },
+              "type": "object"
+             },
+             "finalizers": {
+              "items": {
+               "type": "string"
+              },
+              "type": "array"
+             },
+             "labels": {
+              "additionalProperties": {
+               "type": "string"
+              },
+              "type": "object"
+             },
+             "name": {
+              "type": "string"
+             },
+             "namespace": {
+              "type": "string"
+             }
+            },
+            "type": "object"
+           },
+           "spec": {
+            "additionalProperties": false,
+            "properties": {
+             "destination": {
+              "additionalProperties": false,
+              "properties": {
+               "name": {
+                "type": "string"
+               },
+               "namespace": {
+                "type": "string"
+               },
+               "server": {
+                "type": "string"
+               }
+              },
+              "type": "object"
+             },
+             "ignoreDifferences": {
+              "items": {
+               "additionalProperties": false,
+               "properties": {
+                "group": {
+                 "type": "string"
+                },
+                "jqPathExpressions": {
+                 "items": {
+                  "type": "string"
+                 },
+                 "type": "array"
+                },
+                "jsonPointers": {
+                 "items": {
+                  "type": "string"
+                 },
+                 "type": "array"
+                },
+                "kind": {
+                 "type": "string"
+                },
+                "managedFieldsManagers": {
+                 "items": {
+                  "type": "string"
+                 },
+                 "type": "array"
+                },
+                "name": {
+                 "type": "string"
+                },
+                "namespace": {
+                 "type": "string"
+                }
+               },
+               "required": [
+                "kind"
+               ],
+               "type": "object"
+              },
+              "type": "array"
+             },
+             "info": {
+              "items": {
+               "additionalProperties": false,
+               "properties": {
+                "name": {
+                 "type": "string"
+                },
+                "value": {
+                 "type": "string"
+                }
+               },
+               "required": [
+                "name",
+                "value"
+               ],
+               "type": "object"
+              },
+              "type": "array"
+             },
+             "project": {
+              "type": "string"
+             },
+             "revisionHistoryLimit": {
+              "format": "int64",
+              "type": "integer"
+             },
+             "source": {
+              "additionalProperties": false,
+              "properties": {
+               "chart": {
+                "type": "string"
+               },
+               "directory": {
+                "additionalProperties": false,
+                "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
+                 "exclude": {
+                  "type": "string"
+                 },
+                 "include": {
+                  "type": "string"
+                 },
+                 "jsonnet": {
+                  "additionalProperties": false,
+                  "properties": {
+                   "extVars": {
+                    "items": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "code": {
+                       "type": "boolean"
+                      },
+                      "name": {
+                       "type": "string"
+                      },
+                      "value": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "name",
+                      "value"
+                     ],
+                     "type": "object"
+                    },
+                    "type": "array"
+                   },
+                   "libs": {
+                    "items": {
+                     "type": "string"
+                    },
+                    "type": "array"
+                   },
+                   "tlas": {
+                    "items": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "code": {
+                       "type": "boolean"
+                      },
+                      "name": {
+                       "type": "string"
+                      },
+                      "value": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "name",
+                      "value"
+                     ],
+                     "type": "object"
+                    },
+                    "type": "array"
+                   }
+                  },
+                  "type": "object"
+                 },
+                 "recurse": {
+                  "type": "boolean"
+                 }
+                },
+                "type": "object"
+               },
+               "helm": {
+                "additionalProperties": false,
+                "properties": {
+                 "apiVersions": {
+                  "items": {
+                   "type": "string"
+                  },
+                  "type": "array"
+                 },
+                 "fileParameters": {
+                  "items": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "name": {
+                     "type": "string"
+                    },
+                    "path": {
+                     "type": "string"
+                    }
+                   },
+                   "type": "object"
+                  },
+                  "type": "array"
+                 },
+                 "ignoreMissingValueFiles": {
+                  "type": "boolean"
+                 },
+                 "kubeVersion": {
+                  "type": "string"
+                 },
+                 "namespace": {
+                  "type": "string"
+                 },
+                 "parameters": {
+                  "items": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "forceString": {
+                     "type": "boolean"
+                    },
+                    "name": {
+                     "type": "string"
+                    },
+                    "value": {
+                     "type": "string"
+                    }
+                   },
+                   "type": "object"
+                  },
+                  "type": "array"
+                 },
+                 "passCredentials": {
+                  "type": "boolean"
+                 },
+                 "releaseName": {
+                  "type": "string"
+                 },
+                 "skipCrds": {
+                  "type": "boolean"
+                 },
+                 "skipSchemaValidation": {
+                  "type": "boolean"
+                 },
+                 "skipTests": {
+                  "type": "boolean"
+                 },
+                 "valueFiles": {
+                  "items": {
+                   "type": "string"
+                  },
+                  "type": "array"
+                 },
+                 "values": {
+                  "type": "string"
+                 },
+                 "valuesObject": {
+                  "type": "object",
+                  "x-kubernetes-preserve-unknown-fields": true
+                 },
+                 "version": {
+                  "type": "string"
+                 }
+                },
+                "type": "object"
+               },
+               "kustomize": {
+                "additionalProperties": false,
+                "properties": {
+                 "apiVersions": {
+                  "items": {
+                   "type": "string"
+                  },
+                  "type": "array"
+                 },
+                 "commonAnnotations": {
+                  "additionalProperties": {
+                   "type": "string"
+                  },
+                  "type": "object"
+                 },
+                 "commonAnnotationsEnvsubst": {
+                  "type": "boolean"
+                 },
+                 "commonLabels": {
+                  "additionalProperties": {
+                   "type": "string"
+                  },
+                  "type": "object"
+                 },
+                 "components": {
+                  "items": {
+                   "type": "string"
+                  },
+                  "type": "array"
+                 },
+                 "forceCommonAnnotations": {
+                  "type": "boolean"
+                 },
+                 "forceCommonLabels": {
+                  "type": "boolean"
+                 },
+                 "ignoreMissingComponents": {
+                  "type": "boolean"
+                 },
+                 "images": {
+                  "items": {
+                   "type": "string"
+                  },
+                  "type": "array"
+                 },
+                 "kubeVersion": {
+                  "type": "string"
+                 },
+                 "labelIncludeTemplates": {
+                  "type": "boolean"
+                 },
+                 "labelWithoutSelector": {
+                  "type": "boolean"
+                 },
+                 "namePrefix": {
+                  "type": "string"
+                 },
+                 "nameSuffix": {
+                  "type": "string"
+                 },
+                 "namespace": {
+                  "type": "string"
+                 },
+                 "patches": {
+                  "items": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "options": {
+                     "additionalProperties": {
+                      "type": "boolean"
+                     },
+                     "type": "object"
+                    },
+                    "patch": {
+                     "type": "string"
+                    },
+                    "path": {
+                     "type": "string"
+                    },
+                    "target": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "annotationSelector": {
+                       "type": "string"
+                      },
+                      "group": {
+                       "type": "string"
+                      },
+                      "kind": {
+                       "type": "string"
+                      },
+                      "labelSelector": {
+                       "type": "string"
+                      },
+                      "name": {
+                       "type": "string"
+                      },
+                      "namespace": {
+                       "type": "string"
+                      },
+                      "version": {
+                       "type": "string"
+                      }
+                     },
+                     "type": "object"
+                    }
+                   },
+                   "type": "object"
+                  },
+                  "type": "array"
+                 },
+                 "replicas": {
+                  "items": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "count": {
+                     "anyOf": [
+                      {
+                       "type": "integer"
+                      },
+                      {
+                       "type": "string"
+                      }
+                     ]
+                    },
+                    "name": {
+                     "type": "string"
+                    }
+                   },
+                   "required": [
+                    "count",
+                    "name"
+                   ],
+                   "type": "object"
+                  },
+                  "type": "array"
+                 },
+                 "version": {
+                  "type": "string"
+                 }
+                },
+                "type": "object"
+               },
+               "name": {
+                "type": "string"
+               },
+               "path": {
+                "type": "string"
+               },
+               "plugin": {
+                "additionalProperties": false,
+                "properties": {
+                 "env": {
+                  "items": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "name": {
+                     "type": "string"
+                    },
+                    "value": {
+                     "type": "string"
+                    }
+                   },
+                   "required": [
+                    "name",
+                    "value"
+                   ],
+                   "type": "object"
+                  },
+                  "type": "array"
+                 },
+                 "name": {
+                  "type": "string"
+                 },
+                 "parameters": {
+                  "items": {
+                   "additionalProperties": false,
+                   "properties": {
+                    "array": {
+                     "items": {
+                      "type": "string"
+                     },
+                     "type": "array"
+                    },
+                    "map": {
+                     "additionalProperties": {
+                      "type": "string"
+                     },
+                     "type": "object"
+                    },
+                    "name": {
+                     "type": "string"
+                    },
+                    "string": {
+                     "type": "string"
+                    }
+                   },
+                   "type": "object"
+                  },
+                  "type": "array"
+                 }
+                },
+                "type": "object"
+               },
+               "ref": {
+                "type": "string"
+               },
+               "repoURL": {
+                "type": "string"
+               },
+               "tagPrefix": {
+                "type": "string"
+               },
+               "targetRevision": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "repoURL"
+              ],
+              "type": "object"
+             },
+             "sourceHydrator": {
+              "additionalProperties": false,
+              "properties": {
+               "drySource": {
+                "additionalProperties": false,
+                "properties": {
+                 "directory": {
+                  "additionalProperties": false,
+                  "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
+                   "exclude": {
+                    "type": "string"
+                   },
+                   "include": {
+                    "type": "string"
+                   },
+                   "jsonnet": {
+                    "additionalProperties": false,
+                    "properties": {
+                     "extVars": {
+                      "items": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "code": {
+                         "type": "boolean"
+                        },
+                        "name": {
+                         "type": "string"
+                        },
+                        "value": {
+                         "type": "string"
+                        }
+                       },
+                       "required": [
+                        "name",
+                        "value"
+                       ],
+                       "type": "object"
+                      },
+                      "type": "array"
+                     },
+                     "libs": {
+                      "items": {
+                       "type": "string"
+                      },
+                      "type": "array"
+                     },
+                     "tlas": {
+                      "items": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "code": {
+                         "type": "boolean"
+                        },
+                        "name": {
+                         "type": "string"
+                        },
+                        "value": {
+                         "type": "string"
+                        }
+                       },
+                       "required": [
+                        "name",
+                        "value"
+                       ],
+                       "type": "object"
+                      },
+                      "type": "array"
+                     }
+                    },
+                    "type": "object"
+                   },
+                   "recurse": {
+                    "type": "boolean"
+                   }
+                  },
+                  "type": "object"
+                 },
+                 "helm": {
+                  "additionalProperties": false,
+                  "properties": {
+                   "apiVersions": {
+                    "items": {
+                     "type": "string"
+                    },
+                    "type": "array"
+                   },
+                   "fileParameters": {
+                    "items": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "name": {
+                       "type": "string"
+                      },
+                      "path": {
+                       "type": "string"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "type": "array"
+                   },
+                   "ignoreMissingValueFiles": {
+                    "type": "boolean"
+                   },
+                   "kubeVersion": {
+                    "type": "string"
+                   },
+                   "namespace": {
+                    "type": "string"
+                   },
+                   "parameters": {
+                    "items": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "forceString": {
+                       "type": "boolean"
+                      },
+                      "name": {
+                       "type": "string"
+                      },
+                      "value": {
+                       "type": "string"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "type": "array"
+                   },
+                   "passCredentials": {
+                    "type": "boolean"
+                   },
+                   "releaseName": {
+                    "type": "string"
+                   },
+                   "skipCrds": {
+                    "type": "boolean"
+                   },
+                   "skipSchemaValidation": {
+                    "type": "boolean"
+                   },
+                   "skipTests": {
+                    "type": "boolean"
+                   },
+                   "valueFiles": {
+                    "items": {
+                     "type": "string"
+                    },
+                    "type": "array"
+                   },
+                   "values": {
+                    "type": "string"
+                   },
+                   "valuesObject": {
+                    "type": "object",
+                    "x-kubernetes-preserve-unknown-fields": true
+                   },
+                   "version": {
+                    "type": "string"
+                   }
+                  },
+                  "type": "object"
+                 },
+                 "kustomize": {
+                  "additionalProperties": false,
+                  "properties": {
+                   "apiVersions": {
+                    "items": {
+                     "type": "string"
+                    },
+                    "type": "array"
+                   },
+                   "commonAnnotations": {
+                    "additionalProperties": {
+                     "type": "string"
+                    },
+                    "type": "object"
+                   },
+                   "commonAnnotationsEnvsubst": {
+                    "type": "boolean"
+                   },
+                   "commonLabels": {
+                    "additionalProperties": {
+                     "type": "string"
+                    },
+                    "type": "object"
+                   },
+                   "components": {
+                    "items": {
+                     "type": "string"
+                    },
+                    "type": "array"
+                   },
+                   "forceCommonAnnotations": {
+                    "type": "boolean"
+                   },
+                   "forceCommonLabels": {
+                    "type": "boolean"
+                   },
+                   "ignoreMissingComponents": {
+                    "type": "boolean"
+                   },
+                   "images": {
+                    "items": {
+                     "type": "string"
+                    },
+                    "type": "array"
+                   },
+                   "kubeVersion": {
+                    "type": "string"
+                   },
+                   "labelIncludeTemplates": {
+                    "type": "boolean"
+                   },
+                   "labelWithoutSelector": {
+                    "type": "boolean"
+                   },
+                   "namePrefix": {
+                    "type": "string"
+                   },
+                   "nameSuffix": {
+                    "type": "string"
+                   },
+                   "namespace": {
+                    "type": "string"
+                   },
+                   "patches": {
+                    "items": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "options": {
+                       "additionalProperties": {
+                        "type": "boolean"
+                       },
+                       "type": "object"
+                      },
+                      "patch": {
+                       "type": "string"
+                      },
+                      "path": {
+                       "type": "string"
+                      },
+                      "target": {
+                       "additionalProperties": false,
+                       "properties": {
+                        "annotationSelector": {
+                         "type": "string"
+                        },
+                        "group": {
+                         "type": "string"
+                        },
+                        "kind": {
+                         "type": "string"
+                        },
+                        "labelSelector": {
+                         "type": "string"
+                        },
+                        "name": {
+                         "type": "string"
+                        },
+                        "namespace": {
+                         "type": "string"
+                        },
+                        "version": {
+                         "type": "string"
+                        }
+                       },
+                       "type": "object"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "type": "array"
+                   },
+                   "replicas": {
+                    "items": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "count": {
+                       "anyOf": [
+                        {
+                         "type": "integer"
+                        },
+                        {
+                         "type": "string"
+                        }
+                       ]
+                      },
+                      "name": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "count",
+                      "name"
+                     ],
+                     "type": "object"
+                    },
+                    "type": "array"
+                   },
+                   "version": {
+                    "type": "string"
+                   }
+                  },
+                  "type": "object"
+                 },
+                 "path": {
+                  "type": "string"
+                 },
+                 "plugin": {
+                  "additionalProperties": false,
+                  "properties": {
+                   "env": {
+                    "items": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "name": {
+                       "type": "string"
+                      },
+                      "value": {
+                       "type": "string"
+                      }
+                     },
+                     "required": [
+                      "name",
+                      "value"
+                     ],
+                     "type": "object"
+                    },
+                    "type": "array"
+                   },
+                   "name": {
+                    "type": "string"
+                   },
+                   "parameters": {
+                    "items": {
+                     "additionalProperties": false,
+                     "properties": {
+                      "array": {
+                       "items": {
+                        "type": "string"
+                       },
+                       "type": "array"
+                      },
+                      "map": {
+                       "additionalProperties": {
+                        "type": "string"
+                       },
+                       "type": "object"
+                      },
+                      "name": {
+                       "type": "string"
+                      },
+                      "string": {
+                       "type": "string"
+                      }
+                     },
+                     "type": "object"
+                    },
+                    "type": "array"
+                   }
+                  },
+                  "type": "object"
+                 },
+                 "repoURL": {
+                  "type": "string"
+                 },
+                 "targetRevision": {
+                  "type": "string"
+                 }
+                },
+                "required": [
+                 "path",
+                 "repoURL",
+                 "targetRevision"
+                ],
+                "type": "object"
+               },
+               "hydrateTo": {
+                "additionalProperties": false,
+                "properties": {
+                 "targetBranch": {
+                  "type": "string"
+                 }
+                },
+                "required": [
+                 "targetBranch"
+                ],
+                "type": "object"
+               },
+               "syncSource": {
+                "additionalProperties": false,
+                "properties": {
+                 "path": {
+                  "minLength": 1,
+                  "pattern": "^.{2,}|[^./]$",
+                  "type": "string"
+                 },
+                 "repoURL": {
+                  "type": "string"
+                 },
+                 "targetBranch": {
+                  "type": "string"
+                 }
+                },
+                "required": [
+                 "path",
+                 "targetBranch"
+                ],
+                "type": "object"
+               }
+              },
+              "required": [
+               "drySource",
+               "syncSource"
+              ],
+              "type": "object"
+             },
+             "sources": {
+              "items": {
+               "additionalProperties": false,
+               "properties": {
+                "chart": {
+                 "type": "string"
+                },
+                "directory": {
+                 "additionalProperties": false,
+                 "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -32339,6 +36944,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -32723,6 +37331,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -33141,6 +37752,9 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -34132,6 +38746,9 @@
                "directory": {
                 "additionalProperties": false,
                 "properties": {
+                 "disableExtensionFilter": {
+                  "type": "boolean"
+                 },
                  "exclude": {
                   "type": "string"
                  },
@@ -34516,6 +39133,9 @@
                  "directory": {
                   "additionalProperties": false,
                   "properties": {
+                   "disableExtensionFilter": {
+                    "type": "boolean"
+                   },
                    "exclude": {
                     "type": "string"
                    },
@@ -34934,6 +39554,9 @@
                 "directory": {
                  "additionalProperties": false,
                  "properties": {
+                  "disableExtensionFilter": {
+                   "type": "boolean"
+                  },
                   "exclude": {
                    "type": "string"
                   },
@@ -35711,6 +40334,9 @@
           "directory": {
            "additionalProperties": false,
            "properties": {
+            "disableExtensionFilter": {
+             "type": "boolean"
+            },
             "exclude": {
              "type": "string"
             },
@@ -36095,6 +40721,9 @@
             "directory": {
              "additionalProperties": false,
              "properties": {
+              "disableExtensionFilter": {
+               "type": "boolean"
+              },
               "exclude": {
                "type": "string"
               },
@@ -36513,6 +41142,9 @@
            "directory": {
             "additionalProperties": false,
             "properties": {
+             "disableExtensionFilter": {
+              "type": "boolean"
+             },
              "exclude": {
               "type": "string"
              },

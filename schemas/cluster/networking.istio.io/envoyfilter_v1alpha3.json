@@ -155,6 +155,9 @@
              },
              "transportProtocol": {
               "type": "string"
+             },
+             "transportSocket": {
+              "type": "string"
              }
             },
             "type": "object"

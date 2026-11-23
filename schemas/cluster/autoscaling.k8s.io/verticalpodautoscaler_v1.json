@@ -65,6 +65,16 @@
           },
           "type": "object"
          },
+         "memoryAggregationIntervalCount": {
+          "format": "int64",
+          "minimum": 1,
+          "type": "integer"
+         },
+         "memoryAggregationIntervalSeconds": {
+          "format": "int32",
+          "minimum": 1,
+          "type": "integer"
+         },
          "minAllowed": {
           "additionalProperties": {
            "anyOf": [
@@ -282,6 +292,7 @@
         "Initial",
         "Recreate",
         "InPlaceOrRecreate",
+        "InPlace",
         "Auto"
        ],
        "type": "string"
@@ -309,6 +320,11 @@
        "message": {
         "type": "string"
        },
+       "observedGeneration": {
+        "format": "int64",
+        "minimum": 0,
+        "type": "integer"
+       },
        "reason": {
         "type": "string"
        },
@@ -326,6 +342,11 @@
       "type": "object"
      },
      "type": "array"
+    },
+    "observedGeneration": {
+     "format": "int64",
+     "minimum": 0,
+     "type": "integer"
     },
     "recommendation": {
      "additionalProperties": false,
